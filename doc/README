@@ -1,0 +1,160 @@
+Dokumentation
+zur Fertigkeitsprüfung
+zur Mathematisch-technischen Softwareentwicklerin /
+zum Mathematisch-technischen Softwareentwickler
+
+LaTeX-Version (Stand: April 2013)
+
+
+Diese Datei enthält folgende Punkte:
+
+  Variablen setzen
+  Geschützte Dateien
+  Compilieren des Dokumentes
+  Erstellen von UML-Klassen-Diagrammen
+  Erstellen von UML-Sequenzdiagrammen
+  Erstellen von Nassi-Shneiderman-Diagrammen
+  Einbinden von Graphiken
+  Ausdrucken des Quellcodes
+
+----------------------------------------------------------------
+
+Variablen setzen
+================
+
+Einige Teilbereiche der Dokumentation werden über Variablen erstellt
+und miteinander verknüpft. Aus diesem Grund sollten folgende Variablen
+zu Beginn des Dokumentes (in Master.tex - vor "\begin{document}")
+gesetzt werden:
+
+\Autor              - Vor- und Zuname des Prüflings
+\PruefungsNR        - Die Prüfungsnummer, die der Prüfling von der
+                      Industrie und Handelskammer erhalten hat
+\Ausbildungsort     - Betrieb bzw. Institut in dem der Prüfling seine
+                      Ausbildung absolviet hat (zB: Jülich
+		      Supercomputing Centre\\ Forschungszentrum Jülich)
+		      Wenn man möchte, kann hier auch LaTeX-Konform
+		      ein Logo mit einer maximalen Breite von 6cm
+		      eingebunden werden - siehe dazu auch "Einbinden
+		      von Graphiken
+\Programmiersprache - Die Programmiersprache in der die
+                      Fertigkeitsprüfung erstellt wurde
+\Compiler           - Compiler-Name sowie -Version mit der das
+                      Programmierergebnis compiliert wurde
+\Rechner            - Rechner (Hardware) auf dem der Prüfung während
+                      seiner Prüfung gearbeitet hat
+\Betriebssystem     - Das Betriebssystem unter dem gearbeitet wurde
+
+Neben den verpflichtenden Variablen, gibt es noch weitere Variablen,
+die default-mäßig gesetzt sind und nicht zwingend verändert werden
+müssen:
+
+\Thema         - Stichpunkt oder Kurzbescheibung der Prüfungsaufgabe
+                 (zB.: Verkehrssimulation), die auf der Titelseite
+                 bzw. in der Fußzeile erscheint
+\MW{<m|w>}     - Im gesamten Dokument wird als Berufsbezeichnung
+                 "Mathematisch-technischer Softwareentwickler"
+                 genutzt. Sollte ein weiblicher Prüfling auch die
+                 weibliche Berufsbezeichnung bevorzugen, so kann sie
+                 mit Hilfe der \MW-Variablen die Berufsbezeichnung
+                 ändern
+		 \MW{w} => Softwareentwicklerin
+		 \MW{m} => Softwareentwickler
+
+\PruefungsJahr - Als Prüfungsjahr wird das aktuelle Jahr genommen.
+                 Sollte eine andere Jahreszahl gewünscht sein, so kann
+		 diese über die Varaiblen \PruefungsJahr verändert
+		 werden.
+
+
+Geschützte Dateien
+==================
+
+Die beiden Kapitel "Anhang C: Entwicklungsumgebung" und 
+"Anhang F: Aufgabenstellung" werden komplett über Variablen
+erzeugt. Aus diesem Grund müssen die Dateien
+"Aufgabenstellung_Deckblatt.tex" sowie "Entwicklungsumgebung.tex"
+nicht verändert werden. Damit dies auch nicht versehentlich passiert,
+sind die Dateien schreibgeschützt.
+
+
+Compilieren des Dokumentes
+==========================
+
+Alle tex-Dateien besitzen einen Flag in dem auf die Masterdatei
+verwiesen wird. Das hat den Vorteil, wenn man sich im EMACS befindet,
+kann man (mit Strg+C Strg+C) von jeder tex-Datei aus das gesamte
+Dokument compilieren. In der KONSOLE sollte man aber immer nur die
+"Master.tex"-Datei (latex Master.tex bzw. pdflatex Master.tex)
+compilieren.
+
+
+Erstellen von UML-Klassen-Diagrammen
+====================================
+Zur Erstellung von UML-Klassen-Diagrammen direkt in LaTeX kann das
+mitgelieferte Paket 'pgf-umlcd' genutzt werden. Mit der Option
+'[umlcd]' bei der Dokumentklasse werden alle benötigten Pakete
+eingebunden. Eine Dokumentation mit Beispiel-Klassendiagrammen findet
+man unter:
+   http://pgf-umlcd.googlecode.com/git/release/pgf-umlcd-0.2.1/pgf-umlcd-manual.pdf
+
+ACHTUNG: Um diese Funktionalität nutzen zu können, wird eine aktuelle Version
+         des LaTeX-Paketes 'tikz' benötigt. 
+
+
+Erstellen von UML-Sequenzdiagrammen
+===================================
+Zur Erstellung von UML-Sequenzdiagrammen direkt in LaTeX kann das
+mitgelieferte Paket 'pgf-umlsd' genutzt werden. Mit der Option
+'[umlsd]' bei der Dokumentklasse werden alle benötigten Pakete
+eingebunden. Eine Dokumentation mit Beispiel-Sequenzdiagrammen findet
+man unter:
+   http://pgf-umlsd.googlecode.com/git/release/pgf-umlsd-0.7/pgf-umlsd-manual.pdf
+
+
+Erstellen von Nassi-Shneiderman-Diagrammen
+==========================================
+Zur Erstellung von Nassi-Shneiderman-Diagrammen direkt in LaTeX kann
+das Paket 'struktex' genutzt werden. Mit der Option '[struktex]' bei der
+Dokumentklasse wird dieses Pakete eingebunden. Eine Dokumentation mit
+Beispiel-Nassi-Shneiderman-Diagrammen findet man unter:
+   http://mirrors.ctan.org/macros/latex/contrib/struktex/struktex.de.pdf
+
+
+Einbinden von Graphiken
+=======================
+
+Für Bilder und Abbildungen wird das Paket "graphicx" genutzt.
+Beispiel: 
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{Graphics/bild}
+    \caption{Hauptprogramm.c}
+    \label{hauptprg}
+  \end{figure}
+Erklärung:
+	Bild-Datei: bild.eps (Postscript-Datei) bzw.
+                    bild.pdf (Portable Document Format) bzw.
+                    bild.png (Portable Network Graphic) bzw.
+                    bild.jpg (Joint Photographic Experts Group Format)
+	\includegraphics -> Befehl zum Einbinden der Graphik
+	\caption -> Bildunterschrift
+	\label -> für Querverweise im Text (\ref{hauptprg} bzw. \pageref{...})
+
+Bei der Angabe der Graphik-Datei, sollte auf die Angabe der
+Datei-Endung verzichtet werden. So kann LaTeX selber die Datei mit der
+passenden Endung suchen und einbinden. Auf diese Weise kann man das
+Dokument sowohl mit dem klassischen „latex“ als auch mit „pdflatex“
+kompilieren, ohne jeweils alle Datei-Endungen von „eps“ auf „pdf“ oder
+umgekehrt ändern zu müssen.
+ 
+
+
+Ausdrucken des Quellcodes
+=========================
+
+Der Quellcode darf nicht mehr mit in die Dokumentation eingebunden
+werden. Eine Möglichkeit ihn in einer ansprechenden Form auszudrucken
+ist über das a2ps-Kommando.
+
+   a2ps -r --columns=1 -f 8 -P <DRUCKER> <DATEI>

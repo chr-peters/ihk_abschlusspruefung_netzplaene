@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<project name="Praxis" default="create-jar">
+
+  <!-- Project configuration -->
+  <property name="author" value="Christian Peters" />
+  <property name="main-class" value="praxis.Main" />
+  <property name="src-dir" value="src" />
+  <property name="bin-dir" value="build" />
+  <property name="dist-dir" value="dist" />
+  <property name="application-name" value="praxis" />
+  <property name="application-version" value="1.0.0" />
+
+  <!-- Compiler settings -->
+  <property name="debug" value="true" />
+  <property name="debuglevel" value="lines,vars,source" />
+
+  <path id="project.class.path">
+    <pathelement path="${java.class.path}" />
+    <pathelement location="${bin-dir}" />
+  </path>
+  
+  <target name="init" >
+    <mkdir dir="${bin-dir}" />
+    <mkdir dir="${dist-dir}" />
+  </target>
+
+  <target name="compile" depends="init" >
+    <javac debug="${debug}" debuglevel="${debuglevel}" classpathref="project.class.path" srcdir="${src-dir}" destdir="${bin-dir}"
+           includeAntRuntime="false" />
+  </target>
+
+  <target name="execute" depends="compile">
+    <java fork="true" classpathref="project.class.path" classname="${main-class}" />
+  </target>
+
+  <target name="create-jar" depends="compile">
+    <jar destfile="${dist-dir}/${application-name}-${application-version}.jar" basedir="${bin-dir}">
+      <manifest>
+	<attribute name="Specification-Title" value="${application-name}" />
+	<attribute name="Specification-Version" value="${application-version}" />
+	<attribute name="Built-By" value="${author}" />
+	<attribute name="Main-Class" value="${main-class}" />
+      </manifest>
+    </jar>
+  </target>
+
+  <target name="clean" depends="init">
+    <delete dir="${bin-dir}" />
+    <delete dir="${dist-dir}" />
+  </target>
+</project>

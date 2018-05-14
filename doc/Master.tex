@@ -1,0 +1,40 @@
+\documentclass{gropro}
+\usepackage[utf8]{inputenc}
+
+
+\Autor{Christian Peters}
+\PruefungsNR{20613}
+\Ausbildungsort{Forschungszentrum J\"ulich}
+\Programmiersprache{Java}
+\Compiler{javac 1.8.0\_161}
+\Rechner{}
+\Betriebssystem{Ubuntu 16.04 LTS}
+%Mit includeonly koennen einzelne Kapitel seperat compiliert werden.
+%Beispiel: \includeonly{Aufgabenanalyse} 
+%         -> Das Dokument besteht nur aus dem Kapitel "Aufgabenanalyse" 
+%\includeonly{}
+
+\begin{document}
+
+  \maketitle
+  \pagenumbering{Roman} 
+  \tableofcontents
+  \cleardoublepage
+  
+  \pagenumbering{arabic}
+  \Ginclude{Aufgabenanalyse}
+  \Ginclude{Verfahrensbeschreibung}
+  \Ginclude{Programmbeschreibung}
+  \Ginclude{Testdokumentation}
+  
+  \begin{appendix}
+    \Ginclude{Abweichungen}
+    \Ginclude{Benutzeranleitung}
+    \Ginclude{Entwicklungsumgebung}
+    %\makedeposition
+    \Ginclude{Aufgabenstellung_Deckblatt}
+    \Ginclude{Quellcode_Deckblatt}
+    \Ginclude{Test_Deckblatt}
+  \end{appendix}
+
+\end{document}
