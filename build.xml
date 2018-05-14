@@ -4,11 +4,11 @@
 
   <!-- Project configuration -->
   <property name="author" value="Christian Peters" />
-  <property name="main-class" value="praxis.Main" />
+  <property name="main-class" value="netzplanerstellung.Main" />
   <property name="src-dir" value="src" />
   <property name="bin-dir" value="build" />
   <property name="dist-dir" value="dist" />
-  <property name="application-name" value="praxis" />
+  <property name="application-name" value="netzplanerstellung" />
   <property name="application-version" value="1.0.0" />
 
   <!-- Compiler settings -->

@@ -1,13 +1,13 @@
 #! /bin/ksh
 
 # name of the created zip file
-ZIP_NAME='gropro'
+ZIP_NAME='GroPro_ChristianPeters'
 
 # path to the documentation
 DOC_PATH='doc/latex_output/Master.pdf'
 
 # path to the executable
-JAR_PATH='dist/praxis-1.0.0.jar'
+JAR_PATH='dist/netzplanerstellung-1.0.0.jar'
 
 # create temporary folder
 TMP_NAME=$ZIP_NAME

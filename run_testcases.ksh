@@ -1,7 +1,7 @@
 #! /bin/ksh
 
 # die Standard-Konfiguration
-PROGRAMM="./praxis-1.0.0.jar"
+PROGRAMM="./netzplanerstellung-1.0.0.jar"
 INPUT_ORDNER="./testcases"
 OUTPUT_ORDNER="./testcases"
 
