@@ -61,4 +61,40 @@ public class Vorgang {
     public List<Integer> getVorgaenger() {
 	return this.vorgaenger;
     }
+
+    public void setFEZ(int fez) {
+	this.fez = fez;
+    }
+
+    public int getFEZ() {
+	return this.fez;
+    }
+
+    public int getDauer() {
+	return this.dauer;
+    }
+
+    public int getFAZ() {
+	return this.faz;
+    }
+
+    public void setFAZ(int faz) {
+	this.faz = faz;
+    }
+
+    public void setSEZ(int sez) {
+	this.sez = sez;
+    }
+    
+    public int getSEZ() {
+	return this.sez;
+    }
+
+    public void setSAZ(int saz) {
+	this.saz = saz;
+    }
+
+    public int getSAZ() {
+	return this.saz;
+    }
 }

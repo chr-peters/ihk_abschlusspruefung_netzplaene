@@ -66,6 +66,9 @@ public class Netzplan {
 	// beginne mit Phase 1: Vorwaertsrechnung
 	this.vorwaertsRechnung();
 
+	// fahre fort mit Phase 2: Rueckwaertsrechnung
+	this.rueckwaertsRechnung();
+
 	/**
 	 * DEBUG: Gebe die Adjazenzmatrix aus
 	 */
@@ -79,7 +82,77 @@ public class Netzplan {
     }
 
     private void vorwaertsRechnung() {
+	// erzeuge eine Liste der abzuarbeitenden Knoten (diese enthaelt zunaechst nur alle Startknoten)
+	List<Integer> abzuarbeiten = new ArrayList<>(this.startKnoten);
+
+	while (abzuarbeiten.size() > 0) {
+	    // entferne aktuellen Knoten
+	    int aktKnoten = abzuarbeiten.remove(0);
+
+	    // besorge Referenz auf den zugehoerigen Vorgang, um FEZ setzen zu koennen
+	    Vorgang aktVorgang = this.vorgaenge.get(aktKnoten);
+	    
+	    // setze FEZ
+	    aktVorgang.setFEZ(aktVorgang.getFAZ() + aktVorgang.getDauer());
+
+	    // besuche die Nachbarn (Kinder) des aktuellen Vorgangs (Achtung, diese liegen in externer Darstellung vor!)
+	    List<Integer> kinder = aktVorgang.getNachfolger();
+	    for (int aktKind: kinder) {
+		// bestimme interne Darstellung des Kindes
+		int intern = toInternal.get(aktKind);
+
+		// besorge Referenz auf das Kind
+		Vorgang kindVorgang = this.vorgaenge.get(intern);
+
+		// setze FAZ des Kindes, falls es sich hierdurch vergroessert
+		if (kindVorgang.getFAZ() < aktVorgang.getFEZ()) {
+		    kindVorgang.setFAZ(aktVorgang.getFEZ());
+		}
+
+		// fuege das Kind hinten an die Liste an
+		abzuarbeiten.add(intern);
+	    }
+	}
+    }
+
+    private void rueckwaertsRechnung() {
+	// setze zuerst fuer jeden Endknoten SEZ=FEZ
+	for (int aktKnoten: this.endKnoten) {
+	    // besorge Referenz
+	    Vorgang aktVorgang = this.vorgaenge.get(aktKnoten);
+	    // setze Wert
+	    aktVorgang.setSEZ(aktVorgang.getFEZ());
+	}
 	
+	// erzeuge eine Liste der abzuarbeitenden Knoten (diese enthaelt zunaechst nur alle Endknoten)
+	List<Integer> abzuarbeiten = new ArrayList<>(this.endKnoten);
+
+	while (abzuarbeiten.size() > 0) {
+	    // entferne den aktuellen Knoten
+	    int aktKnoten = abzuarbeiten.remove(0);
+	    
+	    // besorge Referenz
+	    Vorgang aktVorgang = this.vorgaenge.get(aktKnoten);
+
+	    // setze SAZ=SEZ-D
+	    aktVorgang.setSAZ(aktVorgang.getSEZ()-aktVorgang.getDauer());
+
+	    // besuche die Vorgaenger (auch hier wieder externe Darstellung)
+	    List<Integer> vorgaenger = aktVorgang.getVorgaenger();
+
+	    for (int aktVorgaenger: vorgaenger) {
+		// besorge Referenz
+		Vorgang aktVorgaengerRef = this.vorgaenge.get(toInternal.get(aktVorgaenger));
+
+		// setze SEZ des Vorgaengers, wenn es noch nicht gesetzt wurde oder es sich verringert
+		if (aktVorgaengerRef.getSEZ() == 0 || aktVorgaengerRef.getSEZ() > aktVorgang.getSAZ()) {
+		    aktVorgaengerRef.setSEZ(aktVorgang.getSAZ());
+		}
+
+		// fuege den Vorgaenger hinten an die Liste an
+		abzuarbeiten.add(toInternal.get(aktVorgaenger));
+	    }
+	}
     }
 
     public int getDauer() {
