@@ -5,6 +5,9 @@ import netzplanerstellung.logik.*;
 
 import java.util.List;
 
+//TODO remove
+import java.util.Arrays;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -29,6 +32,11 @@ public class Main {
 	    for (Vorgang aktVorgang: vorgaenge) {
 		System.out.println(aktVorgang);
 	    }
+	    System.out.println("Kritische Pfade:");
+	    for (List<Integer> aktPfad: netzplan.getKritischePfade()) {
+		System.out.println(Arrays.toString(aktPfad.toArray()));
+	    }
+	    System.out.println("Dauer: "+netzplan.getDauer());
 	} catch (DateiFormatException e) {
 	    // ein Fehler beim Einlesen ist aufgetreten!
 	    // gebe die Informationen aus und beende das Programm mit einem Fehlercode

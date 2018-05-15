@@ -164,7 +164,7 @@ public class Netzplan {
 	    aktVorgang.setGP(aktVorgang.getSAZ() - aktVorgang.getFAZ());
 
 	    // bei Endknoten ist FP immer 0
-	    if (this.endKnoten.contains(toInternal.get(aktVorgang.getNummer()))) {
+	    if (aktVorgang.getNachfolger().size() == 0) {
 		aktVorgang.setFP(0);
 		continue;
 	    }
@@ -187,11 +187,68 @@ public class Netzplan {
     }
 
     public int getDauer() {
-	return 0;
+	// die Dauer des Projektes ist der FEZ (bzw. SEZ) des letzten Vorganges
+	// gibt es mehrere Endvorgaenge und ist FEZ nicht einheitlich,
+	// so ist dieser Wert nicht eindeutig (in diesem Fall wird der Wert -1 zurueckgegeben)
+	int tmpDauer = this.vorgaenge.get(this.endKnoten.get(0)).getFEZ();
+	for (int curEndKnoten: this.endKnoten) {
+	    if (this.vorgaenge.get(curEndKnoten).getFEZ() != tmpDauer) {
+		return -1;
+	    }
+	}
+	return tmpDauer;
     }
 
     public List<List<Integer>> getKritischePfade() {
-	return null;
+	// erzeuge leeres Resultat
+	List<List<Integer>> resultat = new ArrayList<>();
+
+	// bestimme kritische Pfade ausgehend von jedem Startknoten
+	for (int aktStartKnoten: this.startKnoten) {
+	    
+	    // wenn der Knoten nicht kritisch ist, ist nichts zu tun
+	    if (!this.vorgaenge.get(aktStartKnoten).istKritisch()) {
+		continue;
+	    }
+
+	    // erzeuge die Liste aus Pfaden
+	    // die Bezeichner der Knoten sind hierbei in externer Darstellung angegeben
+	    List<List<Integer>> pfade = new ArrayList<>();
+
+	    // fuege Pfad mit aktStartKnoten der Liste an
+	    List<Integer> startPfad = new ArrayList<>();
+	    startPfad.add(fromInternal.get(aktStartKnoten));
+	    pfade.add(startPfad);
+
+	    while(pfade.size() > 0) {
+		List<Integer> aktPfad = pfade.remove(0);
+
+		// betrachte den letzten Knoten aus aktPfad
+		int aktKnoten = aktPfad.get(aktPfad.size()-1);
+
+		// ist aktPfad kritischer Pfad (ist sein letzter Knoten ein Endknoten)?
+		if (this.endKnoten.contains(toInternal.get(aktKnoten))) {
+		    resultat.add(aktPfad);
+		    continue;
+		}
+
+		// generiere alle kritischen Nachfolger des letzten Elementes aus aktpfad
+		List<Integer> nachfolger = this.vorgaenge.get(toInternal.get(aktKnoten)).getNachfolger();
+		for (int aktNachfolger: nachfolger) {
+		    // handelt es sich um einen kritischen Nachfolger?
+		    if (this.vorgaenge.get(toInternal.get(aktNachfolger)).istKritisch()) {
+			// erzeuge einen neuen Pfad mit diesem als letztes Element
+			List<Integer> neuerPfad = new ArrayList<>(aktPfad);
+			neuerPfad.add(aktNachfolger);
+
+			// fuege diesen Pfad den zu bearbeitenden Pfaden hinzu
+			pfade.add(neuerPfad);
+		    }
+		}
+	    }
+	}
+
+	return resultat;
     }
 
     private void erzeugeAdjazenzen() throws NetzplanException {
