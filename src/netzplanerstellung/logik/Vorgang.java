@@ -97,4 +97,20 @@ public class Vorgang {
     public int getSAZ() {
 	return this.saz;
     }
+
+    public int getGP() {
+	return this.gp;
+    }
+
+    public void setGP(int gp) {
+	this.gp = gp;
+    }
+
+    public int getFP() {
+	return this.fp;
+    }
+
+    public void setFP(int fp) {
+	this.fp = fp;
+    }
 }

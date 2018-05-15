@@ -69,6 +69,9 @@ public class Netzplan {
 	// fahre fort mit Phase 2: Rueckwaertsrechnung
 	this.rueckwaertsRechnung();
 
+	// fuehre nun Phase 3 durch: Ermittlung der Zeitreserven
+	this.zeitreserven();
+
 	/**
 	 * DEBUG: Gebe die Adjazenzmatrix aus
 	 */
@@ -152,6 +155,34 @@ public class Netzplan {
 		// fuege den Vorgaenger hinten an die Liste an
 		abzuarbeiten.add(toInternal.get(aktVorgaenger));
 	    }
+	}
+    }
+
+    private void zeitreserven() {
+	// Iteriere durch die Vorgaenge und setze GP und FP
+	for (Vorgang aktVorgang: this.vorgaenge) {
+	    aktVorgang.setGP(aktVorgang.getSAZ() - aktVorgang.getFAZ());
+
+	    // bei Endknoten ist FP immer 0
+	    if (this.endKnoten.contains(toInternal.get(aktVorgang.getNummer()))) {
+		aktVorgang.setFP(0);
+		continue;
+	    }
+
+	    // finde nun das Minimum aus dem FAZ seiner Nachfolger
+	    int minFAZ = Integer.MAX_VALUE;
+	    for (int aktNachfolger: aktVorgang.getNachfolger()) {
+		// besorge Referenz
+		Vorgang aktNachfolgerRef = this.vorgaenge.get(toInternal.get(aktNachfolger));
+
+		// setze neues minFAZ, falls FAZ des Nachfolgers geringer ist
+		if (minFAZ > aktNachfolgerRef.getFAZ()) {
+		    minFAZ = aktNachfolgerRef.getFAZ();
+		}
+	    }
+
+	    // setze FP
+	    aktVorgang.setFP(minFAZ - aktVorgang.getFEZ());
 	}
     }
 
