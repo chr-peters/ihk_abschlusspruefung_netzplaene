@@ -1,0 +1,6 @@
+//************************************************
+//+ Zwei einzelne Knoten
+//************************************************
+//Vorgangsnummer; Vorgangsbezeichnung; Dauer; Vorgänger; Nachfolger
+1; Planung des Projekts; 1; -; -
+2; Beschaffung der POI-Kioske; 25; -; -
