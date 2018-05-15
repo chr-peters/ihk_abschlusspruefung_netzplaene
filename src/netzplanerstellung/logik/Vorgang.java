@@ -35,4 +35,18 @@ public class Vorgang {
     public boolean istKritisch() {
 	return this.gp == 0 && this.fp == 0;
     }
+
+    public String toString() {
+	StringBuilder res = new StringBuilder();
+	res.append(nummer+"; ");
+	res.append(bezeichnung+"; ");
+	res.append(dauer+"; ");
+	res.append(faz+"; ");
+	res.append(fez+"; ");
+	res.append(saz+"; ");
+	res.append(sez+"; ");
+	res.append(gp+"; ");
+	res.append(fp+"");
+	return res.toString();
+    }
 }
