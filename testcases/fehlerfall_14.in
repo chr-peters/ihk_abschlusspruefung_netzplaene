@@ -1,11 +1,11 @@
 //************************************************
-//+ Ungültige Vorgänger
-// Fehler liegt in Zeile 8
+//+ Nicht existierender Nachfolger
+// der Fehler liegt in Zeile 2
 //************************************************
 //Vorgangsnummer; Vorgangsbezeichnung; Dauer; Vorgänger; Nachfolger
 1; Planung des Projekts; 1; -; 2,4
-2; Beschaffung der POI-Kioske; 25; 1; 3
-3; Einrichtung der POI-Kioske; 10; falsch; 6
+2; Beschaffung der POI-Kioske; 25; 1; 3,8
+3; Einrichtung der POI-Kioske; 10; 2; 6
 4; Netzwerk installieren; 6; 1; 5
 5; Netzwerk einrichten; 1; 4; 6
 6; Aufbau der POI Kioske; 2; 3,5; 7

@@ -49,4 +49,16 @@ public class Vorgang {
 	res.append(fp+"");
 	return res.toString();
     }
+
+    public int getNummer() {
+	return this.nummer;
+    }
+
+    public List<Integer> getNachfolger() {
+	return this.nachfolger;
+    }
+
+    public List<Integer> getVorgaenger() {
+	return this.vorgaenger;
+    }
 }

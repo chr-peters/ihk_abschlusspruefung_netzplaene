@@ -1,5 +1,6 @@
 //*****************************
-//+ Beispiel 5 IT-Installation
+//+ Beispiel 5 IT-Installation (korrigiert)
+// Die Korrektur ist in Zeile 13
 //*****************************
 //Vorgangsnummer; Vorgangsbezeichnung; Dauer; Vorgänger; Nachfolger
 1; Infrastrukturbedarf ermitteln; 1; -; 2,3
@@ -9,7 +10,7 @@
 5; Hardware PC + Server beschaffen; 4; 2; 6,7,9
 6; Software beschaffen; 2; 5; 12
 7; Netzwerkzubehör beschaffen; 5; 3,5; 11
-8; Peripherie beschaffen; 1; 3; 13
+8; Peripherie beschaffen; 1; 4; 13
 9; Hardware PC + Server aufbauen; 6; 5; 10
 10; Server installieren; 3; 9; 12,13,15
 11; Netzwerk aufbauen; 5; 7; 12,13
