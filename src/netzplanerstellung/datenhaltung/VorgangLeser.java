@@ -179,7 +179,7 @@ public class VorgangLeser {
 	    // Fehler beim Schliessen des BufferedReader
 	    // Sollte in der Praxis nicht vorkommen, da die br.close()-Methode
 	    // automatisch aufgerufen wird
-	    throw e;
+	    throw new IOException("Ein schwerwiegender Fehler beim Lesen der Eingabedatei ist aufgetreten. Bitte kontaktieren Sie sofort den Entwickler!");
 	}
     }
 }

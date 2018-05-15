@@ -29,14 +29,10 @@ public class Main {
 	    // erzeuge den Netzplan
 	    Netzplan netzplan = new Netzplan(vorgaenge);
 
-	    for (Vorgang aktVorgang: vorgaenge) {
-		System.out.println(aktVorgang);
-	    }
-	    System.out.println("Kritische Pfade:");
-	    for (List<Integer> aktPfad: netzplan.getKritischePfade()) {
-		System.out.println(Arrays.toString(aktPfad.toArray()));
-	    }
-	    System.out.println("Dauer: "+netzplan.getDauer());
+	    // erzeuge den Projekt Report
+	    ProjektReport report = new ProjektReport(args[1]);
+	    report.erzeugeReport(netzplan, ueberschrift);
+
 	} catch (DateiFormatException e) {
 	    // ein Fehler beim Einlesen ist aufgetreten!
 	    // gebe die Informationen aus und beende das Programm mit einem Fehlercode
@@ -46,10 +42,7 @@ public class Main {
 	    System.err.println(e.getMessage());
 	    System.exit(-1);
 	} catch (IOException e) {
-	    // dieser Fehler sollte in der Praxis nicht auftreten, daher gebe den gesamten
-	    // Stack aus
-	    System.err.println("Ein schwerwiegender Fehler ist aufgetreten. Bitte kontaktieren Sie sofort den Entwickler!");
-	    e.printStackTrace();
+	    System.err.println(e.getMessage());
 	    System.exit(-1);
 	} catch (NetzplanException e) {
 	    // Fehler bei der Erstellung des Netzplanes

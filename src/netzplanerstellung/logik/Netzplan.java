@@ -437,4 +437,24 @@ public class Netzplan {
 	
 	return true;
     }
+
+    public List<Vorgang> getVorgaenge() {
+	return this.vorgaenge;
+    }
+
+    public List<Vorgang> getStartVorgaenge() {
+	List<Vorgang> resultat = new ArrayList<>();
+	for (int aktVorgang: this.startKnoten) {
+	    resultat.add(this.vorgaenge.get(aktVorgang));
+	}
+	return resultat;
+    }
+
+    public List<Vorgang> getEndVorgaenge() {
+	List<Vorgang> resultat = new ArrayList<>();
+	for (int aktVorgang: this.endKnoten) {
+	    resultat.add(this.vorgaenge.get(aktVorgang));
+	}
+	return resultat;
+    }
 }
