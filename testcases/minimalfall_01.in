@@ -1,0 +1,5 @@
+//************************************************
+//+ Ein einziger Knoten
+//************************************************
+//Vorgangsnummer; Vorgangsbezeichnung; Dauer; Vorgänger; Nachfolger
+1; Planung des Projekts; 1; -; -

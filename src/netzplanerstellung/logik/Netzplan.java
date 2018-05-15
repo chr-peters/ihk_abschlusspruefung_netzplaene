@@ -31,6 +31,26 @@ public class Netzplan {
 	    fromInternal.put(internal, this.vorgaenge.get(internal).getNummer());
 	}
 
+	// belege nun die Listen der Start- und Endknoten
+	for (Vorgang aktVorgang: vorgaenge) {
+	    if (aktVorgang.getVorgaenger().size() == 0) {
+		this.startKnoten.add(toInternal.get(aktVorgang.getNummer()));
+	    }
+	    if (aktVorgang.getNachfolger().size() == 0) {
+		this.endKnoten.add(toInternal.get(aktVorgang.getNummer()));
+	    }
+	}
+
+	// teste, ob mindestens ein Startknoten existiert
+	if (this.startKnoten.size() == 0) {
+	    throw new NetzplanException("Fehler bei der Erstellung des Netzplans: Es existiert kein Startvorgang!");
+	}
+
+	// teste, ob mindestens ein Endknoten existiert
+	if (this.endKnoten.size() == 0) {
+	    throw new NetzplanException("Fehler bei der Erstellung des Netzplans: Es existiert kein Endvorgang!");
+	}
+
 	// erzeuge die Adjazenzmatrix
 	// hierbei wird auch die Konsistenz der Beziehungen unter den Vorgängen sichergestellt
 	this.erzeugeAdjazenzen();
@@ -38,6 +58,13 @@ public class Netzplan {
 	// teste, ob der Graph auch zusammen haengt
 	// es wird eine Exception geworfen, wenn dies nicht der Fall ist
 	this.istZusammenhaengend();
+
+	// teste, ob der Graph auch zyklenfrei ist
+	// es wird eine Exception geworfen, wenn dies nicht der Fall ist
+	this.istZyklenfrei();
+
+	// beginne mit Phase 1: Vorwaertsrechnung
+	this.vorwaertsRechnung();
 
 	/**
 	 * DEBUG: Gebe die Adjazenzmatrix aus
@@ -49,6 +76,10 @@ public class Netzplan {
 	//     System.out.print("\n");
 	// }
 
+    }
+
+    private void vorwaertsRechnung() {
+	
     }
 
     public int getDauer() {
@@ -108,8 +139,71 @@ public class Netzplan {
 	}
     }
 
-    private boolean istZyklenfrei() {
-	return false;
+    private boolean istZyklenfrei() throws NetzplanException{
+	// Zum Auffinden der Zyklen wird ausgehend von jedem Startknoten jeder moegliche Pfad erzeugt (Expansion des Graphen)
+	// Werden Knoten in einen Pfad neu aufgenommen, die in diesem Pfad bereits existieren, ist der Graph
+	// nicht zyklenfrei.
+
+	for (int aktStartknoten: this.startKnoten) {
+	    // die Liste mit den Pfaden der Expansion
+	    List<List<Integer>> pfade = new ArrayList<>();
+	    
+	    // der Startpfad enthaelt nur den Startknoten
+	    List<Integer> startPfad = new ArrayList<>();
+	    startPfad.add(aktStartknoten);
+
+	    pfade.add(startPfad);
+
+	    // beginne mit der Expansion
+	    while (pfade.size() > 0) {
+		// entferne den aktuellen Pfad
+		List<Integer> aktPfad = pfade.remove(0);
+
+		// betrachte den letzten Knoten des Pfades
+		int aktKnoten = aktPfad.get(aktPfad.size()-1);
+
+		// wenn es ein Endknoten ist, so ist dieser Pfad frei von Zyklen und muss nicht weiter betrachtet werden
+		if (this.endKnoten.contains(aktKnoten)) {
+		    continue;
+		}
+
+		// betrachte nun alle Nachbarn (Kinder) des letzten Knotens
+		List<Integer> kinder = new ArrayList<>();
+		for (int i = 0; i < this.adjazenzen[aktKnoten].length; i++) {
+		    if (this.adjazenzen[aktKnoten][i] == 1) {
+			kinder.add(i);
+		    }
+		}
+
+		// teste fuer jedes Kind, ob es schon Teil des Pfades ist (dann liegt ein Zyklus vor)
+		// falls nicht, erzeuge einen neuen Pfad mit dem jeweiligen Kind als Endknoten
+		for (int aktKind: kinder) {
+		    if (aktPfad.contains(aktKind)) {
+			// Zyklus gefunden! Erzeuge Fehlertext
+			StringBuilder fehlertext = new StringBuilder();
+			fehlertext.append("Fehler bei der Erstellung des Netzplans: Es wurde ein Zyklus erkannt!\n");
+
+			// zeigt das erste Vorkommen des Kindknoten im Zyklus an
+			boolean erstesVorkommen = false;
+			for (int zyklKnoten: aktPfad) {
+			    if (!erstesVorkommen && zyklKnoten == aktKind) {
+				erstesVorkommen = true;
+			    }
+			    if (erstesVorkommen) {
+				fehlertext.append(fromInternal.get(zyklKnoten)+"->");
+			    }
+			}
+			fehlertext.append(fromInternal.get(aktKind));
+			throw new NetzplanException(fehlertext.toString());
+		    } else {
+			List<Integer> neuerPfad = new ArrayList<>(aktPfad);
+			neuerPfad.add(aktKind);
+			pfade.add(neuerPfad);
+		    }
+		}
+	    }
+	}
+	return true;
     }
 
     private boolean istZusammenhaengend() throws NetzplanException{
@@ -118,18 +212,22 @@ public class Netzplan {
 	// Wenn Knoten am Ende der Traversierung nicht erreicht werden konnten, ist der
 	// Graph nicht zusammenhaengend
 
+	// die symmetrische Adjazenzmatrix
+	int adjazenzenSym [][] = new int [this.adjazenzen.length][this.adjazenzen[0].length];
+
 	// Zu diesem Zweck wird die Adjazenzmatrix zunaechst so erweitert, dass sie symmetrisch ist.
 	for (int zeile = 0; zeile < this.adjazenzen.length; zeile++) {
 	    for (int spalte = 0; spalte < this.adjazenzen[0].length; spalte++) {
 		if (this.adjazenzen[zeile][spalte] == 1) {
-		    this.adjazenzen[spalte][zeile] = 1;
+		    adjazenzenSym[zeile][spalte] = 1;
+		    adjazenzenSym[spalte][zeile] = 1;
 		}
 	    }
 	}
 
 	// Liste mit allen Knoten (die Knoten die hier am Ende uebrig bleiben, koennen nicht erreicht werden)
 	List<Integer> alleKnoten = new ArrayList<>();
-	for (int i=0; i<this.adjazenzen.length; i++) {
+	for (int i=0; i<adjazenzenSym.length; i++) {
 	    alleKnoten.add(i);
 	}
 
@@ -148,8 +246,8 @@ public class Netzplan {
 
 	    // bestimme alle Knoten, die von diesem Knoten aus erreichbar sind
 	    // und noch nicht besucht wurden und fuege sie zu aktKnoten hinzu
-	    for (int i = 0; i<this.adjazenzen[tmp].length; i++) {
-		if (this.adjazenzen[tmp][i]==1 && !besucht.contains(i)){
+	    for (int i = 0; i<adjazenzenSym[tmp].length; i++) {
+		if (adjazenzenSym[tmp][i]==1 && !besucht.contains(i)){
 		    aktKnoten.add(i);
 		}
 	    }
@@ -164,15 +262,18 @@ public class Netzplan {
 	if (alleKnoten.size() != 0) {
 	    // Es sind noch Knoten uebrig, also gebe eine Fehlermeldung
 	    StringBuilder fehlertext = new StringBuilder();
-	    fehlertext.append("Fehler bei der Netzplanerstellung: Der Netzplan ist nicht zusammenhängend!"+
+	    fehlertext.append("Fehler bei der Erstellung des Netzplans: Der Netzplan ist nicht zusammenhängend!"+
 			      " Es existiert kein ungerichteter Pfad zwischen Vorgang "+fromInternal.get(0)+
 			      " und ");
+	    if (alleKnoten.size() > 1) {
+		fehlertext.append("den Vorgängen ");
+	    }
 	    for (int i=0; i<alleKnoten.size(); i++) {
 		fehlertext.append(fromInternal.get(alleKnoten.get(i))+(i==alleKnoten.size()-1?"":", "));
 	    }
 	    throw new NetzplanException(fehlertext.toString());
 	}
 	
-	return false;
+	return true;
     }
 }

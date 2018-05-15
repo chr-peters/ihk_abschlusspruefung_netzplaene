@@ -1,0 +1,11 @@
+//************************************************
+//+ Nummern ausser der Reihe
+//************************************************
+//Vorgangsnummer; Vorgangsbezeichnung; Dauer; Vorgänger; Nachfolger
+700; Planung des Projekts; 700; -; 2,-25
+2; Beschaffung der POI-Kioske; 25; 700; 3
+3; Einrichtung der POI-Kioske; 7000; 2; 6
+-25; Netzwerk installieren; 6; 700; 5
+5; Netzwerk einrichten; 700; -25; 6
+6; Aufbau der POI Kioske; 2; 3,5; 7
+7; Tests und Nachbesserung der POI Kioske; 700; 6; -
