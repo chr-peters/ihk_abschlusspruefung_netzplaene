@@ -5,6 +5,9 @@ import netzplanerstellung.logik.*;
 
 import java.util.List;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class Main {
     public static void main (String args []) {
 
@@ -13,12 +16,31 @@ public class Main {
 	    System.exit(-1);
 	}
 
-	VorgangLeser leser = new VorgangLeser(args[0]);
-	List<Vorgang> vorgaenge = leser.getVorgaenge();
-	String ueberschrift = leser.getUeberschrift();
+	try {
+	    VorgangLeser leser = new VorgangLeser(args[0]);
 
-	for (Vorgang aktVorgang: vorgaenge) {
-	    System.out.println(aktVorgang);
+	    List<Vorgang> vorgaenge = leser.getVorgaenge();
+	    String ueberschrift = leser.getUeberschrift();
+
+	    for (Vorgang aktVorgang: vorgaenge) {
+		System.out.println(aktVorgang);
+	    }
+
+	} catch (DateiFormatException e) {
+	    // ein Fehler beim Einlesen ist aufgetreten!
+	    // gebe die Informationen aus und beende das Programm mit einem Fehlercode
+	    System.err.println(e.getMessage());
+	    System.exit(-1);
+	} catch (FileNotFoundException e) {
+	    System.err.println(e.getMessage());
+	    System.exit(-1);
+	} catch (IOException e) {
+	    // dieser Fehler sollte in der Praxis nicht auftreten, daher gebe den gesamten
+	    // Stack aus
+	    System.err.println("Ein schwerwiegender Fehler ist aufgetreten. Bitte kontaktieren Sie sofort den Entwickler!");
+	    e.printStackTrace();
+	    System.exit(-1);
 	}
+
     }
 }
