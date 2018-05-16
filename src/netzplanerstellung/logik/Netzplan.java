@@ -5,6 +5,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
+/**
+ * Klasse zur Darstellung eines Netzplans.
+ */
 public class Netzplan {
     private List<Vorgang> vorgaenge;
     private int [][] adjazenzen;
@@ -22,7 +25,7 @@ public class Netzplan {
 	this.startKnoten = new ArrayList<>();
 	this.endKnoten = new ArrayList<>();
 
-	// um mit der Adjazenzmatrix arbeiten zu können, erzeuge zunaechst die Abbildung
+	// um mit der Adjazenzmatrix arbeiten zu können, erzeuge zunächst die Abbildung
 	// zwischen den internen und externen Vorgangsnummern
 	this.toInternal = new HashMap<>();
 	this.fromInternal = new HashMap<>();
@@ -55,7 +58,7 @@ public class Netzplan {
 	// hierbei wird auch die Konsistenz der Beziehungen unter den Vorgängen sichergestellt
 	this.erzeugeAdjazenzen();
 
-	// teste, ob der Graph auch zusammen haengt
+	// teste, ob der Graph auch zusammenhängt
 	// es wird eine Exception geworfen, wenn dies nicht der Fall ist
 	this.istZusammenhaengend();
 
@@ -63,13 +66,13 @@ public class Netzplan {
 	// es wird eine Exception geworfen, wenn dies nicht der Fall ist
 	this.istZyklenfrei();
 
-	// beginne mit Phase 1: Vorwaertsrechnung
+	// beginne mit Phase 1: Vorwärtsrechnung
 	this.vorwaertsRechnung();
 
-	// fahre fort mit Phase 2: Rueckwaertsrechnung
+	// fahre fort mit Phase 2: Rückwärtsrechnung
 	this.rueckwaertsRechnung();
 
-	// fuehre nun Phase 3 durch: Ermittlung der Zeitreserven
+	// führe nun Phase 3 durch: Ermittlung der Zeitreserven
 	this.zeitreserven();
 
 	/**
@@ -85,14 +88,14 @@ public class Netzplan {
     }
 
     private void vorwaertsRechnung() {
-	// erzeuge eine Liste der abzuarbeitenden Knoten (diese enthaelt zunaechst nur alle Startknoten)
+	// erzeuge eine Liste der abzuarbeitenden Knoten (diese enthält zunächst nur alle Startknoten)
 	List<Integer> abzuarbeiten = new ArrayList<>(this.startKnoten);
 
 	while (abzuarbeiten.size() > 0) {
 	    // entferne aktuellen Knoten
 	    int aktKnoten = abzuarbeiten.remove(0);
 
-	    // besorge Referenz auf den zugehoerigen Vorgang, um FEZ setzen zu koennen
+	    // besorge Referenz auf den zugehörigen Vorgang, um FEZ setzen zu können
 	    Vorgang aktVorgang = this.vorgaenge.get(aktKnoten);
 	    
 	    // setze FEZ
@@ -107,19 +110,19 @@ public class Netzplan {
 		// besorge Referenz auf das Kind
 		Vorgang kindVorgang = this.vorgaenge.get(intern);
 
-		// setze FAZ des Kindes, falls es sich hierdurch vergroessert
+		// setze FAZ des Kindes, falls es sich hierdurch vergrößert
 		if (kindVorgang.getFAZ() < aktVorgang.getFEZ()) {
 		    kindVorgang.setFAZ(aktVorgang.getFEZ());
 		}
 
-		// fuege das Kind hinten an die Liste an
+		// füge das Kind hinten an die Liste an
 		abzuarbeiten.add(intern);
 	    }
 	}
     }
 
     private void rueckwaertsRechnung() {
-	// setze zuerst fuer jeden Endknoten SEZ=FEZ
+	// setze zuerst für jeden Endknoten SEZ=FEZ
 	for (int aktKnoten: this.endKnoten) {
 	    // besorge Referenz
 	    Vorgang aktVorgang = this.vorgaenge.get(aktKnoten);
@@ -127,7 +130,7 @@ public class Netzplan {
 	    aktVorgang.setSEZ(aktVorgang.getFEZ());
 	}
 	
-	// erzeuge eine Liste der abzuarbeitenden Knoten (diese enthaelt zunaechst nur alle Endknoten)
+	// erzeuge eine Liste der abzuarbeitenden Knoten (diese enthält zunaechst nur alle Endknoten)
 	List<Integer> abzuarbeiten = new ArrayList<>(this.endKnoten);
 
 	while (abzuarbeiten.size() > 0) {
@@ -140,26 +143,26 @@ public class Netzplan {
 	    // setze SAZ=SEZ-D
 	    aktVorgang.setSAZ(aktVorgang.getSEZ()-aktVorgang.getDauer());
 
-	    // besuche die Vorgaenger (auch hier wieder externe Darstellung)
+	    // besuche die Vorgänger (auch hier wieder externe Darstellung)
 	    List<Integer> vorgaenger = aktVorgang.getVorgaenger();
 
 	    for (int aktVorgaenger: vorgaenger) {
 		// besorge Referenz
 		Vorgang aktVorgaengerRef = this.vorgaenge.get(toInternal.get(aktVorgaenger));
 
-		// setze SEZ des Vorgaengers, wenn es noch nicht gesetzt wurde oder es sich verringert
+		// setze SEZ des Vorgängers, wenn es noch nicht gesetzt wurde oder es sich verringert
 		if (aktVorgaengerRef.getSEZ() == 0 || aktVorgaengerRef.getSEZ() > aktVorgang.getSAZ()) {
 		    aktVorgaengerRef.setSEZ(aktVorgang.getSAZ());
 		}
 
-		// fuege den Vorgaenger hinten an die Liste an
+		// fuege den Vorgänger hinten an die Liste an
 		abzuarbeiten.add(toInternal.get(aktVorgaenger));
 	    }
 	}
     }
 
     private void zeitreserven() {
-	// Iteriere durch die Vorgaenge und setze GP und FP
+	// Iteriere durch die Vorgänge und setze GP und FP
 	for (Vorgang aktVorgang: this.vorgaenge) {
 	    aktVorgang.setGP(aktVorgang.getSAZ() - aktVorgang.getFAZ());
 
@@ -186,10 +189,12 @@ public class Netzplan {
 	}
     }
 
+    /**
+     * Die Dauer des Projektes ist der FEZ (bzw. SEZ) des letzten Vorganges.
+     * Gibt es mehrere Endvorgänge und ist FEZ nicht einheitlich,
+     * so ist dieser Wert nicht eindeutig (in diesem Fall wird der Wert -1 zurückgegeben).
+     */
     public int getDauer() {
-	// die Dauer des Projektes ist der FEZ (bzw. SEZ) des letzten Vorganges
-	// gibt es mehrere Endvorgaenge und ist FEZ nicht einheitlich,
-	// so ist dieser Wert nicht eindeutig (in diesem Fall wird der Wert -1 zurueckgegeben)
 	int tmpDauer = this.vorgaenge.get(this.endKnoten.get(0)).getFEZ();
 	for (int curEndKnoten: this.endKnoten) {
 	    if (this.vorgaenge.get(curEndKnoten).getFEZ() != tmpDauer) {
@@ -228,6 +233,7 @@ public class Netzplan {
 
 		// ist aktPfad kritischer Pfad (ist sein letzter Knoten ein Endknoten)?
 		if (this.endKnoten.contains(toInternal.get(aktKnoten))) {
+		    // dann füge aktPfad dem Resultat hinzu
 		    resultat.add(aktPfad);
 		    continue;
 		}
@@ -241,7 +247,7 @@ public class Netzplan {
 			List<Integer> neuerPfad = new ArrayList<>(aktPfad);
 			neuerPfad.add(aktNachfolger);
 
-			// fuege diesen Pfad den zu bearbeitenden Pfaden hinzu
+			// füge diesen Pfad den zu bearbeitenden Pfaden hinzu
 			pfade.add(neuerPfad);
 		    }
 		}
@@ -300,16 +306,17 @@ public class Netzplan {
 	}
     }
 
+    /**
+     * Zum Auffinden der Zyklen wird ausgehend von jedem Startknoten jeder mögliche Pfad erzeugt (Expansion des Graphen)
+     * Werden Knoten in einen Pfad neu aufgenommen, die in diesem Pfad bereits existieren, ist der Graph
+     * nicht zyklenfrei.
+     */
     private boolean istZyklenfrei() throws NetzplanException{
-	// Zum Auffinden der Zyklen wird ausgehend von jedem Startknoten jeder moegliche Pfad erzeugt (Expansion des Graphen)
-	// Werden Knoten in einen Pfad neu aufgenommen, die in diesem Pfad bereits existieren, ist der Graph
-	// nicht zyklenfrei.
-
 	for (int aktStartknoten: this.startKnoten) {
 	    // die Liste mit den Pfaden der Expansion
 	    List<List<Integer>> pfade = new ArrayList<>();
 	    
-	    // der Startpfad enthaelt nur den Startknoten
+	    // der Startpfad enthält nur den Startknoten
 	    List<Integer> startPfad = new ArrayList<>();
 	    startPfad.add(aktStartknoten);
 
@@ -336,7 +343,7 @@ public class Netzplan {
 		    }
 		}
 
-		// teste fuer jedes Kind, ob es schon Teil des Pfades ist (dann liegt ein Zyklus vor)
+		// teste für jedes Kind, ob es schon Teil des Pfades ist (dann liegt ein Zyklus vor)
 		// falls nicht, erzeuge einen neuen Pfad mit dem jeweiligen Kind als Endknoten
 		for (int aktKind: kinder) {
 		    if (aktPfad.contains(aktKind)) {
@@ -367,16 +374,16 @@ public class Netzplan {
 	return true;
     }
 
+    /** 
+     * Um zu prüfen, ob der Graph zusammenhängend ist, wird dieser als ungerichtet
+     * aufgefasst und beginnend beim ersten Knoten traversiert.
+     * Wenn Knoten am Ende der Traversierung nicht erreicht werden konnten, ist der
+     * Graph nicht zusammenhaengend.
+     */
     private boolean istZusammenhaengend() throws NetzplanException{
-	// Um zu pruefen, ob der Graph zusammenhaengend ist, wird dieser als ungerichtet
-	// aufgefasst und beginnend beim ersten Knoten traversiert.
-	// Wenn Knoten am Ende der Traversierung nicht erreicht werden konnten, ist der
-	// Graph nicht zusammenhaengend
-
-	// die symmetrische Adjazenzmatrix
+	// Zu diesem Zweck wird die Adjazenzmatrix zunächst so erweitert, dass sie symmetrisch ist.
 	int adjazenzenSym [][] = new int [this.adjazenzen.length][this.adjazenzen[0].length];
 
-	// Zu diesem Zweck wird die Adjazenzmatrix zunaechst so erweitert, dass sie symmetrisch ist.
 	for (int zeile = 0; zeile < this.adjazenzen.length; zeile++) {
 	    for (int spalte = 0; spalte < this.adjazenzen[0].length; spalte++) {
 		if (this.adjazenzen[zeile][spalte] == 1) {
@@ -386,7 +393,7 @@ public class Netzplan {
 	    }
 	}
 
-	// Liste mit allen Knoten (die Knoten die hier am Ende uebrig bleiben, koennen nicht erreicht werden)
+	// Liste mit allen Knoten (die Knoten die hier am Ende übrig bleiben, können nicht erreicht werden)
 	List<Integer> alleKnoten = new ArrayList<>();
 	for (int i=0; i<adjazenzenSym.length; i++) {
 	    alleKnoten.add(i);
@@ -406,7 +413,7 @@ public class Netzplan {
 	    int tmp = aktKnoten.remove(0);
 
 	    // bestimme alle Knoten, die von diesem Knoten aus erreichbar sind
-	    // und noch nicht besucht wurden und fuege sie zu aktKnoten hinzu
+	    // und noch nicht besucht wurden und füge sie zu aktKnoten hinzu
 	    for (int i = 0; i<adjazenzenSym[tmp].length; i++) {
 		if (adjazenzenSym[tmp][i]==1 && !besucht.contains(i)){
 		    aktKnoten.add(i);
@@ -416,12 +423,12 @@ public class Netzplan {
 	    // markiere den aktuellen Knoten als besucht
 	    besucht.add(tmp);
 
-	    // entferne den aktuellen Knoten aus der Menge aller Knoten
+	    // entferne den aktuellen Knoten aus der Menge aller Knoten (Vorsicht wegen verschiedener Signaturen von remove)
 	    alleKnoten.remove(new Integer(tmp));
 	}
 
 	if (alleKnoten.size() != 0) {
-	    // Es sind noch Knoten uebrig, also gebe eine Fehlermeldung
+	    // Es sind noch Knoten übrig, also gebe eine Fehlermeldung (-> der Graph ist nicht zusammenhängend)
 	    StringBuilder fehlertext = new StringBuilder();
 	    fehlertext.append("Fehler bei der Erstellung des Netzplans: Der Netzplan ist nicht zusammenhängend!"+
 			      " Es existiert kein ungerichteter Pfad zwischen Vorgang "+fromInternal.get(0)+

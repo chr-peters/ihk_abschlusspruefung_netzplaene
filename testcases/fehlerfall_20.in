@@ -1,0 +1,7 @@
+//************************************************
+//+ Minimaler Zyklus
+//************************************************
+//Vorgangsnummer; Vorgangsbezeichnung; Dauer; Vorgänger; Nachfolger
+1; Planung des Projekts; 1; -; 2
+2; Arbeit am Projekt; 1; 1,2; 3,2
+3; Abschluss des Projekts; 1; 2; -

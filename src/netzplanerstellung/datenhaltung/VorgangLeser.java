@@ -2,13 +2,19 @@ package netzplanerstellung.datenhaltung;
 
 import netzplanerstellung.logik.Vorgang;
 
-import java.io.*;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.BufferedReader;
+import java.io.FileReader;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Klasse zum Einlesen von Vorgängen aus einer Datei.
+ */
 public class VorgangLeser {
     private List<Vorgang> vorgaenge;
     private String ueberschrift;
@@ -120,7 +126,7 @@ public class VorgangLeser {
 			    throw new DateiFormatException(zeilenNr, "Ungültige Angabe der Vorgänger "+daten[3]);
 			}
 
-			// fuege die Vorgänger nun sukzessive hinzu
+			// füge die Vorgänger nun sukzessive hinzu
 			for (String aktVorgaenger: vorgaengerRoh) {
 			    int tmpVorgaenger;
 			    try {
@@ -141,7 +147,7 @@ public class VorgangLeser {
 			    throw new DateiFormatException(zeilenNr, "Ungültige Angabe der Nachfolger "+daten[4]);
 			}
 
-			// fuege die Nachfolger nun sukzessive hinzu
+			// füge die Nachfolger nun sukzessive hinzu
 			for (String aktNachfolger: nachfolgerRoh) {
 			    int tmpNachfolger;
 			    try {
@@ -153,7 +159,7 @@ public class VorgangLeser {
 			}
 		    }
 
-		    // fuege nun den Neuen Vorgang dem Resultat hinzu
+		    // füge nun den neuen Vorgang dem Resultat hinzu
 		    resultat.put(tmpNummer, tmpVorgang);
 		}
 
@@ -162,7 +168,7 @@ public class VorgangLeser {
 		zeilenNr++;
 	    }
 	    
-	    // pruefe, ob eine Überschrift gefunden wurde
+	    // prüfe, ob eine Überschrift gefunden wurde
 	    if (this.ueberschrift == null) {
 		throw new DateiFormatException("Fehler beim Einlesen: Keine Überschrift gefunden!");
 	    }

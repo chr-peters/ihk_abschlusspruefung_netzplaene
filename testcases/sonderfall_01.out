@@ -13,5 +13,5 @@ Anfangsvorgang: 700
 Endvorgang: 7
 Gesamtdauer: 39
 
-Kritische(r) Pfad
+Kritischer Pfad
 700->2->3->6->7

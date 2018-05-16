@@ -3,6 +3,9 @@ package netzplanerstellung.logik;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Klasse zur Darstellung eines Vorgangs.
+ */
 public class Vorgang {
     private int nummer;
     private String bezeichnung;

@@ -23,5 +23,5 @@ Anfangsvorgang: 1
 Endvorgang: 17
 Gesamtdauer: 23
 
-Kritische(r) Pfad
+Kritischer Pfad
 1->2->5->7->11->13->14->17

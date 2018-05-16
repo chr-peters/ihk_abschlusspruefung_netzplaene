@@ -5,9 +5,6 @@ import netzplanerstellung.logik.*;
 
 import java.util.List;
 
-//TODO remove
-import java.util.Arrays;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
@@ -39,9 +36,11 @@ public class Main {
 	    System.err.println(e.getMessage());
 	    System.exit(-1);
 	} catch (FileNotFoundException e) {
+	    // Fehler beim Einlesen, Datei konnte nicht gefunden / gelesen werden
 	    System.err.println(e.getMessage());
 	    System.exit(-1);
 	} catch (IOException e) {
+	    // Fehler bei der Ausgabe - Datei kann nicht geöffnet oder geschrieben werden
 	    System.err.println(e.getMessage());
 	    System.exit(-1);
 	} catch (NetzplanException e) {
