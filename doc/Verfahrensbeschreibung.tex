@@ -133,7 +133,6 @@ gelesenen Vorg\"angen bef\"ullt, die am Ende zur\"uckgegeben
 wird. Diese Liste wird im folgenden Struktogramm (siehe Abbildung \ref{einlesen}), welches einen
 \"Uberblick \"uber die wesentlichen Gesichtspunkte des Algorithmus
 gibt, als \textit{Resultat} bezeichnet.
-
 \begin{figure}[h]
   \input{struktogramme/einlesen}
   \caption{Algorithmus zum Einlesen der Eingabedatei}
@@ -141,6 +140,116 @@ gibt, als \textit{Resultat} bezeichnet.
 \end{figure}
 
 \section{Konstruktion des Netzplans}
+
+Um aus der eingelesenen Liste aus Vorgangsobjekten nun den Netzplan
+konstruieren zu k\"onnen, sind einige Schritte notwendig, die an
+dieser Stelle n\"aher beschrieben werden.
+
+\subsection{Initialisierung}
+
+W\"ahrend der Initialisierungsphase wird zun\"achst gepr\"uft, ob alle
+Grundvoraussetzungen erf\"ullt sind, damit es sich um einen g\"ultigen
+Netzplan handelt. Hierzu wird zun\"achst die Adjazenzmatrix erzeugt
+und w\"ahrenddessen die Konsistenz der Vorg\"anger - Nachfolger -
+Relation sichergestellt.
+
+\subsubsection{Erzeugung der Adjazenzmatrix}
+
+Um die Adjazenzmatrix zu erzeugen, wird jede Vorgangsnummer einer
+Spalte in der Matrix zugeordnet. Hierzu wird die Abbildung \(g\)
+verwendet, die bereits bei der Beschreibung des Netzplans erl\"autert
+wurde. Man erh\"alt \(g\), indem man ein assoziatives Feld anlegt,
+wobei jeder Vorgangsnummer die zugeh\"orige Position in der Liste aus
+Vorg\"angen zugeordnet wird.
+F\"ur jeden Vorgang wird nun in der zugeh\"origen Zeile der
+Adjazenzmatrix in der Spalte
+jedem seiner Nachfolger eine 1 in der Matrix eingetragen. Hierbei wird
+auch gleich abgepr\"uft, ob die Beziehung eines Vorgangs zu seinen
+Vorg\"angern und Nachfolgern konsistent ist: Ist z.B. ein Vorgang \(a\) als
+Vorg\"anger von Vorgang \(b\) eingetragen, hat diesen aber nicht als
+Nachfolger, so ist die Beziehung inkonsistent und der Netzplan kann
+nicht erzeugt werden. Das Programm wird in diesem Fall mit einem
+Fehler beendet.
+
+\subsubsection{H\"angt der Graph zusammen?}
+
+Nachdem die Adjazenzmatrix erzeugt wurde und die Konsistenz der
+Beziehungen unter den Vorg\"angen sichergestellt ist, muss im
+n\"achsten Schritt gepr\"uft werden, ob der Graph auch
+zusammenh\"angt, da es sich nur in diesem Fall um einen g\"ultigen
+Netzplan handelt. Um dies zu bewerkstelligen, wird der bis dahin
+gerichtete Graph vor\"ubergehend als ungerichtet aufgefasst. Beginnend
+bei einem beliebigen Knoten wird der Graph im n\"achsten Schritt
+traversiert. Bleiben nach dem Durchlaufen noch Knoten \"ubrig, welche
+nicht besucht wurden, war der Graph nicht zusammenh\"angend.
+
+Um aus dem gerichteten Graph einen ungerichteten Graph zu erzeugen,
+kann einfach eine symmetrische Version der Adjazenzmatrix erstellt
+werden. Hierzu wird zu jedem Element \(a_{ij}=1\) das an der
+Diagonalen gespiegelte Element \(a_{ji}\) ebenfalls auf 1 gesetzt.
+Die Traversierung, welche im n\"achsten Schritt erfolgt, wird mittels
+einer Breitensuche durchgef\"uhrt.
+
+\subsubsection{\"Uberpr\"ufen auf Zyklen}
+
+Da ein g\"ultiger Netzplan keine Zyklen enthalten darf, muss nun
+gepr\"uft werden, ob der vorliegende Graph auch azyklisch ist. Hierzu
+wird ausgehend von jedem Startknoten eine Expansion des Graphen
+gebildet (d.h. es werden alle m\"oglichen Pfade durch den Graphen erzeugt).
+Sobald ein Pfad im n\"achsten Schritt der Expansion ein Element
+aufnehmen w\"urde, welches bereits in diesem Pfad enthalten ist, wurde
+ein Zyklus entdeckt und das Programm kann mit einem Fehler beendet
+werden. Auch hier wird die zu diesem Zweck ben\"otigte
+Traversierung mit einer Breitensuche durchgef\"uhrt.
+
+\subsection{Vorw\"artsrechnung}
+
+Nachdem in den letzten Abschnitten sichergestellt wurde, dass aus der
+Liste an Vorg\"angen ein g\"ultiger Netzplan erzeugt werden kann,
+m\"ussen nun die noch fehlenden Eintr\"age FAZ, SAZ, FEZ, SEZ, GP und
+FP f\"ur jeden Vorgang berechnet werden. In der Phase der
+Vorw\"artsrechnung werden f\"ur jeden Vorgang die Werte FAZ und FEZ
+gesetzt, weiterhin kann nach dieser Phase auch die Dauer des Projektes
+abgelesen werden. Diese entspricht n\"amlich wie in Abschnitt
+\ref{sec:netzplan} beschrieben dem FEZ der Endvorg\"ange, insofern
+dieser eindeutig ist.
+
+Um die Vorw\"artsrechnung durchzuf\"uhren, wird eine Liste mit
+abzuarbeitenden Knoten erzeugt, welche zun\"achst nur die Startknoten
+enth\"alt. Solange diese Liste noch Elemente hat, wird jedes Element
+beginnend am Anfang der Liste
+einzelnd bearbeitet. Hierzu wird zuerst der FEZ des Elements auf
+FAZ+Dauer gesetzt. Man beachte hierbei, dass Startknoten von Beginn an
+einen FAZ von 0 haben. Anschlie{\ss}end werden alle Nachfolger
+des Elements betrachtet. Der FAZ eines jeden Nachfolgers wird nun auf
+den FEZ des aktuellen Elements gesetzt, wenn sich der FAZ des
+Nachfolgers hierdurch vergr\"o{\ss}ert. Jeder Nachfolger wird dann hinten
+an die Liste der zu bearbeitenden Knoten angef\"ugt und eine neue
+Iteration beginnt.
+
+\subsection{R\"uckw\"artsrechnung}
+
+In der Phase der R\"uckw\"artsrechnung werden nun f\"ur jeden Knoten
+die Werte SAZ und SEZ gesetzt. Hierbei wird zun\"achst auch wieder
+eine Liste mit abzuarbeitenden Knoten erzeugt, welche diese Mal nur
+die Endknoten enth\"alt. Bei jedem Endknoten wird nun SEZ=FEZ gesetzt,
+da Endknoten keinen Puffer haben. Die Liste wird nun wieder beginnend
+mit dem ersten Element abgearbeitet, bis sie leer ist. Hierbei wird
+zun\"achst der SAZ des aktuellen Elementes auf SEZ-Dauer gesetzt. Im
+Anschluss werden alle Vorg\"anger des Elementes betrachtet. Wurde der
+SEZ des Vorg\"angers noch nicht gesetzt oder w\"urde er sich
+verringern, so wird dieser auf den SAZ des aktuellen Elements
+gesetzt. Anschlie{\ss}end wird wieder jeder Vorg\"anger hinten an die
+Liste angeh\"angt und die Iteration beginnt von neuem.
+
+\subsection{Berechnung der Zeitreserven}
+
+Die Zeitreserven eines jeden Vorganges werden durch die Attribute GP
+und FP ausgedr\"uckt. Um diese zu berechnen, werden alle Vorg\"ange
+durchlaufen. Hierbei wird f\"ur jeden Vorgang GP=SAZ-FAZ=SEZ-FEZ
+gesetzt. F\"ur den Wert FP gilt folgender Zusammenhang:
+FP=\(\min\limits_{i \in \{Nachfolger\}} FAZ_i - FEZ\). Dieser wird
+ebenfalls f\"ur jeden Vorgang ermittelt und gesetzt.
 
 \section{Auffinden der kritischen Pfade}
 

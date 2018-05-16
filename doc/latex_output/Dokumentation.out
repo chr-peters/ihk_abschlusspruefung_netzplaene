@@ -10,10 +10,14 @@
 \BOOKMARK [2][-]{subsection.2.2.1}{Format der Eingabedatei}{section.2.2}% 10
 \BOOKMARK [2][-]{subsection.2.2.2}{Algorithmus zum Einlesen}{section.2.2}% 11
 \BOOKMARK [1][-]{section.2.3}{Konstruktion des Netzplans}{chapter.2}% 12
-\BOOKMARK [1][-]{section.2.4}{Auffinden der kritischen Pfade}{chapter.2}% 13
-\BOOKMARK [1][-]{section.2.5}{Ausgabe der Ergebnisse}{chapter.2}% 14
-\BOOKMARK [0][-]{chapter.3}{Entwicklerdokumentation}{}% 15
-\BOOKMARK [0][-]{chapter.4}{Benutzeranleitung}{}% 16
-\BOOKMARK [0][-]{chapter.5}{Testdokumentation}{}% 17
-\BOOKMARK [0][-]{chapter.6}{Ausblick}{}% 18
-\BOOKMARK [0][-]{appendix.A}{Abweichungen und Erg\344nzungen zum Vorentwurf}{}% 19
+\BOOKMARK [2][-]{subsection.2.3.1}{Initialisierung}{section.2.3}% 13
+\BOOKMARK [2][-]{subsection.2.3.2}{Vorw\344rtsrechnung}{section.2.3}% 14
+\BOOKMARK [2][-]{subsection.2.3.3}{R\374ckw\344rtsrechnung}{section.2.3}% 15
+\BOOKMARK [2][-]{subsection.2.3.4}{Berechnung der Zeitreserven}{section.2.3}% 16
+\BOOKMARK [1][-]{section.2.4}{Auffinden der kritischen Pfade}{chapter.2}% 17
+\BOOKMARK [1][-]{section.2.5}{Ausgabe der Ergebnisse}{chapter.2}% 18
+\BOOKMARK [0][-]{chapter.3}{Entwicklerdokumentation}{}% 19
+\BOOKMARK [0][-]{chapter.4}{Benutzeranleitung}{}% 20
+\BOOKMARK [0][-]{chapter.5}{Testdokumentation}{}% 21
+\BOOKMARK [0][-]{chapter.6}{Ausblick}{}% 22
+\BOOKMARK [0][-]{appendix.A}{Abweichungen und Erg\344nzungen zum Vorentwurf}{}% 23

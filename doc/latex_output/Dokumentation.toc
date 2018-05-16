@@ -10,10 +10,17 @@
 \contentsline {subsection}{\numberline {2.2.1}Format der Eingabedatei}{7}{subsection.2.2.1}
 \contentsline {subsection}{\numberline {2.2.2}Algorithmus zum Einlesen}{8}{subsection.2.2.2}
 \contentsline {section}{\numberline {2.3}Konstruktion des Netzplans}{8}{section.2.3}
-\contentsline {section}{\numberline {2.4}Auffinden der kritischen Pfade}{8}{section.2.4}
-\contentsline {section}{\numberline {2.5}Ausgabe der Ergebnisse}{8}{section.2.5}
-\contentsline {chapter}{\numberline {3}Entwicklerdokumentation}{11}{chapter.3}
-\contentsline {chapter}{\numberline {4}Benutzeranleitung}{13}{chapter.4}
-\contentsline {chapter}{\numberline {5}Testdokumentation}{15}{chapter.5}
-\contentsline {chapter}{\numberline {6}Ausblick}{17}{chapter.6}
-\contentsline {chapter}{\numberline {A}Abweichungen und Erg\active@dq \dq@prtct {a}nzungen zum Vorentwurf}{19}{appendix.A}
+\contentsline {subsection}{\numberline {2.3.1}Initialisierung}{8}{subsection.2.3.1}
+\contentsline {subsubsection}{Erzeugung der Adjazenzmatrix}{8}{section*.2}
+\contentsline {subsubsection}{H\"angt der Graph zusammen?}{9}{section*.3}
+\contentsline {subsubsection}{\"Uberpr\"ufen auf Zyklen}{10}{section*.4}
+\contentsline {subsection}{\numberline {2.3.2}Vorw\"artsrechnung}{10}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}R\"uckw\"artsrechnung}{11}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Berechnung der Zeitreserven}{11}{subsection.2.3.4}
+\contentsline {section}{\numberline {2.4}Auffinden der kritischen Pfade}{11}{section.2.4}
+\contentsline {section}{\numberline {2.5}Ausgabe der Ergebnisse}{11}{section.2.5}
+\contentsline {chapter}{\numberline {3}Entwicklerdokumentation}{13}{chapter.3}
+\contentsline {chapter}{\numberline {4}Benutzeranleitung}{15}{chapter.4}
+\contentsline {chapter}{\numberline {5}Testdokumentation}{17}{chapter.5}
+\contentsline {chapter}{\numberline {6}Ausblick}{19}{chapter.6}
+\contentsline {chapter}{\numberline {A}Abweichungen und Erg\active@dq \dq@prtct {a}nzungen zum Vorentwurf}{21}{appendix.A}
