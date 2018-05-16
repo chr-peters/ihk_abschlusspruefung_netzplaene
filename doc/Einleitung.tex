@@ -9,3 +9,93 @@ Projektmanager auch in schwierigen Situationen stets den \"Uberblick
 behalten k\"onnen, gibt es einige Werkzeuge, die bei der Planung gro{\ss}er
 Projekte von besonderer Bedeutung sind. Eines dieser Werkzeuge soll
 nun im Rahmen dieser Arbeit n\"aher untersucht werden: Der Netzplan.
+
+\section{Was ist ein Netzplan?}
+
+Ein Netzplan dient der Darstellung aller Abh\"angigkeiten zwischen den
+einzelnen Vorg\"angen eines Projektes. Ein Vorgang innerhalb eines
+Projektes l\"asst sich hierbei als einzelner Knoten in einer
+verzweigten Kette aus weiteren Vorg\"angen auffassen, die alle
+zusammen wiederum das gesamte Projekt repr\"asentieren. Die
+Abh\"angigkeiten unter den Vorg\"angen werden hierbei durch Pfeile
+ausgedr\"uckt: Ein Vorg\"anger besitzt einen Pfeil hin zu seinem
+Nachfolger. Jeder Vorgang verf\"ugt hierbei \"uber bestimmte
+Eigenschaften, die ihn eindeutig beschreiben:
+\begin{itemize}
+  \item \textbf{Vorgangsnummer:} Eine eindeutige Identifikationsnummer
+    des Vorgangs
+  \item \textbf{Vorgangsbezeichnung:} Eine lesbare Bezeichnung des Vorgangs
+  \item \textbf{Dauer:} Wie lange dauert die Ausf\"uhrung des
+    Vorgangs?
+  \item \textbf{Vorg\"anger:} Welche anderen Vorg\"ange m\"ussen
+    zuerst ausgef\"uhrt werden, bevor der aktuelle Vorgang
+    ausgef\"uhrt werden kann?
+  \item \textbf{Nachfolger:} Welche anderen Vorg\"ange warten auf eine
+    Abarbeitung des aktuellen Vorgangs?
+  \item \textbf{Fr\"uhester Anfangszeitpunkt (FAZ):} Wann kann
+    fr\"uhestens mit der Bearbeitung des Vorgangs begonnen werden?
+  \item \textbf{Sp\"atester Anfangszeitpunkt (SAZ):} Wann muss
+    sp\"atestens mit der Bearbeitung begonnen werden, damit der
+    Zeitplan nicht gef\"ahrdet wird?
+  \item \textbf{Fr\"uhester Endzeitpunkt (FEZ):} Wann kann der Vorgang
+    fr\"uhestens abgeschlossen werden?
+  \item \textbf{Sp\"atester Endzeitpunkt (SEZ):} Wann muss der Vorgang
+    sp\"atestens abgeschlossen sein, damit der Zeitplan nicht
+    gef\"ahrdet wird?
+  \item \textbf{Gesamtpuffer (GP):} Wie viel Spielraum liegt zwischen
+    dem fr\"uhesten und dem sp\"atesten Anfangszeitpunkt?
+  \item \textbf{Freier Puffer (FP):} Wie viel Spielraum existiert,
+    wenn kein nachfolgender Vorgang durch den aktuellen Vorgang
+    verz\"ogert werden soll?
+\end{itemize}
+Wichtig bei der Angabe der Vorg\"anger und Nachfolger ist, dass ein
+Netzplan keine zyklischen Abh\"angigkeiten enthalten darf (sonst
+k\"onnte sich die Dauer eines Projektes bis ins Unendliche hinziehen).
+Zudem muss es stets mindestens einen Vorgang ohne Vorg\"anger (einen
+\textit{Startvorgang}) und mindestens einen Vorgang ohne Nachfolger
+(einen \textit{Endvorgang}) geben.
+
+Da zu Beginn der Planungsphase im Normalfall noch nicht alle aufgelisteten
+Attribute bekannt sind (i.d.R. nur Vorgangsnummer,
+Vorgangsbezeichnung, Dauer, sowie Vorg\"anger und Nachfolger),
+ist es die Aufgabe des Projektmanagers, die restlichen Eigenschaften
+so zu bestimmen, dass der Zeitplan eingehalten
+wird. An dieser Stelle kommt die Rolle des Netzplans zum tragen: Durch
+die Verkettung der einzelnen Vorg\"ange mit ihren Vorg\"angern und
+Nachfolgern k\"onnen die fehlenden Attribute (FAZ, SAZ, FEZ, SEZ, GP,
+FP) systematisch berechnet werden. Hieraus ergibt sich auch
+unmittelbar die Gesamtdauer des Projektes: Sie entspricht entweder dem
+FEZ der Endvorg\"ange oder ist undefiniert, falls dieser nicht
+eindeutig ist.
+
+\section{Kritische Pfade}
+
+In jedem Projekt gibt es immer auch Vorg\"ange, deren Abarbeitung an
+besonders enge Fristen gekn\"upft ist und daher keinerlei Spielraum
+erlaubt. Solche Vorg\"ange, bei denen entsprechend der obigen Notation
+\(GP=0\) und \(FP=0\) gilt, werden im Folgenden als \textit{kritische
+  Vorg\"ange} bezeichnet.
+In jedem Projekt gibt es mindestens eine Kette von Vorg\"angen
+beginnend bei einem Startvorgang hin zu einem Endvorgang, die
+ausschlie{\ss}lich aus kritischen Vorg\"angen besteht. Eine derartige
+Konstellation wird auch als \textit{kritischer Pfad} bezeichnet, da
+eine reibungslose Abarbeitung dieser Vorg\"ange Grundvoraussetzung
+f\"ur die Einhaltung des Zeitplans ist. Der Projektmanager sollte also
+schon zu Beginn alle kritischen Pfade identifizieren und besonders auf
+die termingerechte Abarbeitung der zugeh\"origen Vorg\"ange
+achten. Auch bei dieser Aufgabe hilft ihm der Netzplan, der sich
+systematisch nach kritischen Pfaden durchsuchen l\"asst.
+
+\section{Ziel dieser Arbeit}
+
+Das Ziel dieser Arbeit ist es nun, die Erstellung von Netzpl\"anen
+sowie die Suche nach kritischen Pfaden zu automatisieren.
+Das zu diesem Zweck zu entwickelnde Programm soll in der Lage sein, die
+einzelnen Vorg\"ange eines Projektes aus einer Eingabedatei einzulesen
+und hieraus einen korrekten Netzplan zu konstruieren. Die fehlenden
+Eigenschaften der Vorg\"ange (FAZ, SAZ, FEZ, SEZ, GP, FP) sollen dazu
+systematisch errechnet werden. Anschlie{\ss}end soll der Netzplan auf
+kritische Pfade durchsucht werden, die Ergebnisse der Suche, sowie die
+vollst\"andige Beschreibung aller Vorg\"ange und ihrer Fristen
+inklusive der Gesamtdauer des Projektes, sollen
+abschlie{\ss}end in einer Ausgabedatei gespeichert werden.
