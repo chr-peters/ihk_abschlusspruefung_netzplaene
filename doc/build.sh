@@ -1,6 +1,6 @@
 #! /bin/sh
 
-MAIN_FILE="Master"
+MAIN_FILE="Dokumentation"
 
 # set and create output directory
 OUTPUT_DIR=latex_output

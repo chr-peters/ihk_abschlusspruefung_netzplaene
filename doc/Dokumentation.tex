@@ -4,10 +4,11 @@
 
 \Autor{Christian Peters}
 \PruefungsNR{20613}
-\Ausbildungsort{Forschungszentrum J\"ulich}
+\Ausbildungsort{Institut f\"ur Kernphysik\\Forschungszentrum J\"ulich}
+\Thema{Automatisierte Erstellung von Netzpl\"anen}
 \Programmiersprache{Java}
 \Compiler{javac 1.8.0\_161}
-\Rechner{}
+\Rechner{Intel Core i7-4790 CPU @ 3.60GHz, 16GB RAM}
 \Betriebssystem{Ubuntu 16.04 LTS}
 %Mit includeonly koennen einzelne Kapitel seperat compiliert werden.
 %Beispiel: \includeonly{Aufgabenanalyse} 
@@ -22,19 +23,20 @@
   \cleardoublepage
   
   \pagenumbering{arabic}
-  \Ginclude{Aufgabenanalyse}
+  %\Ginclude{Aufgabenanalyse}
+  \Ginclude{Einleitung}
   \Ginclude{Verfahrensbeschreibung}
-  \Ginclude{Programmbeschreibung}
+  \Ginclude{Entwicklerdokumentation}
+  \Ginclude{Benutzeranleitung}    
+  %\Ginclude{Programmbeschreibung}
   \Ginclude{Testdokumentation}
-  
+  \Ginclude{Ausblick}
   \begin{appendix}
     \Ginclude{Abweichungen}
-    \Ginclude{Benutzeranleitung}
-    \Ginclude{Entwicklungsumgebung}
     %\makedeposition
-    \Ginclude{Aufgabenstellung_Deckblatt}
-    \Ginclude{Quellcode_Deckblatt}
-    \Ginclude{Test_Deckblatt}
+    %\Ginclude{Aufgabenstellung_Deckblatt}
+    %\Ginclude{Quellcode_Deckblatt}
+    %\Ginclude{Test_Deckblatt}
   \end{appendix}
 
 \end{document}

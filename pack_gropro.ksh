@@ -4,7 +4,7 @@
 ZIP_NAME='GroPro_ChristianPeters'
 
 # path to the documentation
-DOC_PATH='doc/latex_output/Master.pdf'
+DOC_PATH='doc/latex_output/Dokumentation.pdf'
 
 # path to the executable
 JAR_PATH='dist/netzplanerstellung-1.0.0.jar'
