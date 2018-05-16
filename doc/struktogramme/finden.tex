@@ -1,0 +1,28 @@
+%\sProofOn
+\resizebox{\textwidth}{!}{
+\begin{struktogramm}(150, 125)
+  \assign{Erzeuge leere Liste \textit{Resultat} f\"ur die kritischen Pfade}
+  \while{F\"ur jeden Startknoten \textit{aktStartKnoten}}
+  \assign{Erzeuge leere Queue \textit{Pfade}, die abzuarbeitende Pfade enth\"alt}
+  \ifthenelse{3}{3}{Ist \textit{aktStartKnoten} kritisch?}{\sTrue}{\sFalse}
+  \assign{F\"uge ihn als ``Startpfad'' der Queue \textit{Pfade} hinzu}
+  \change
+  \exit{Betrachte n\"achsten Startknoten}
+  \ifend
+  \while{Solange \textit{Pfade} noch Elemente enth\"alt}
+  \assign{Entferne erstes Element \textit{aktPfad}}
+  \ifthenelse{3}{3}{Ist der letzte Knoten von \textit{aktPfad} ein Endknoten?}{\sTrue}{\sFalse}
+  \assign{F\"uge \textit{aktPfad} der Liste \textit{Resultat} hinzu}
+  \exit{Continue}
+  \change
+  \ifend
+  \while{F\"ur jeden \textit{kritischen Nachfolger} des letzten Elements aus \textit{aktPfad}}
+  \assign{Erzeuge \textit{neuerPfad} = \textit{aktPfad} + \textit{kritischer Nachfolger}}
+  \assign{F\"uge \textit{neuerPfad} vorne an \textit{Pfade} an (\(\rightarrow\)Tiefensuche)}
+  \whileend
+  \whileend
+  \whileend
+  \assign{return \textit{Resultat}}
+\end{struktogramm}
+}
+%\sProofOff

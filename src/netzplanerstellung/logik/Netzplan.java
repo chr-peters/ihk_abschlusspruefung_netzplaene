@@ -250,7 +250,13 @@ public class Netzplan {
 			neuerPfad.add(aktNachfolger);
 
 			// füge diesen Pfad den zu bearbeitenden Pfaden hinzu
-			pfade.addLast(neuerPfad);
+			// hier ist auch der Unterschied zwischen Tiefen- und Breitensuche:
+			// Für eine Tiefensuche wird der neuste Pfad vorne an die Queue angefügt,
+			// bei einer Breitensuche würde er hinten an die Queue angefügt.
+			// Demnach würde der Aufruf für eine Breitensuche lauten:
+			// pfade.addLast(neuerPfad)
+			// Für Tiefensuche lautet er:
+			pfade.addFirst(neuerPfad);
 		    }
 		}
 	    }

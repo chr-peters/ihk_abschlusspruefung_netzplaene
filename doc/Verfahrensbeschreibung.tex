@@ -214,33 +214,34 @@ abgelesen werden. Diese entspricht n\"amlich wie in Abschnitt
 \ref{sec:netzplan} beschrieben dem FEZ der Endvorg\"ange, insofern
 dieser eindeutig ist.
 
-Um die Vorw\"artsrechnung durchzuf\"uhren, wird eine Liste mit
+Um die Vorw\"artsrechnung durchzuf\"uhren, wird eine Warteschlange
+\textit{(Queue)} mit
 abzuarbeitenden Knoten erzeugt, welche zun\"achst nur die Startknoten
-enth\"alt. Solange diese Liste noch Elemente hat, wird jedes Element
-beginnend am Anfang der Liste
-einzelnd bearbeitet. Hierzu wird zuerst der FEZ des Elements auf
+enth\"alt. Solange diese Queue noch Elemente hat, wird in jedem
+Schritt das erste Element bearbeitet. Hierbei wird zuerst der FEZ des
+Elements auf
 FAZ+Dauer gesetzt. Man beachte hierbei, dass Startknoten von Beginn an
 einen FAZ von 0 haben. Anschlie{\ss}end werden alle Nachfolger
 des Elements betrachtet. Der FAZ eines jeden Nachfolgers wird nun auf
 den FEZ des aktuellen Elements gesetzt, wenn sich der FAZ des
 Nachfolgers hierdurch vergr\"o{\ss}ert. Jeder Nachfolger wird dann hinten
-an die Liste der zu bearbeitenden Knoten angef\"ugt und eine neue
+an die Queue der zu bearbeitenden Knoten angef\"ugt und eine neue
 Iteration beginnt.
 
 \subsection{R\"uckw\"artsrechnung}
 
 In der Phase der R\"uckw\"artsrechnung werden nun f\"ur jeden Knoten
-die Werte SAZ und SEZ gesetzt. Hierbei wird zun\"achst auch wieder
-eine Liste mit abzuarbeitenden Knoten erzeugt, welche diese Mal nur
+die Werte SAZ und SEZ gesetzt. Hierbei wird ebenfalls
+eine Queue mit abzuarbeitenden Knoten erzeugt, welche diese Mal nur
 die Endknoten enth\"alt. Bei jedem Endknoten wird nun SEZ=FEZ gesetzt,
-da Endknoten keinen Puffer haben. Die Liste wird nun wieder beginnend
+da Endknoten keinen Puffer haben. Die Queue wird nun wieder beginnend
 mit dem ersten Element abgearbeitet, bis sie leer ist. Hierbei wird
 zun\"achst der SAZ des aktuellen Elementes auf SEZ-Dauer gesetzt. Im
 Anschluss werden alle Vorg\"anger des Elementes betrachtet. Wurde der
 SEZ des Vorg\"angers noch nicht gesetzt oder w\"urde er sich
 verringern, so wird dieser auf den SAZ des aktuellen Elements
 gesetzt. Anschlie{\ss}end wird wieder jeder Vorg\"anger hinten an die
-Liste angeh\"angt und die Iteration beginnt von neuem.
+Queue angeh\"angt und die Iteration beginnt von neuem.
 
 \subsection{Berechnung der Zeitreserven}
 
@@ -253,4 +254,50 @@ ebenfalls f\"ur jeden Vorgang ermittelt und gesetzt.
 
 \section{Auffinden der kritischen Pfade}
 
+Nachdem der Netzplan nun vollst\"andig erzeugt wurde, stellt sich noch
+die Frage, wie die kritischen Pfade gefunden werden k\"onnen. Hierzu
+wird mittels Tiefensuche (Breitensuche ist ebenfalls m\"oglich, im
+Programmsystem \"andert sich hier nur eine einzige Zeile) ausgehend
+von jedem kritischen Startknoten
+jeder kritische Pfad erzeugt. Sobald ein Endknoten zu einem bis dahin
+kritischen Pfad hinzugef\"ugt wird, ist ein kritischer Pfad
+komplett und kann dem Resultat angef\"ugt werden. Ein \"Uberblick
+dieses Algorithmus findet sich in Form eines Struktogramms in
+Abbildung \ref{pfadefinden}.
+
+\begin{figure}[h]
+  \input{struktogramme/finden}
+  \caption{Algorithmus zum Finden aller kritischen Pfade. Man beachte,
+  dass der Unterschied zur Breitensuche nur in einer Zeile liegt: Bei
+  der Breitensuche w\"urde \textit{neuerPfad} hinten an \textit{Pfade}
+  angef\"ugt.}
+  \label{pfadefinden}
+\end{figure}
+
 \section{Ausgabe der Ergebnisse}
+
+Das Format, in dem die Ergebnisse vom Programm ausgegeben werden, soll
+hier anhand des folgenden Beispiels erl\"autert werden, welches
+gleichzeitig die Ausgabe zu der zuvor vorgestellten Eingabedatei bildet:
+
+\begin{figure}[h!]
+  \resizebox{\textwidth}{!}{
+    \fbox{
+      \setlength{\fboxrule}{1pt}
+      \lstinputlisting{../testcases/ihk_01.out}
+    }
+  }
+  \caption{Die resultierende Ausgabedatei}
+\end{figure}
+
+Das Format der Ausgabedatei wird durch die \"Uberschriftzeile
+eingeleitet, welche nur den Text der anfangs eingelesenen
+\"Uberschrift enth\"alt. Es folgt eine Leerzeile, woraufhin die
+Spalten\"uberschriften des Ergebnisses ausgegeben
+werden. Anschlie{\ss}end wird jeder Vorgang mit all seinen
+Attributen ausgegeben (Vorg\"anger und Nachfolger ausgenommen).
+Nach einer weiteren Leerzeile schlie{\ss}en sich die
+Anfangsvorg\"ange, die Endvorg\"ange und die Gesamtdauer des Projekts
+an. Es folgt wiederum eine
+Leerzeile, woraufhin unter der entsprechenden \"Uberschrift die
+kritischen Pfade untereinander ausgegeben werden.
