@@ -3,8 +3,17 @@
 \contentsline {section}{\numberline {1.2}Kritische Pfade}{3}{section.1.2}
 \contentsline {section}{\numberline {1.3}Ziel dieser Arbeit}{3}{section.1.3}
 \contentsline {chapter}{\numberline {2}Verfahrensbeschreibung}{5}{chapter.2}
-\contentsline {chapter}{\numberline {3}Entwicklerdokumentation}{7}{chapter.3}
-\contentsline {chapter}{\numberline {4}Benutzeranleitung}{9}{chapter.4}
-\contentsline {chapter}{\numberline {5}Testdokumentation}{11}{chapter.5}
-\contentsline {chapter}{\numberline {6}Ausblick}{13}{chapter.6}
-\contentsline {chapter}{\numberline {A}Abweichungen und Erg\active@dq \dq@prtct {a}nzungen zum Vorentwurf}{15}{appendix.A}
+\contentsline {section}{\numberline {2.1}Datenstrukturen}{5}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Logische Repr\"asentation eines Vorgangs}{5}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Logische Repr\"asentation eines Netzplans}{6}{subsection.2.1.2}
+\contentsline {section}{\numberline {2.2}Einlesen der Vorg\"ange}{7}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}Format der Eingabedatei}{7}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Algorithmus zum Einlesen}{8}{subsection.2.2.2}
+\contentsline {section}{\numberline {2.3}Konstruktion des Netzplans}{8}{section.2.3}
+\contentsline {section}{\numberline {2.4}Auffinden der kritischen Pfade}{8}{section.2.4}
+\contentsline {section}{\numberline {2.5}Ausgabe der Ergebnisse}{8}{section.2.5}
+\contentsline {chapter}{\numberline {3}Entwicklerdokumentation}{9}{chapter.3}
+\contentsline {chapter}{\numberline {4}Benutzeranleitung}{11}{chapter.4}
+\contentsline {chapter}{\numberline {5}Testdokumentation}{13}{chapter.5}
+\contentsline {chapter}{\numberline {6}Ausblick}{15}{chapter.6}
+\contentsline {chapter}{\numberline {A}Abweichungen und Erg\active@dq \dq@prtct {a}nzungen zum Vorentwurf}{17}{appendix.A}

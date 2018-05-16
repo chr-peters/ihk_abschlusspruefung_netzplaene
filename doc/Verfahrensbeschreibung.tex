@@ -1,2 +1,125 @@
 \chapter{Verfahrensbeschreibung}
 \label{Verfahrensbeschreibung}
+
+\section{Datenstrukturen}
+
+Die Grundlage eines jeden Programms ist durch die Art der verwendeten
+Datenstrukturen gegeben. Damit im weiteren Verlauf Netzpl\"ane
+effizient erzeugt werden k\"onnen, ist eine solide logische
+Repr\"asentation unerl\"asslich. Die grundlegende Darstellung der
+wichtigsten Elemente dieses Programms soll nun im Folgenden n\"aher
+beschrieben werden.
+
+
+\subsection{Logische Repr\"asentation eines Vorgangs}
+\label{vorgang}
+Ein einzelner Vorgang kann als Objekt dargestellt werden, welches die
+in \ref{sec:netzplan} beschriebenen Attribute \textit{Vorgangsnummer,
+  Vorgangsbezeichnung, Dauer, Vorg\"anger, Nachfolger, FAZ, SAZ, FEZ,
+  SEZ, GP, FP}  enth\"alt und einen
+Zugriff auf diese erm\"oglicht. Hierbei werden jedem Attribut die
+folgenden Definitionsbereiche zugeordnet, welche sp\"ater vom Anwender
+eingehalten werden m\"ussen:
+\begin{itemize}
+  \item \textbf{Vorgangsnummer:} Element der ganzen Zahlen \(\mathbb{Z}\),
+    welches im gesamten Projekt \textit{eindeutig} sein muss.
+  \item \textbf{Vorgangsbezeichnung:} Nicht leere Zeichenkette, welche
+    das Semikolon nicht enthalten darf (dies h\"angt mit dem
+    Eingabeformat zusammen, was an sp\"aterer Stelle erl\"autert
+    wird).
+  \item \textbf{Dauer:} Element der nat\"urlichen Zahlen
+    \(\mathbb{N}\). Dies bedeutet, dass keine negativen Dauern und
+    auch keine nicht existenten Dauern zugelassen sind.
+  \item \textbf{Vorg\"anger:} Liste g\"ultiger Vorgangsnummern.
+  \item \textbf{Nachfolger:} Liste g\"ultiger Vorgangsnummern.
+  \item \textbf{FAZ, SAZ, FEZ, SEZ, GP und FP:} Elemente der nat\"urlichen
+    Zahlen \(\mathbb{N}\) \textit{inklusive} der \(0\).
+\end{itemize}
+Mehrere Vorg\"ange, welche zusammen ein Projekt bilden, k\"onnen somit in
+einer Liste aus einzelnen Vorgangsobjekten abgelegt werden.
+
+
+\subsection{Logische Repr\"asentation eines Netzplans}
+
+Ein Netzplan kann formal als gerichteter azyklischer Graph beschrieben
+werden, wobei die Knotenmenge durch die Menge aller Vorg\"ange des
+Projektes gegeben ist und die Kantenmenge durch die
+Vorg\"anger-Nachfolger-Relation unter den Vorg\"angen beschrieben
+werden kann.
+Ein Hilfsmittel, welches zus\"atzlich zu der Liste aller Vorg\"ange
+des Projekts
+verwendet wird, um den Netzplan als Graph darzustellen, ist die
+sogenannte \textit{Adjazenzmatrix}. Diese Matrix \(A\) besitzt f\"ur jeden
+Knoten des Graphen sowohl eine Zeile als auch eine Spalte und hat
+daher bei \(n\) Knoten die Dimension \(n \times n\). Existiert eine direkte
+Verbindung von Knoten \(i\) nach Knoten \(j\) (dies ist anschaulich
+der Fall, wenn Vorgang \(j\) Nachfolger von Vorgang \(i\) ist),
+so ist der jeweilige Eintrag \(a_{ij}\) der Adjazenzmatrix \(1\),
+ansonsten \(0\). Anhand der Adjazenzmatrix l\"asst sich auch leicht
+erkennen, ob ein Knoten Start- oder Endknoten ist: Da ein Startknoten \(i\)
+keinen Vorg\"anger hat, gilt f\"ur die entsprechenden Eintr\"age der
+\(i\)'ten Spalte: \(a_{ki} = 0 \forall 1 \leq k \leq n\).
+F\"ur jeden Endknoten \(j\) gilt analog \(a_{jk} = 0 \forall 1 \leq k
+\leq n\).
+
+Es sei an dieser Stelle schon angemerkt, dass Vorg\"ange in ihrer
+Nummerierung nicht zwingend die Zahlen \(1\) bis \(n\) (oder sp\"ater
+im Rechner \(0\) bis \(n-1\)) belegen m\"ussen. Daher wird
+zus\"atzlich eine Abbildung \(g: Vorgangsnummern \rightarrow
+\mathbb{N}\) eingef\"uhrt, welche die Vorgangsnummern
+l\"uckenlos auf die ersten \(n\) nat\"urlichen Zahlen
+abbildet. Dementsprechend bezeichnet \(g^{-1}\) die zugeh\"orige
+Umkehrabbildung, welche eine Zahl von \(1\) bis \(n\) auf die
+entsprechende urspr\"ungliche Vorgangsnummer abbildet.
+
+\section{Einlesen der Vorg\"ange}
+
+\subsection{Format der Eingabedatei}
+
+Das Format, in dem die Daten dem Programm zugef\"uhrt werden, soll hier
+anhand des folgenden Beispiels erl\"autert werden:
+
+\begin{figure}[h!]
+  \fbox{
+    \setlength{\fboxrule}{1pt}
+    \lstinputlisting{../testcases/ihk_01.in}
+  }
+  \caption{Beispiel einer Eingabedatei}
+\end{figure}
+Eine Datei besteht aus einer uneordneten Menge an Kommentar- und
+Datenzeilen. Leerzeilen sind \textit{nicht}
+zugelassen. Kommentarzeilen lassen den Anwender Anmerkungen
+hinzuf\"ugen, welche vom Programm nicht beachtet werden. Sie beginnen
+stets mit einem \texttt{//}. Eine besondere Art der Kommentarzeile ist
+die \textit{\"Uberschriftzeile}, da sie im Gegensatz zu den normalen
+Kommentarzeilen vom Programm besonders ber\"ucksichtigt wird. Sie
+beginnt immer mit einem \texttt{//+} und kann an beliebiger Stelle
+innerhalb der Datei auftauchen. Pro Datei muss es \textit{genau eine}
+\"Uberschriftzeile geben. Im gegebenen Beispiel sind die Zeilen 1, 3
+und 4 klassische Kommentarzeilen und werden vom Programm nicht
+beachtet. Zeile 2 ist die \"Uberschriftzeile.
+
+Datenzeilen liefern dem Programm die notwendigen Informationen zu den
+einzelnen Vorg\"angen eines Projekts. Jede Datenzeile beschreibt genau
+einen Vorgang und besteht aus f\"unf Elementen, welche jeweils durch
+ein Semikolon getrennt werden: \textit{Vorgangsnummer,
+  Vorgangsbezeichnung, Dauer, Vorg\"anger und
+  Nachfolger}\footnote{Dies ist auch der Grund, weshalb im
+  Definitionsbereich der Vorgangsbezeichnung keine Semikola zugelassen
+  sind.}.
+Die Eingaben zu Vorgangsnummer, Vorgangsbezeichnung und Dauer m\"ussen
+hierbei mit den Definitionsbereichen der in \ref{vorgang} beschriebenen Attributen
+eines Vorgangs \"ubereinstimmen. Die Elemente Vorg\"anger und
+Nachfolger werden jeweils durch g\"ultige Vorgangsnummern angegeben,
+welche durch Kommata getrennt aufgez\"ahlt werden. Hat ein Vorgang
+keinen Vorg\"anger bzw. keinen Nachfolger, so steht an dieser Stelle
+das Zeichen \texttt{-}. Es handelt sich in diesem Fall um einen Start-
+oder Endvorgang.
+
+\subsection{Algorithmus zum Einlesen}
+
+\section{Konstruktion des Netzplans}
+
+\section{Auffinden der kritischen Pfade}
+
+\section{Ausgabe der Ergebnisse}
