@@ -1,0 +1,30 @@
+%\sProofOn
+\resizebox{\textwidth}{!}{
+\begin{struktogramm}(150, 122)
+  \while{Solange noch Zeilen zu lesen sind}
+  \ifthenelse{6}{3}{Zeile beginnt mit \texttt{//+}}{\sTrue}{\sFalse}
+  \ifthenelse{3}{3}{\"Uberschrift in Ordnung?}{\sTrue}{\sFalse}
+  \assign{Setze \"Uberschrift}
+  \exit{Neue Zeile}
+  \change
+  \assign{Fehlermeldung: \"Uberschrift nicht in Ordnung}
+  \ifend
+  \change
+  \ifend
+  \ifthenelse{5}{5}{Zeile beginnt mit \texttt{//}}{\sTrue}{\sFalse}
+    \exit{Neue Zeile}
+    \change
+  \ifend
+  \assign{Trenne Zeile am Semikolon auf}
+  \assign{Validiere die einzelnen Teile}
+  \ifthenelse{5}{5}{Validierung erfolgreich?}{\sTrue}{\sFalse}
+  \assign{Erzeuge hieraus ein Objekt vom Typ Vorgang}
+  \assign{F\"uge den Vorgang zum Resultat hinzu}
+  \change
+  \assign{Fehlermeldung: Teile nicht in Ordnung}
+  \ifend
+  \whileend
+  \return[8]{Gebe Resultat zur\"uck}
+\end{struktogramm}
+}
+%\sProofOff

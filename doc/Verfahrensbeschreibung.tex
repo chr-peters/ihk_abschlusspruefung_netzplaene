@@ -80,9 +80,11 @@ Das Format, in dem die Daten dem Programm zugef\"uhrt werden, soll hier
 anhand des folgenden Beispiels erl\"autert werden:
 
 \begin{figure}[h!]
-  \fbox{
-    \setlength{\fboxrule}{1pt}
-    \lstinputlisting{../testcases/ihk_01.in}
+  \resizebox{\textwidth}{!}{
+    \fbox{
+      \setlength{\fboxrule}{1pt}
+      \lstinputlisting{../testcases/ihk_01.in}
+    }
   }
   \caption{Beispiel einer Eingabedatei}
 \end{figure}
@@ -113,13 +115,30 @@ Die Eingaben zu Vorgangsnummer, Vorgangsbezeichnung und Dauer m\"ussen
 hierbei mit den Definitionsbereichen der in \ref{vorgang} beschriebenen Attribute
 eines Vorgangs \"ubereinstimmen. Die Elemente Vorg\"anger und
 Nachfolger werden jeweils durch g\"ultige Vorgangsnummern angegeben,
-welche durch Kommata getrennt aufgez\"ahlt werden. Hat ein Vorgang
+welche durch Kommata getrennt aufgez\"ahlt werden. Doppelte
+Vorg\"anger oder Nachfolger sind nicht erlaubt. Hat ein Vorgang
 keinen Vorg\"anger bzw. keinen Nachfolger, so steht an dieser Stelle
 das Zeichen \texttt{-}. Es handelt sich in diesem Fall um einen Start-
 oder Endvorgang. Jedes Projekt muss mindestens einen Start- und einen
 Endvorgang enthalten.
 
 \subsection{Algorithmus zum Einlesen}
+
+Der Algorithmus, der zum Einlesen der Eingabedatei implementiert
+wurde, iteriert im Wesentlichen \"uber alle Zeilen und pr\"uft, um was
+f\"ur eine Art der Zeile es sich handelt. Je nach Art der Zeile werden
+die Eingaben validiert, stimmt etwas nicht, so wird ein Fehler
+geworfen. W\"ahrend der Iteration wird sukzessive eine Liste mit
+gelesenen Vorg\"angen bef\"ullt, die am Ende zur\"uckgegeben
+wird. Diese Liste wird im folgenden Struktogramm (siehe Abbildung \ref{einlesen}), welches einen
+\"Uberblick \"uber die wesentlichen Gesichtspunkte des Algorithmus
+gibt, als \textit{Resultat} bezeichnet.
+
+\begin{figure}[h]
+  \input{struktogramme/einlesen}
+  \caption{Algorithmus zum Einlesen der Eingabedatei}
+  \label{einlesen}
+\end{figure}
 
 \section{Konstruktion des Netzplans}
 

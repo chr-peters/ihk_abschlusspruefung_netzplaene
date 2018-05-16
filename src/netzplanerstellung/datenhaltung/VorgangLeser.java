@@ -134,7 +134,13 @@ public class VorgangLeser {
 			    } catch (NumberFormatException e) {
 				throw new DateiFormatException(zeilenNr, "Ungültiger Vorgänger "+aktVorgaenger);
 			    }
-			    tmpVorgang.addVorgaenger(tmpVorgaenger);
+			    // ist der Vorgänger noch nicht vorhanden?
+			    if (!tmpVorgang.getVorgaenger().contains(tmpVorgaenger)) {
+				tmpVorgang.addVorgaenger(tmpVorgaenger);
+			    } else {
+				// Fehler: Doppelter Vorgänger
+				throw new DateiFormatException(zeilenNr, "Doppelter Vorgänger "+tmpVorgaenger);
+			    }
 			}
 		    }
 
@@ -155,7 +161,13 @@ public class VorgangLeser {
 			    } catch (NumberFormatException e) {
 				throw new DateiFormatException(zeilenNr, "Ungültiger Nachfolger "+aktNachfolger);
 			    }
-			    tmpVorgang.addNachfolger(tmpNachfolger);
+			    // ist der Nachfolger noch nicht vorhanden?
+			    if (!tmpVorgang.getNachfolger().contains(tmpNachfolger)) {
+				tmpVorgang.addNachfolger(tmpNachfolger);
+			    } else {
+				// Fehler: Doppelter Nachfolger
+				throw new DateiFormatException(zeilenNr, "Doppelter Nachfolger "+tmpNachfolger);
+			    }
 			}
 		    }
 
