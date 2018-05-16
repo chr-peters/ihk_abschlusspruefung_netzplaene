@@ -2,6 +2,8 @@ package netzplanerstellung.logik;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.ArrayDeque;
 import java.util.Map;
 import java.util.HashMap;
 
@@ -88,12 +90,12 @@ public class Netzplan {
     }
 
     private void vorwaertsRechnung() {
-	// erzeuge eine Liste der abzuarbeitenden Knoten (diese enthält zunächst nur alle Startknoten)
-	List<Integer> abzuarbeiten = new ArrayList<>(this.startKnoten);
+	// erzeuge eine Queue der abzuarbeitenden Knoten (diese enthält zunächst nur alle Startknoten)
+	Deque<Integer> abzuarbeiten = new ArrayDeque<>(this.startKnoten);
 
 	while (abzuarbeiten.size() > 0) {
 	    // entferne aktuellen Knoten
-	    int aktKnoten = abzuarbeiten.remove(0);
+	    int aktKnoten = abzuarbeiten.removeFirst();
 
 	    // besorge Referenz auf den zugehörigen Vorgang, um FEZ setzen zu können
 	    Vorgang aktVorgang = this.vorgaenge.get(aktKnoten);
@@ -115,8 +117,8 @@ public class Netzplan {
 		    kindVorgang.setFAZ(aktVorgang.getFEZ());
 		}
 
-		// füge das Kind hinten an die Liste an
-		abzuarbeiten.add(intern);
+		// füge das Kind hinten an die Queue an
+		abzuarbeiten.addLast(intern);
 	    }
 	}
     }
@@ -130,12 +132,12 @@ public class Netzplan {
 	    aktVorgang.setSEZ(aktVorgang.getFEZ());
 	}
 	
-	// erzeuge eine Liste der abzuarbeitenden Knoten (diese enthält zunaechst nur alle Endknoten)
-	List<Integer> abzuarbeiten = new ArrayList<>(this.endKnoten);
+	// erzeuge eine Queue der abzuarbeitenden Knoten (diese enthält zunaechst nur alle Endknoten)
+	Deque<Integer> abzuarbeiten = new ArrayDeque<>(this.endKnoten);
 
 	while (abzuarbeiten.size() > 0) {
 	    // entferne den aktuellen Knoten
-	    int aktKnoten = abzuarbeiten.remove(0);
+	    int aktKnoten = abzuarbeiten.removeFirst();
 	    
 	    // besorge Referenz
 	    Vorgang aktVorgang = this.vorgaenge.get(aktKnoten);
@@ -155,8 +157,8 @@ public class Netzplan {
 		    aktVorgaengerRef.setSEZ(aktVorgang.getSAZ());
 		}
 
-		// fuege den Vorgänger hinten an die Liste an
-		abzuarbeiten.add(toInternal.get(aktVorgaenger));
+		// fuege den Vorgänger hinten an die Queue an
+		abzuarbeiten.addLast(toInternal.get(aktVorgaenger));
 	    }
 	}
     }
@@ -216,9 +218,9 @@ public class Netzplan {
 		continue;
 	    }
 
-	    // erzeuge die Liste aus Pfaden
+	    // erzeuge die Queue aus Pfaden
 	    // die Bezeichner der Knoten sind hierbei in externer Darstellung angegeben
-	    List<List<Integer>> pfade = new ArrayList<>();
+	    Deque<List<Integer>> pfade = new ArrayDeque<>();
 
 	    // fuege Pfad mit aktStartKnoten der Liste an
 	    List<Integer> startPfad = new ArrayList<>();
@@ -226,7 +228,7 @@ public class Netzplan {
 	    pfade.add(startPfad);
 
 	    while(pfade.size() > 0) {
-		List<Integer> aktPfad = pfade.remove(0);
+		List<Integer> aktPfad = pfade.removeFirst();
 
 		// betrachte den letzten Knoten aus aktPfad
 		int aktKnoten = aktPfad.get(aktPfad.size()-1);
@@ -248,7 +250,7 @@ public class Netzplan {
 			neuerPfad.add(aktNachfolger);
 
 			// füge diesen Pfad den zu bearbeitenden Pfaden hinzu
-			pfade.add(neuerPfad);
+			pfade.addLast(neuerPfad);
 		    }
 		}
 	    }
@@ -313,8 +315,8 @@ public class Netzplan {
      */
     private boolean istZyklenfrei() throws NetzplanException{
 	for (int aktStartknoten: this.startKnoten) {
-	    // die Liste mit den Pfaden der Expansion
-	    List<List<Integer>> pfade = new ArrayList<>();
+	    // die Queue mit den Pfaden der Expansion
+	    Deque<List<Integer>> pfade = new ArrayDeque<>();
 	    
 	    // der Startpfad enthält nur den Startknoten
 	    List<Integer> startPfad = new ArrayList<>();
@@ -325,7 +327,7 @@ public class Netzplan {
 	    // beginne mit der Expansion
 	    while (pfade.size() > 0) {
 		// entferne den aktuellen Pfad
-		List<Integer> aktPfad = pfade.remove(0);
+		List<Integer> aktPfad = pfade.removeFirst();
 
 		// betrachte den letzten Knoten des Pfades
 		int aktKnoten = aktPfad.get(aktPfad.size()-1);
@@ -366,7 +368,7 @@ public class Netzplan {
 		    } else {
 			List<Integer> neuerPfad = new ArrayList<>(aktPfad);
 			neuerPfad.add(aktKind);
-			pfade.add(neuerPfad);
+			pfade.addLast(neuerPfad);
 		    }
 		}
 	    }
@@ -402,21 +404,21 @@ public class Netzplan {
 	// Liste mit allen schon besuchten Knoten
 	List<Integer> besucht = new ArrayList<>();
 
-	// Liste mit den Knoten, deren Besuch unmittelbar ansteht
-	List<Integer> aktKnoten = new ArrayList<>();
+	// Queue mit den Knoten, deren Besuch unmittelbar ansteht
+	Deque<Integer> aktKnoten = new ArrayDeque<>();
 
 	// beginne bei Knoten 0 (Startknoten beliebig)
 	aktKnoten.add(0);
 
 	while(aktKnoten.size()>0) {
 	    // entferne den aktuellen Knoten
-	    int tmp = aktKnoten.remove(0);
+	    int tmp = aktKnoten.removeFirst();
 
 	    // bestimme alle Knoten, die von diesem Knoten aus erreichbar sind
 	    // und noch nicht besucht wurden und füge sie zu aktKnoten hinzu
 	    for (int i = 0; i<adjazenzenSym[tmp].length; i++) {
 		if (adjazenzenSym[tmp][i]==1 && !besucht.contains(i)){
-		    aktKnoten.add(i);
+		    aktKnoten.addLast(i);
 		}
 	    }
 
