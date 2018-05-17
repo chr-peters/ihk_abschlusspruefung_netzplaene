@@ -1,8 +1,153 @@
 \chapter{Testdokumentation}
 \label{Testdokumentation}
 
+In diesem Kapitel werden nun alle mitgelieferten Testf\"alle
+aufgelistet, beschrieben und diskutiert. Die Zusammenstellung dieser
+Testf\"alle ist schon w\"ahrend der Implementierung nach dem
+\textit{Whitebox}-Prinzip erfolgt: Jede neue Verzweigung im Programm
+wurde sofort mithilfe eines neuen Testfalls festgehalten. Um diesen
+Vorgang der Entwicklung zu beschreiben, passt ebenfalls der Begriff
+\textit{Test-Driven-Development}.
 
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "Master"
-%%% End: 
+Die Gesamtheit der Testf\"alle wird hier in folgende Kategorieren
+unterteilt:
+\begin{itemize}
+  \item \textbf{Normalf\"alle:} F\"uhren zu einer ordnungsgem\"a{\ss}en
+    Abarbeitung des Programms.
+  \item \textbf{Sonderf\"alle:} Enthalten Spezialf\"alle, wie z.B. ein
+    Minimalbeispiel, um auch ungew\"ohnliche Situationen testen zu
+    k\"onnen.
+  \item \textbf{Fehlerf\"alle:} F\"uhren nicht zu einer
+    ordnungsgem\"a{\ss}en Abarbeitung des Programms und ziehen
+    Fehlermeldungen nach sich.
+\end{itemize}
+S\"amtliche Testf\"alle sind im Ordner \texttt{testcases} zu finden.
+Zu jedem Testfall, welcher in einer ordnungsgem\"a{\ss}en Abarbeitung
+des Programms m\"undet, findet sich ebenfalls im Ordner
+\texttt{testcases} eine zugeh\"orige Ausgabedatei mit der Endung
+\texttt{.out}.
+
+\section{Normalf\"alle}
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Installation von POI Kiosken \\
+  Dateiname: & \texttt{ihk\_01.in} \\
+  Beschreibung: & Projekt, welches sich mit der Einrichtung eines
+  Kiosk-Terminals besch\"aftigt. Es enth\"alt eine Verzweigung nach
+  dem Startvorgang, die an Vorgang Nr. 6 wieder zusammengef\"uhrt
+  wird. Das Projekt enth\"alt einen einzigen kritischen Pfad. \\
+  Diskussion: & Bei diesem Testfall handelt es sich um ein einfaches
+  Normalbeispiel, welches die grunds\"atzliche
+  Funktionsf\"ahigkeit des Programms unter Beweis stellt. \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Wasserfallmodell \\
+  Dateiname: & \texttt{ihk\_02\_korrigiert.in} \\
+  Beschreibung: & Dieser Testfall veranschaulicht die Vorgehensweise
+  bei der Softwareentwicklung nach dem Wasserfallmodell. Es gibt
+  keinerlei Verzweigungen und nur einen kritischen Pfad. Dieses
+  Beispiel wurde aus der urspr\"unglichen Datei \texttt{ihk\_02.in}
+  erzeugt, indem in Zeile 11 der Vorg\"anger von Vorgang 6 auf Vorgang
+  5 korrigiert wurde.\\
+  Diskussion: & Der Testfall gibt einen simplen Fall ohne
+  Verzweigungen an und stellt sicher, dass das Programm auch bei
+  listen\"ahnlichen Netzpl\"anen den einzigen kritischen Pfad
+  findet.\\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Beispiel 3 \\
+  Dateiname: & \texttt{ihk\_03.in} \\
+  Beschreibung: & Dieser Testfall stellt ein Projekt mit mehreren
+  Start- und Endvorg\"angen dar. Er enth\"alt mehrere Verzweigungen
+  und zwei kritische Pfade.\\
+  Diskussion: & Dieser Testfall zeigt, dass das Programm auch in der
+  Lage ist, bei mehreren Start- und Endvorg\"angen korrekt zu
+  arbeiten. Weiterhin wird demonstriert, dass auch mehrere kritische
+  Pfade fehlerfrei gefunden werden.\footnote{Die Ausgabe des Programms
+  stimmt an einer Stelle aus gutem Grund nicht mit der aus der
+  Aufgabenstellung gegebenen Kontrolll\"osung \"uberein: Der SEZ von
+  Vorgang 8 betr\"agt richtigerweise 12 und nicht 13, wie es in der
+  Beispielausgabe steht.}\\
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Beispiel 5 IT-Installation \\
+  Dateiname: & \texttt{ihk\_05\_korrigiert.in} \\
+  Beschreibung: & Hier wird ein komplexes Beispiel mit 17
+  verschiedenen und verzweigten Vorg\"angen illustriert. Dieses
+  Beispiel wurde aus der urspr\"unglichen Datei \texttt{ihk\_05.in}
+  erzeugt, indem in Zeile 13 bei Vorgang 8 der Vorg\"anger auf Vorgang 4
+  korrigiert wurde. Bei diesem Testfall gibt es einen kritischen Pfad.\\
+  Diskussion: & Dies ist der bis hierhin komplexeste Testfall, den das
+  Programm bisher abarbeiten musste und es zeigt sich, dass es auch
+  hier nicht auf Probleme st\"o{\ss}t.\footnote{Aufgrund der Korrektur
+  stimmt auch hier die Ausgabe des Programms nicht mit der gegebenen
+  Kontrolll\"osung \"uberein.}\\
+\end{tabularx}
+
+\section{Sonderf\"alle}
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Nummern ausser der Reihe \\
+  Dateiname: & \texttt{sonderfall\_01.in} \\
+  Beschreibung: & Dieser Testfall hat im Wesentlichen den gleichen
+  Inhalt wie die Datei \texttt{ihk\_01.in}, bis auf einen Unterschied:
+  Die Nummer von ehemals Vorgang 1 wurde auf 700 gesetzt und die
+  Nummer von ehemals Vorgang 4 wurde auf -25 festgelegt.\\
+  Diskussion: & Hier soll gepr\"uft werden, ob das Programm auch dann
+  noch korrekt arbeitet, wenn die Vorgangsnummern nicht genau in einer
+  Reihe aufeinander folgen. Dank der Definition der Abbildung \(g\),
+  auch als \texttt{toInternal} im Quelltext zu finden
+  (Abbildung der externen auf die internen Vorgangsnummern), sind auch
+  unorthodoxe Vorgangsnummern kein Problem f\"ur das Programm.\\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Ein einziger Knoten \\
+  Dateiname: & \texttt{sonderfall\_02.in} \\
+  Beschreibung: & Dieses Projekt besteht aus nur einem Vorgang,
+  welcher gleichzeitig Start- und Endvorgang ist.\\
+  Diskussion: & Dieser Testfall stellt das kleinste noch
+  funktionsf\"ahige Beispiel dar. Auch hier ist das Programm
+  erfolgreich und berechnet den einzigen kritischen Pfad korrekt.\\
+\end{tabularx}
+
+\section{Fehlerf\"alle}
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Wasserfallmodell \\
+  Dateiname: & \texttt{ihk\_02.in} \\
+  Beschreibung: & Diese Eingabedatei enth\"alt einen Tippfehler:
+  Vorgang 6 hat den nicht existenten Vorgang 7 als Vorg\"anger, obwohl
+  er eigentlich Nachfolger von Vorgang 5 ist.\\
+  Diskussion: & Hier wird erstmals \"uberpr\"uft, ob das Programm
+  Inkonsistenzen in der Vorg\"anger - Nachfolger - Relation korrekt
+  erkennt.\\
+  Fehlermeldung: & \texttt{Fehler bei der Erstellung des Netzplans:
+    Inkonsistente Beziehung gefunden! Vorgang 5 hat Vorgang 6 als
+    Nachfolger, ist aber selbst nicht Vorgänger von diesem!} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Beispiel 4 mit Zyklus \\
+  Dateiname: & \texttt{ihk\_04.in} \\
+  Beschreibung: &  Weiterer Test zur Erkennung von Inkonsistenzen.\\
+  Diskussion: & Dieser gegebene Fehlerfall sollte vermutlich einen
+  Zyklus illustrieren, enth\"alt allerdings Inkonsistenzen in den
+  Beziehungen der Vorg\"ange. \\
+  Fehlermeldung: & \texttt{Fehler bei der Erstellung des Netzplans:
+    Inkonsistente Beziehung gefunden! Vorgang 4 hat Vorgang 3 als
+    Nachfolger, ist aber selbst nicht Vorgänger von diesem!} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Beispiel 4 mit Zyklus (korrigiert) \\
+  Dateiname: & \texttt{ihk\_04\_korrigiert.in} \\
+  Beschreibung: & Das Projekt zu diesem Testfall f\"uhrt nicht zu
+  einem g\"ultigen Netzplan, da es einen Zyklus enth\"alt. Die
+  Korrektur zum vorigen Beispiel wurde in Zeile 8 durchgef\"uhrt:
+  Vorgang 3 hat nun Vorgang 4 auch als Vorg\"anger, damit ein Zyklus
+  zustande kommt. \\
+  Diskussion: & Hier wird erstmals \"uberpr\"uft, ob das Programm
+  Zyklen im Netzplan erkennt. \\
+  Fehlermeldung: & \texttt{Fehler bei der Erstellung des Netzplans: Es
+    wurde ein Zyklus erkannt! 3->4->3} \\
+\end{tabularx}
