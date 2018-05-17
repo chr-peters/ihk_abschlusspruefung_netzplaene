@@ -6,12 +6,12 @@ package netzplanerstellung.datenhaltung;
  */
 public class DateiFormatException extends Exception{
     public DateiFormatException(int zeile, String msg) {
-	super("Fehler beim Einlesen in Zeile "+zeile+": "+msg);
+        super("Fehler beim Einlesen in Zeile "+zeile+": "+msg);
     }
     public DateiFormatException(String msg) {
-	super(msg);
+        super(msg);
     }
     public DateiFormatException() {
-	super("Das Dateiformat ist ungültig!");
+        super("Das Dateiformat ist ungültig!");
     }
 }

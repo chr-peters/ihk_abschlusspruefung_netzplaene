@@ -5,9 +5,9 @@ package netzplanerstellung.logik;
  */
 public class NetzplanException extends Exception {
     public NetzplanException(String msg) {
-	super(msg);
+        super(msg);
     }
     public NetzplanException() {
-	super("Ein Fehler im Netzplan wurde gefunden!");
+        super("Ein Fehler im Netzplan wurde gefunden!");
     }
 }

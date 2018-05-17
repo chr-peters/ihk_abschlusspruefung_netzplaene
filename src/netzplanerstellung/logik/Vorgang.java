@@ -20,100 +20,100 @@ public class Vorgang {
     private int fp;
 
     public Vorgang(int nummer, String bezeichnung, int dauer) {
-	this.nummer = nummer;
-	this.bezeichnung = bezeichnung;
-	this.dauer = dauer;
-	this.vorgaenger = new ArrayList<>();
-	this.nachfolger = new ArrayList<>();
+        this.nummer = nummer;
+        this.bezeichnung = bezeichnung;
+        this.dauer = dauer;
+        this.vorgaenger = new ArrayList<>();
+        this.nachfolger = new ArrayList<>();
     }
 
     public void addVorgaenger(int vorgaenger) {
-	this.vorgaenger.add(vorgaenger);
+        this.vorgaenger.add(vorgaenger);
     }
 
     public void addNachfolger(int nachfolger) {
-	this.nachfolger.add(nachfolger);
+        this.nachfolger.add(nachfolger);
     }
 
     public boolean istKritisch() {
-	return this.gp == 0 && this.fp == 0;
+        return this.gp == 0 && this.fp == 0;
     }
 
     public String toString() {
-	StringBuilder res = new StringBuilder();
-	res.append(nummer+"; ");
-	res.append(bezeichnung+"; ");
-	res.append(dauer+"; ");
-	res.append(faz+"; ");
-	res.append(fez+"; ");
-	res.append(saz+"; ");
-	res.append(sez+"; ");
-	res.append(gp+"; ");
-	res.append(fp+"");
-	return res.toString();
+        StringBuilder res = new StringBuilder();
+        res.append(nummer+"; ");
+        res.append(bezeichnung+"; ");
+        res.append(dauer+"; ");
+        res.append(faz+"; ");
+        res.append(fez+"; ");
+        res.append(saz+"; ");
+        res.append(sez+"; ");
+        res.append(gp+"; ");
+        res.append(fp+"");
+        return res.toString();
     }
 
     public int getNummer() {
-	return this.nummer;
+        return this.nummer;
     }
 
     public List<Integer> getNachfolger() {
-	return this.nachfolger;
+        return this.nachfolger;
     }
 
     public List<Integer> getVorgaenger() {
-	return this.vorgaenger;
+        return this.vorgaenger;
     }
 
     public void setFEZ(int fez) {
-	this.fez = fez;
+        this.fez = fez;
     }
 
     public int getFEZ() {
-	return this.fez;
+        return this.fez;
     }
 
     public int getDauer() {
-	return this.dauer;
+        return this.dauer;
     }
 
     public int getFAZ() {
-	return this.faz;
+        return this.faz;
     }
 
     public void setFAZ(int faz) {
-	this.faz = faz;
+        this.faz = faz;
     }
 
     public void setSEZ(int sez) {
-	this.sez = sez;
+        this.sez = sez;
     }
     
     public int getSEZ() {
-	return this.sez;
+        return this.sez;
     }
 
     public void setSAZ(int saz) {
-	this.saz = saz;
+        this.saz = saz;
     }
 
     public int getSAZ() {
-	return this.saz;
+        return this.saz;
     }
 
     public int getGP() {
-	return this.gp;
+        return this.gp;
     }
 
     public void setGP(int gp) {
-	this.gp = gp;
+        this.gp = gp;
     }
 
     public int getFP() {
-	return this.fp;
+        return this.fp;
     }
 
     public void setFP(int fp) {
-	this.fp = fp;
+        this.fp = fp;
     }
 }

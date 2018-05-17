@@ -11,43 +11,43 @@ import java.io.IOException;
 public class Main {
     public static void main (String args []) {
 
-	if (args.length != 2) {
-	    System.err.println("Ungültige Anzahl an Argumenten! Erwarte Ein- und Ausgabedatei.");
-	    System.exit(-1);
-	}
+        if (args.length != 2) {
+            System.err.println("Ungültige Anzahl an Argumenten! Erwarte Ein- und Ausgabedatei.");
+            System.exit(-1);
+        }
 
-	try {
-	    // lese die Vorgänge und die Überschrift ein
-	    VorgangLeser leser = new VorgangLeser(args[0]);
+        try {
+            // lese die Vorgänge und die Überschrift ein
+            VorgangLeser leser = new VorgangLeser(args[0]);
 
-	    List<Vorgang> vorgaenge = leser.getVorgaenge();
-	    String ueberschrift = leser.getUeberschrift();
+            List<Vorgang> vorgaenge = leser.getVorgaenge();
+            String ueberschrift = leser.getUeberschrift();
 
-	    // erzeuge den Netzplan
-	    Netzplan netzplan = new Netzplan(vorgaenge);
+            // erzeuge den Netzplan
+            Netzplan netzplan = new Netzplan(vorgaenge);
 
-	    // erzeuge den Projekt Report
-	    ProjektReport report = new ProjektReport(args[1]);
-	    report.erzeugeReport(netzplan, ueberschrift);
+            // erzeuge den Projekt Report
+            ProjektReport report = new ProjektReport(args[1]);
+            report.erzeugeReport(netzplan, ueberschrift);
 
-	} catch (DateiFormatException e) {
-	    // ein Fehler beim Einlesen ist aufgetreten!
-	    // gebe die Informationen aus und beende das Programm mit einem Fehlercode
-	    System.err.println(e.getMessage());
-	    System.exit(-1);
-	} catch (FileNotFoundException e) {
-	    // Fehler beim Einlesen, Datei konnte nicht gefunden / gelesen werden
-	    System.err.println(e.getMessage());
-	    System.exit(-1);
-	} catch (IOException e) {
-	    // Fehler bei der Ausgabe - Datei kann nicht geöffnet oder geschrieben werden
-	    System.err.println(e.getMessage());
-	    System.exit(-1);
-	} catch (NetzplanException e) {
-	    // Fehler bei der Erstellung des Netzplanes
-	    // gebe die Information aus und beende das Programm mit einem Fehlercode
-	    System.err.println(e.getMessage());
-	    System.exit(-1);
-	}
+        } catch (DateiFormatException e) {
+            // ein Fehler beim Einlesen ist aufgetreten!
+            // gebe die Informationen aus und beende das Programm mit einem Fehlercode
+            System.err.println(e.getMessage());
+            System.exit(-1);
+        } catch (FileNotFoundException e) {
+            // Fehler beim Einlesen, Datei konnte nicht gefunden / gelesen werden
+            System.err.println(e.getMessage());
+            System.exit(-1);
+        } catch (IOException e) {
+            // Fehler bei der Ausgabe - Datei kann nicht geöffnet oder geschrieben werden
+            System.err.println(e.getMessage());
+            System.exit(-1);
+        } catch (NetzplanException e) {
+            // Fehler bei der Erstellung des Netzplanes
+            // gebe die Information aus und beende das Programm mit einem Fehlercode
+            System.err.println(e.getMessage());
+            System.exit(-1);
+        }
     }
 }
