@@ -1,5 +1,5 @@
 //************************************************
-//+ Nicht Zusammenhängender PLan
+//+ Nicht zusammenhängender PLan
 //************************************************
 //Vorgangsnummer; Vorgangsbezeichnung; Dauer; Vorgänger; Nachfolger
 1; Planung des Projekts; 1; -; 2

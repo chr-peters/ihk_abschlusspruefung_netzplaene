@@ -67,7 +67,7 @@ public class VorgangLeser {
                     } else {
 
                         // es existiert bereits eine Überschrift - die Datei ist ungültig!
-                        throw new DateiFormatException(zeilenNr, "Nur eine Überschift pro Datei erlaubt!");
+                        throw new DateiFormatException(zeilenNr, "Nur eine Überschrift pro Datei erlaubt!");
                     }
                 } else if (aktZeile.startsWith("//")) {
                     // es handelt sich um eine Kommentarzeile

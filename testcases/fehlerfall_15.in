@@ -1,6 +1,6 @@
 //************************************************
-//+ Ungültiger Vorgänger
-// der Fehler liegt in Zeile 2
+//+ Ungültige Vorg\"angerbeziehung
+// der Fehler liegt in Zeile 6
 //************************************************
 //Vorgangsnummer; Vorgangsbezeichnung; Dauer; Vorgänger; Nachfolger
 1; Planung des Projekts; 1; -; 4

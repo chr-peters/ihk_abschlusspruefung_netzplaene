@@ -151,3 +151,324 @@ des Programms m\"undet, findet sich ebenfalls im Ordner
   Fehlermeldung: & \texttt{Fehler bei der Erstellung des Netzplans: Es
     wurde ein Zyklus erkannt! 3->4->3} \\
 \end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Nicht existierender Vorg\"anger \\
+  Dateiname: & \texttt{fehlerfall\_01.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 7 der nicht existierende
+  Vorgang 8 als Vorg\"anger von Vorgang 2 eingetragen wurde.\\
+  Diskussion: & Dieser Testfall zeigt, dass das Programm in der Lage
+  ist, nicht existierende Vorg\"anger zu erkennen. \\
+  Fehlermeldung: & \texttt{Fehler bei der Erstellung des Netzplans:
+    Vorgang 2 hat Vorgang 8 als Vorgänger, obwohl dieser nicht
+    existiert!} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Leere \"Uberschrift \\
+  Dateiname: & \texttt{fehlerfall\_02.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 2 eine leere \"Uberschrift
+  angegeben wurde. \\
+  Diskussion: & Nach Abschnitt \ref{eingabeformat} muss sich in jeder
+  g\"ultigen Eingabedatei genau eine nicht-leere \"Uberschrift
+  befinden. Das Programm erkennt diese Datei also korrekt als
+  ung\"ultig an. \\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen in Zeile 2: Leere
+    Überschriften sind ungültig!} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Keine \"Uberschrift \\
+  Dateiname: & \texttt{fehlerfall\_03.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass keine \"Uberschrift
+  angegeben wurde. \\
+  Diskussion: & Nach Abschnitt \ref{eingabeformat} muss sich in jeder
+  g\"ultigen Eingabedatei genau eine nicht-leere \"Uberschrift
+  befinden. Das Programm erkennt diese Datei also korrekt als
+  ung\"ultig an. \\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen: Keine Überschrift
+    gefunden!} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Zwei \"Uberschriften \\
+  Dateiname: & \texttt{fehlerfall\_04.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 3 eine zweite \"Uberschrift
+  angegeben wurde. \\
+  Diskussion: & Nach Abschnitt \ref{eingabeformat} muss sich in jeder
+  g\"ultigen Eingabedatei genau eine nicht-leere \"Uberschrift
+  befinden. Das Programm erkennt diese Datei also korrekt als
+  ung\"ultig an. \\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen in Zeile 3: Nur eine
+    Überschrift pro Datei erlaubt!} \\
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Ung\"ultige Anzahl Spalten \\
+  Dateiname: & \texttt{fehlerfall\_05.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 6 die Spalte Dauer entfernt
+  wurde. \\
+  Diskussion: & Eine g\"ultige Datenzeile besteht nach Abschnit
+  \ref{eingabeformat} immer aus genau 5 durch Semikola getrennten
+  Elementen. Da hier ein Element fehlt, wird dies zurecht als Fehler
+  erkannt.\\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen in Zeile 6: Erwarte 5
+    Elemente pro Zeile, 4 erhalten.} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Ung\"ultige Vorgangsnummer \\
+  Dateiname: & \texttt{fehlerfall\_06.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 11 die ung\"ultige
+  Vorgangsnummer ``6a'' eingetragen wurde. \\
+  Diskussion: & G\"ultige Vorgangsnummern sind nach Abschnitt
+  \ref{vorgang} immer ganze Zahlen. Das Programm erkennt hier also
+  zurecht eine ung\"ultige Vorgangsnummer und beendet sich mit einem
+  Fehler.\\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen in Zeile 11: Ungültige
+    Vorgangsnummer 6a} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Leere Vorgangsbezeichnung \\
+  Dateiname: & \texttt{fehlerfall\_07.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 10 eine leere
+  Vorgangsbezeichnung eingetragen wurde. \\
+  Diskussion: & G\"ultige Vorgangsbezeichnungen sind nach Abschnitt
+  \ref{vorgang} immer nicht-leere Zeichenketten. Das Programm erkennt
+  hier also zurecht eine ung\"ultige Vorgangsbezeichnung und beendet
+  sich mit einem Fehler.\\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen in Zeile 10: Keine
+    leere Vorgangsbezeichnung erlaubt!} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Ung\"ultige Dauer \\
+  Dateiname: & \texttt{fehlerfall\_08.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 9 die ung\"ultige Dauer
+  ``6a'' eingetragen wurde. \\
+  Diskussion: & G\"ultige Dauern sind nach Abschnitt
+  \ref{vorgang} immer Elemente der nat\"urlichen Zahlen. Das Programm
+  erkennt hier also zurecht eine ung\"ultige Dauer und beendet
+  sich mit einem Fehler.\\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen in Zeile 9: Ungültige Vorgangsdauer  6a} \\
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Negative Dauer \\
+  Dateiname: & \texttt{fehlerfall\_09.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 9 eine negative Dauer
+  eingetragen wurde. \\
+  Diskussion: & G\"ultige Dauern sind nach Abschnitt
+  \ref{vorgang} immer Elemente der nat\"urlichen Zahlen. Das Programm
+  erkennt hier also zurecht eine ung\"ultige Dauer und beendet
+  sich mit einem Fehler.\\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen in Zeile 9: Dauern <=
+    0 sind nicht erlaubt!} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Keine Dauer \\
+  Dateiname: & \texttt{fehlerfall\_10.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 9 keine Dauer
+  eingetragen wurde. \\
+  Diskussion: & G\"ultige Dauern sind nach Abschnitt
+  \ref{vorgang} immer Elemente der nat\"urlichen Zahlen. Das Programm
+  erkennt hier also zurecht eine ung\"ultige Dauer und beendet
+  sich mit einem Fehler.\\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen in Zeile 9: Ungültige Vorgangsdauer} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Ung\"ultige Vorg\"anger \\
+  Dateiname: & \texttt{fehlerfall\_11.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 8 ein ung\"ultiger
+  Vorg\"anger, n\"amlich die Zeichenkette ``falsch'',
+  eingetragen wurde. \\
+  Diskussion: & G\"ultige Vorg\"anger sind nach Abschnitt
+  \ref{vorgang} immer g\"ultige Vorgangsnummern, die durch ein Komma
+  getrennt wurden. Das Programm erkennt hier also zurecht einen
+  ung\"ultigen Vorg\"anger und beendet sich mit einem Fehler.\\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen in Zeile 8: Ungültiger
+    Vorgänger falsch} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Doppelte Vorgangsnummer \\
+  Dateiname: & \texttt{fehlerfall\_12.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 12 die Vorgangsnummer 1
+  doppelt vergeben wurde. \\
+  Diskussion: & G\"ultige Vorgangsnummern sind nach Abschnitt
+  \ref{vorgang} immer eindeutig. Das Programm erkennt hier also
+  zurecht eine ung\"ultige Vorgangsnummer und beendet sich mit einem
+  Fehler.\\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen in Zeile 12:
+    Vorgangsnummer 1 mehrfach vorhanden!} \\
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Ung\"ultige Nachfolger \\
+  Dateiname: & \texttt{fehlerfall\_13.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 8 ein ung\"ultiger
+  Nachfolger, n\"amlich die Zeichenkette ``falsch'',
+  eingetragen wurde. \\
+  Diskussion: & G\"ultige Nachfolger sind nach Abschnitt
+  \ref{vorgang} immer g\"ultige Vorgangsnummern, die durch ein Komma
+  getrennt wurden. Das Programm erkennt hier also zurecht einen
+  ung\"ultigen Nachfolger und beendet sich mit einem Fehler.\\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen in Zeile 8: Ungültiger
+    Nachfolger falsch} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Nicht existierender Nachfolger \\
+  Dateiname: & \texttt{fehlerfall\_14.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 7 bei Vorgang 2 der nicht
+  existierende Nachfolger 8 eingetragen wurde. \\
+  Diskussion: & Dieser Testfall zeigt, dass das Programm in der Lage
+  ist, nicht existierende Nachfolger zu erkennen. \\
+  Fehlermeldung: & \texttt{Fehler bei der Erstellung des Netzplans:
+    Vorgang 2 hat Vorgang 8 als Nachfolger, obwohl dieser nicht
+    existiert!} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Ung\"ultige Vorg\"angerbeziehung \\
+  Dateiname: & \texttt{fehlerfall\_15.in} \\
+  Beschreibung: & Dieser Fehlerfall basiert auf der g\"ultigen Datei
+  \texttt{ihk\_01.in}, nur dass in Zeile 6 bei Vorgang 1 der Vorgang 2
+  aus der Liste seiner Nachfolger entfernt wurde. \\
+  Diskussion: & Dieser Testfall zeigt, dass das Programm eine
+  Inkonsistenz erkennt, wenn
+  ein Vorgang einen Vorg\"anger angibt, dessen Nachfolger er aber
+  nicht ist. \\
+  Fehlermeldung: & \texttt{Fehler bei der Erstellung des Netzplans:
+    Inkonsistente Beziehung gefunden! Vorgang 2 hat Vorgang 1 als
+    Vorgänger, ist aber selbst nicht Nachfolger von diesem!} \\
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Nicht zusammenh\"angender Plan \\
+  Dateiname: & \texttt{fehlerfall\_16.in} \\
+  Beschreibung: & Dieser Fehlerfall enth\"alt ein Projekt, welches aus
+  nicht zusammenh\"angenden Einzelteilen besteht. Hier bilden die
+  Vorg\"ange 1 und 2, sowie die Vorg\"ange 3 und 4 jeweils eine Kette.\\
+  Diskussion: & Mit diesem Testfall wird \"uberpr\"uft, ob das
+  Programm erkennt, wenn ein Netzplan nicht zusammenh\"angt. An dieser
+  Stelle beendet sich das Programm richtigerweise mit der Meldung,
+  dass man ausgehend von Vorgang 1 weder Vorgang 3 noch 4 erreichen
+  kann, selbst wenn man entgegen der Pfeilspitzen l\"auft (was hier
+  mit ungerichtet gemeint ist).\\
+  Fehlermeldung: & \texttt{Fehler bei der Erstellung des Netzplans:
+    Der Netzplan ist nicht zusammenhängend! Es existiert kein
+    ungerichteter Pfad zwischen Vorgang 1 und den Vorgängen 3, 4} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Zwei einzelne Knoten \\
+  Dateiname: & \texttt{fehlerfall\_17.in} \\
+  Beschreibung: & Dieses Projekt besteht ebenfalls aus nicht
+  zusammenh\"angenden Einzelteilen. Dieses Mal sind es nur zwei
+  einzelne Knoten.\\
+  Diskussion: & Dieser Testfall dient als eine Art Minimalbeispiel zu
+  Fehlerfall Nr. 16. Hier wird auch der kleinste nicht
+  zusammenh\"angende Netzplan erkannt.\\
+  Fehlermeldung: & \texttt{Fehler bei der Erstellung des Netzplans:
+    Der Netzplan ist nicht zusammenhängend! Es existiert kein
+    ungerichteter Pfad zwischen Vorgang 1 und 2} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Kein Startknoten vorhanden \\
+  Dateiname: & \texttt{fehlerfall\_18.in} \\
+  Beschreibung: & In diesem Projekt wurde aus der g\"ultigen Datei
+  \texttt{ihk\_01.in} der Startknoten 1 entfernt.\\
+  Diskussion: & Mit diesem Testfall wird sichergestellt, dass das
+  Programm auch erkennt, wenn ein Netzplan keinen Startknoten
+  enth\"alt.\\
+  Fehlermeldung: & \texttt{Fehler bei der Erstellung des Netzplans: Es
+    existiert kein Startvorgang!} \\
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Kein Endknoten vorhanden \\
+  Dateiname: & \texttt{fehlerfall\_19.in} \\
+  Beschreibung: & In diesem Projekt wurde aus der g\"ultigen Datei
+  \texttt{ihk\_01.in} der Endknoten 7 entfernt.\\
+  Diskussion: & Mit diesem Testfall wird sichergestellt, dass das
+  Programm auch erkennt, wenn ein Netzplan keinen Endknoten
+  enth\"alt.\\
+  Fehlermeldung: & \texttt{Fehler bei der Erstellung des Netzplans: Es
+    existiert kein Endvorgang!} \\c
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Minimaler Zyklus \\
+  Dateiname: & \texttt{fehlerfall\_20.in} \\
+  Beschreibung: & In diesem Projekt existieren drei Vorg\"ange, wobei
+  der mittlere Vorgang der Kette (Vorgang 2) einen Verweis auf sich
+  selbst enth\"alt.\\
+  Diskussion: & Dieser Testfall dient als Minimalbeispiel der
+  Erkennung von Zyklen im Netzplan. Auch Knoten, die mit sich selbst
+  Zyklen bilden, werden vom Programm erkannt.\\
+  Fehlermeldung: & \texttt{Fehler bei der Erstellung des Netzplans: Es wurde ein Zyklus erkannt!
+    2->2} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Doppelter Nachfolger \\
+  Dateiname: & \texttt{fehlerfall\_21.in} \\
+  Beschreibung: & In diesem Projekt, welches wieder auf der g\"ultigen
+  Datei \texttt{ihk\_01.in} basiert, hat Vorgang 2 (Zeile 7) einen doppelten
+  Nachfolger (Vorgang 3).\\
+  Diskussion: & Doppelte Nachfolger deuten auf Fehler bei der Eingabe
+  hin und sollten daher vom Programm erkannt und gemeldet werden.\\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen in Zeile 7: Doppelter
+    Nachfolger 3} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Doppelter Vorg\"anger \\
+  Dateiname: & \texttt{fehlerfall\_22.in} \\
+  Beschreibung: & In diesem Projekt, welches wieder auf der g\"ultigen
+  Datei \texttt{ihk\_01.in} basiert, hat Vorgang 2 (Zeile 7) einen doppelten
+  Vorg\"anger (Vorgang 1).\\
+  Diskussion: & Doppelte Vorg\"anger deuten auf Fehler bei der Eingabe
+  hin und sollten daher vom Programm erkannt und gemeldet werden.\\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen in Zeile 7: Doppelter
+    Vorgänger 1} \\
+\end{tabularx}
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Keine Vorg\"ange \\
+  Dateiname: & \texttt{fehlerfall\_23.in} \\
+  Beschreibung: & Diese Datei enth\"alt zwar Kommentarzeilen und eine
+  g\"ultige \"Uberschriftzeile, allerdings keine Datenzeilen.\\
+  Diskussion: & Jede g\"ultige Eingabedatei muss mindestens eine
+  Datenzeile enthalten. Die Meldung des Fehlers erfolgt hier, indem
+  darauf hingewiesen wird, dass kein Startvorgang existiert. Somit
+  bedurfte dieser Testfall keiner weiteren \"Anderung im Programm, da
+  er schon durch die Pr\"ufung auf Startvorg\"ange abgehandelt werden
+  konnte.\\
+  Fehlermeldung: & \texttt{Fehler bei der Erstellung des Netzplans: Es
+    existiert kein Startvorgang!} \\
+\end{tabularx}
+\hrule
+\begin{tabularx}{\textwidth}{l X}
+  Name: & Die leere Datei \\
+  Dateiname: & \texttt{fehlerfall\_24.in} \\
+  Beschreibung: & Die leere Eingabedatei.\\
+  Diskussion: & Hier wird sichergestellt, dass sich das Programm auch
+  bei einer leeren Eingabedatei noch korrekt beendet. Dieser
+  Fehlerfall wurde schon durch die Pr\"ufung der \"Uberschrift
+  abgefangen, was die Fehlermeldung erkl\"art.\\
+  Fehlermeldung: & \texttt{Fehler beim Einlesen: Keine Überschrift
+    gefunden!} \\
+\end{tabularx}

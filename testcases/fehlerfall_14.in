@@ -1,6 +1,6 @@
 //************************************************
 //+ Nicht existierender Nachfolger
-// der Fehler liegt in Zeile 2
+// der Fehler liegt in Zeile 7
 //************************************************
 //Vorgangsnummer; Vorgangsbezeichnung; Dauer; Vorgänger; Nachfolger
 1; Planung des Projekts; 1; -; 2,4

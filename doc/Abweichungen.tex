@@ -1,3 +1,82 @@
 \chapter[Abweichungen und Erg"anzungen zum Vorentwurf]{Abweichungen und Erg"anzungen\\zum Vorentwurf}
 \label{Abweichungen}
 
+Die \"Anderungen und Abweichungen, die sich zwischen dem Vorentwurf
+und der aktuellen Version ergeben haben, seien hier anhand der Klassen
+und Methoden aufgef\"uhrt, in denen sie aufgetreten sind.
+
+\section{\"Anderungen in der Klasse Netzplan}
+
+\subsection{Abbildung zwischen internen und externen Vorgangsnummern}
+
+Ein neues Konzept, welches noch nicht im ersten Entwurf aufgef\"uhrt
+wurde, bildet die in Abschnitt \ref{netzplan-logisch} beschriebene
+Abbildung \(g\), welche die Vorgangsnummern auf die Folge der ersten
+nat\"urlichen Zahlen abbildet. Innerhalb des Programms wurde dies
+mithilfe der \texttt{Map<Integer, Integer> toInternal} realisiert,
+welche zu jeder Vorgangsnummer den Index in der Liste aus Vorg\"angen
+speichert (dies Bedeutet, dass der Wertebereich der nat\"urlichen
+Zahlen in der Implementierung um die 0 erweitert wurde).
+Dieses Vorgehen erm\"oglicht ein schnelles Zugreifen auf
+Vorg\"anger und Nachfolger und sichert ebenfalls zu, dass beliebige
+ganzzahlige Vorgangsnummern auftreten d\"urfen. Die Umkehrabbildung
+\(g^{-1}\) ist durch \texttt{Map<Integer, Integer> fromInternal}
+gegeben.
+
+\subsection{Erweitertes Pr\"ufen der Nachfolger - Vorg\"anger -
+  Relation}
+
+W\"ahrend im Entwurf im Struktogramm zur Methode
+\texttt{erzeugeAdjazenzen()} lediglich gepr\"uft wurde, ob f\"ur jeden
+Vorgang die Beziehung zu seinen Nachfolgern konsistent ist, wird nun
+auch sichergestellt, dass die Beziehung zu seinen Vorg\"angern
+ebenfalls konsistent ist. Dieser Schritt ist -- insbesondere im
+Hinblick auf die R\"uckw\"artsrechnung -- unerl\"asslich.
+
+\subsection{Einsatz von Exceptions in den Methoden
+  \texttt{istZyklenfrei()} und \texttt{istZusammenhaengend()}}
+
+Um auch detaillierte Fehlermeldungen ausgeben zu k\"onnen, sind die im
+Entwurf vorgeschlagenen Signaturen \texttt{private boolean istZyklenfrei()}
+und \texttt{private boolean istZusammenhaengend()} nicht
+ausreichend. Aus diesem Grund wird im Falle eines ung\"ultigen
+Netzplanes bei diesen Methoden anstelle eines Wahrheitswertes eine
+Exception geworfen.
+
+\subsection{Queue aus Pfaden statt Liste aus Knoten in der Methode\\
+  \texttt{istZyklenfrei()}}
+
+Der im Entwurf vorgeschlagene Algorithmus zum Auffinden von Zyklen
+musste leicht erweitert werden, damit er alle Zyklen korrekt erkennt
+und auch Informationen \"uber diese preisgibt. Im beschriebenen
+Algorithmus war es m\"oglich, dass die Zusammenf\"uhrung zweier Pfade
+als Zyklus erkannt wird, da der Knoten, der beide Pfade vereinigt, von
+beiden Vorg\"angern besucht wird. Dies wird verhindert, indem die
+zugeh\"origen Pfade anstelle der aktuellen Knoten abgespeichert
+werden. Weiterhin wurde in der Implementierung anstelle einer Liste
+eine Queue gew\"ahlt, da sich diese besser eignet, wenn in jedem
+Schritt das vorderste Element entfernt wird.
+
+\subsection{Auslagerung der Rechenphasen in einzelne Methoden}
+
+W\"ahrend es im Entwurf implizit vorgesehen war, die Rechenphasen
+komplett im Konstruktor der Klasse Netzplan zu implementieren, wurden
+diese nun in einzelne private Methoden ausgelagert, die den Quelltext
+\"ubersichtlich halten.
+
+\subsection{Verwendung von Queue statt Liste in den Rechenphasen}
+
+Auch in den Rechenphasen wird nun statt einer Liste eine Queue
+verwendet, um die aktuell zu bearbeitenden Knoten zu speichern. Diese
+\"Anderung wurde wieder aus dem Argument heraus durchgef\"uhrt, dass
+sich Queues besser eignen, wenn h\"aufig das erste Element entfernt
+wird.
+
+\section{\"Anderungen in der Klasse Vorgang}
+
+\subsection{\"Uberschreiben der Methode \texttt{toString()}}
+
+Damit einzelne Vorg\"ange leichter ausgegeben werden k\"onnen, wurde
+in der Klasse Vorgang die Methode \texttt{toString()}
+\"uberschrieben. So ist jeder Vorgang in der Lage, sich selbst als
+String zu repr\"asentieren.

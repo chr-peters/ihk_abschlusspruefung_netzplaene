@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.26)  17 MAY 2018 12:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.26)  17 MAY 2018 16:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1116,12 +1116,15 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
  (latex_output/Dokumentation.toc
 [1
 
-])
-\tf@toc=\write5
-\openout5 = `Dokumentation.toc'.
+]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 43.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+Underfull \vbox (badness 5260) has occurred while \output is active []
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 40.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
 
 
 Package Fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1129,7 +1132,13 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2]
+[2])
+\tf@toc=\write5
+\openout5 = `Dokumentation.toc'.
+
+ [3] [4
+
+]
 \openout2 = `Einleitung.aux'.
 
  (./Einleitung.tex
@@ -1161,7 +1170,6 @@ l.34   \item \textbf
 [1
 
 
-
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
  been already used, duplicate ignored
 <to be read again> 
@@ -1184,12 +1192,8 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
 
 ]
 Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 89.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 89.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-(../testcases/ihk_01.in
+nput line 90.
+ (../testcases/ihk_01.in
 Overfull \hbox (55.61357pt too wide) in paragraph at lines 4--5
 [][][][][][][][][][][][][][][][][][][] 
  []
@@ -1265,7 +1269,7 @@ Overfull \hbox (1.2177pt too wide) in paragraph at lines 29--29
  []
 
 )
-Underfull \hbox (badness 10000) in paragraph at lines 2--139
+Underfull \hbox (badness 10000) in paragraph at lines 2--140
 
  []
 
@@ -1307,7 +1311,7 @@ Overfull \hbox (1.2177pt too wide) in paragraph at lines 27--27
  []
 
 )
-Underfull \hbox (badness 10000) in paragraph at lines 2--276
+Underfull \hbox (badness 10000) in paragraph at lines 2--277
 
  []
 
@@ -1459,17 +1463,217 @@ Underfull \hbox (badness 10000) in paragraph at lines 153--153
 []|\OT1/pcr/m/n/12 Fehler bei der Erstellung des Netzplans: Es
  []
 
-) [26]
+
+Underfull \hbox (badness 10000) in paragraph at lines 165--165
+[]|\OT1/pcr/m/n/12 Fehler bei der Erstellung des Netzplans:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 165--165
+\OT1/pcr/m/n/12 Vorgang 2 hat Vorgang 8 als Vorg[]anger, obwohl
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [26]
+Underfull \hbox (badness 10000) in paragraph at lines 179--179
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen in Zeile 2: Leere
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 193--193
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen: Keine []Uberschrift
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 207--207
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen in Zeile 3: Nur eine
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 220--220
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen in Zeile 6: Erwarte 5
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [27]
+Underfull \hbox (badness 10000) in paragraph at lines 234--234
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen in Zeile 11: Ung[]ultige
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 248--248
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen in Zeile 10: Keine leere
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 261--261
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen in Zeile 9: Ung[]ultige
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 274--274
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen in Zeile 9: Dauern <= 0
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [28]
+Underfull \hbox (badness 10000) in paragraph at lines 287--287
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen in Zeile 9: Ung[]ultige
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 302--302
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen in Zeile 8: Ung[]ultiger
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 316--316
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen in Zeile 12:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 330--330
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen in Zeile 8: Ung[]ultiger
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [29]
+Underfull \hbox (badness 10000) in paragraph at lines 343--343
+[]|\OT1/pcr/m/n/12 Fehler bei der Erstellung des Netzplans:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 343--343
+\OT1/pcr/m/n/12 Vorgang 2 hat Vorgang 8 als Nachfolger,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 358--358
+[]|\OT1/pcr/m/n/12 Fehler bei der Erstellung des Netzplans:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 358--358
+\OT1/pcr/m/n/12 Inkonsistente Beziehung gefunden! Vorgang 2
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 358--358
+\OT1/pcr/m/n/12 hat Vorgang 1 als Vorg[]anger, ist aber selbst
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--374
+[]|\OT1/pcr/m/n/12 Fehler bei der Erstellung des Netzplans:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--374
+\OT1/pcr/m/n/12 Der Netzplan ist nicht zusammenh[]angend! Es
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 374--374
+\OT1/pcr/m/n/12 existiert kein ungerichteter Pfad zwischen
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30]
+Underfull \hbox (badness 10000) in paragraph at lines 388--388
+[]|\OT1/pcr/m/n/12 Fehler bei der Erstellung des Netzplans:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 388--388
+\OT1/pcr/m/n/12 Der Netzplan ist nicht zusammenh[]angend! Es
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 388--388
+\OT1/pcr/m/n/12 existiert kein ungerichteter Pfad zwischen
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 400--400
+[]|\OT1/pcr/m/n/12 Fehler bei der Erstellung des Netzplans: Es
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 411--411
+[]|\OT1/pcr/m/n/12 Fehler bei der Erstellung des Netzplans: Es
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [31]
+Underfull \hbox (badness 10000) in paragraph at lines 424--424
+[]|\OT1/pcr/m/n/12 Fehler bei der Erstellung des Netzplans: Es
+ []
+
+
+Underfull \hbox (badness 5217) in paragraph at lines 436--436
+[]|\OT1/ptm/m/n/12 In die-sem Pro-jekt, wel-ches wie-der auf der g[]ulti-gen Da
+-tei
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 436--436
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen in Zeile 7: Doppelter
+ []
+
+
+Underfull \hbox (badness 5217) in paragraph at lines 448--448
+[]|\OT1/ptm/m/n/12 In die-sem Pro-jekt, wel-ches wie-der auf der g[]ulti-gen Da
+-tei
+ []
+
+
+Underfull \hbox (badness 1210) in paragraph at lines 448--448
+\OT1/pcr/m/n/12 ihk[]01.in \OT1/ptm/m/n/12 ba-siert, hat Vor-gang 2 (Zei-le 7) 
+einen dop-pel-ten
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 448--448
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen in Zeile 7: Doppelter
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 462--462
+[]|\OT1/pcr/m/n/12 Fehler bei der Erstellung des Netzplans: Es
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [32]
+Underfull \hbox (badness 10000) in paragraph at lines 474--474
+[]|\OT1/pcr/m/n/12 Fehler beim Einlesen: Keine []Uberschrift
+ []
+
+) [33] [34
+
+
+]
 \openout2 = `Ausblick.aux'.
 
  (./Ausblick.tex
 Kapitel 6.
-) [27
+) [35
 
 
-
-
-] [28
+] [36
 
 
 ]
@@ -1477,10 +1681,34 @@ Kapitel 6.
 
  (./Abweichungen.tex
 Anhang A.
-) [29
+
+Overfull \hbox (1.33113pt too wide) in paragraph at lines 10--10
+[]\OT1/ptm/b/n/14.4 Abbildung zwi-schen in-ter-nen und ex-ter-nen Vor-gangs-num
+-mern 
+ []
 
 
-] [30
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [37
+
+
+]
+LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 37.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\\' on input line 47.
+
+[38])
+
+Package Fancyhdr Warning: \headheight is too small (13.59999pt): 
+ Make it at least 13.89607pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[39] [40
 
 
 ]
@@ -1497,13 +1725,13 @@ Package rerunfilecheck Info: File `Dokumentation.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 59.
  ) 
 Here is how much of TeX's memory you used:
- 19575 strings out of 494901
- 369175 string characters out of 6178616
- 456283 words of memory out of 5000000
- 22315 multiletter control sequences out of 15000+600000
- 46481 words of font info for 105 fonts, out of 8000000 for 9000
+ 19610 strings out of 494901
+ 369608 string characters out of 6178616
+ 456473 words of memory out of 5000000
+ 22328 multiletter control sequences out of 15000+600000
+ 46996 words of font info for 107 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 62i,17n,70p,395b,1133s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,17n,70p,395b,1132s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texlive/texm
 f-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/
@@ -1513,10 +1741,10 @@ ype1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/cour
 ier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on latex_output/Dokumentation.pdf (34 pages, 161232 bytes).
+Output written on latex_output/Dokumentation.pdf (46 pages, 183747 bytes).
 PDF statistics:
- 445 PDF objects out of 1000 (max. 8388607)
- 396 compressed objects within 4 object streams
- 113 named destinations out of 1000 (max. 500000)
- 293 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 586 PDF objects out of 1000 (max. 8388607)
+ 500 compressed objects within 5 object streams
+ 134 named destinations out of 1000 (max. 500000)
+ 365 words of extra memory for PDF output out of 10000 (max. 10000000)
 
