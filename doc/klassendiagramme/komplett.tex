@@ -1,0 +1,86 @@
+\tikzset{font=\ttfamily}
+\renewcommand{\umltextcolor}{black}
+\renewcommand{\umldrawcolor}{black}
+\renewcommand{\umlfillcolor}{white}
+\begin{tikzpicture}%[show background grid]
+  \begin{class}[text width=13.5cm]{Vorgang}{0,0}
+    \attribute{-nummer: int}
+    \attribute{-bezeichnung: String}
+    \attribute{-dauer: int}
+    \attribute{-vorgaenger: int [0..*]}
+    \attribute{-nachfolger: int [0..*]}
+    \attribute{-faz: int}
+    \attribute{-fez: int}
+    \attribute{-saz: int}
+    \attribute{-sez: int}
+    \attribute{-gp: int}
+    \attribute{-fp: int}
+
+    \operation{+Vorgang(nummer: int, bezeichnung: String, dauer: int)}
+    \operation{+addVorgaenger(vorgaenger: int)}
+    \operation{+addNachfolger(nachfolger: int)}
+    \operation{+istKritisch(): boolean}
+    \operation{+toString(): String}
+  \end{class}
+  \begin{class}[text width=11cm]{Netzplan}{-1.25, -10}
+    \attribute{-vorgaenge: Vorgang [1..*]}
+    \attribute{-adjazenzen: int [n][n]}
+    \attribute{-startKnoten: int[1..*]}
+    \attribute{-endKnoten: int [1..*]}
+    \attribute{-toInternal: Map\textless Integer, Integer\textgreater}
+    \attribute{-fromInternal: Map\textless Integer, Integer\textgreater}
+
+    \operation{+Netzplan(vorgaenge: Vorgang [1..*])}
+    \operation{+getDauer(): int}
+    \operation{+getKritischePfade(): List\textless List\textless Integer\textgreater\textgreater}
+    \operation{-erzeugeAdjazenzen()}
+    \operation{-istZyklenfrei(): boolean}
+    \operation{-istZusammenhaengend(): boolean}
+    \operation{-vorwaertsRechnung()}
+    \operation{-rueckwaertsRechnung()}
+    \operation{-zeitreserven()}
+  \end{class}
+  \begin{class}[text width=8cm]{VorgangLeser}{12, 0}
+    \attribute{-vorgaenge: Vorgang [1..*]}
+    \attribute{-ueberschrift: String}
+
+    \operation{+VorgangLeser(datei: String)}
+    \operation{+getVorgaenge(): Vorgang [1..*]}
+    \operation{+getUeberschrift(): String}
+    \operation{-leseVorgaenge(datei: String)}
+  \end{class}
+  \begin{class}[text width=13cm]{ProjektReport}{11.5, -10}
+    \attribute{-datei: String}
+
+    \operation{+ProjektReport(datei: String)}
+    \operation{+erzeugeReport(plan: Netzplan, ueberschrift: String)}
+  \end{class}
+
+  \aggregation{VorgangLeser}{}{}{Vorgang}
+  \aggregation{Netzplan}{}{}{Vorgang}
+
+  %% \begin{interface}[text width=7.5cm]{FieldDescriptor}{-4, -4}
+  %%   \operation[0]{getStrength( location: Vector3D ): Vector3D}
+  %% \end{interface}
+  
+  %% \begin{interface}[text width=6.5cm]{Condition}{4, -4}
+  %%   \operation[0]{check( track: vector<Particle> ): bool}
+  %% \end{interface}
+
+  %% \begin{class}[text width=6cm]{MaximumDistanceCondition}{-4, -7}
+  %%   \implement{Condition}
+  %%   \attribute{- maxDistance: double}
+  %%   \attribute{- referencePoint: Vector3D}
+  %% \end{class}
+
+  %% \begin{class}[text width=6cm]{PlaneIntersectionCondition}{4, -7}
+  %%   \implement{Condition}
+  %%   \attribute{- plane: Plane3D}
+  %% \end{class}
+
+  %% \draw[umlcd  style  dashed  line ,->] (Propagator) --node[above , sloped ,
+  %%   black]{} (FieldDescriptor);
+
+  %% \draw[umlcd  style  dashed  line ,->] (Propagator) --node[above , sloped ,
+  %%   black]{} (Condition);
+\end{tikzpicture}

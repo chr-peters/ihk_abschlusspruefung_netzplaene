@@ -1,5 +1,82 @@
 \chapter{Entwicklerdokumentation}
 \label{Entwicklerdokumentation}
 
+\section{Entwicklungsumgebung}
+Die Entwicklung der Software wurde in folgender Umgebung vorgenommen:
 \makeenvironment
+Weiterhin wurde zum \"Ubersetzen der Software das
+Build-Management-Tool \textit{Ant} in der \textit{Version 1.9.6}
+verwendet. Das Skript \texttt{run\_testcases.ksh}, welches der
+Hintereinanderausf\"uhrung aller Testf\"alle dient, wurde auf Basis
+des \textit{Kornshell-Interpreters} verfasst.
+
+\section{Aufbau der Software}
+
+\subsection{Klassenstruktur}
+
+Die Klassenstruktur der Software wird an dieser Stelle durch das in
+Abbildung \ref{klassendiagramm} gezeigte UML-Klassendiagramm
+beschrieben. N\"ahere Informationen zur Funktionsweise der einzelnen
+Methoden sind bitte dem ausf\"uhrlich kommentierten Quelltext zu
+entnehmen.
+
+\begin{figure}
+  \resizebox{\textwidth}{!}{
+    \input{klassendiagramme/komplett}
+  }
+  \caption{Der grundlegende Aufbau der verwendeten Klassen.}
+  \label{klassendiagramm}
+\end{figure}
+
+\subsection{Softwarearchitektur}
+
+\section{\"Ubersetzen der Software}
+
+Um die Software zu \"ubersetzen, empfiehlt es sich, das
+Build-Management-Tool \textit{Ant} in der genannten Version zu
+verwenden. Gibt man den Befehlt \texttt{ant} im Verzeichnis der
+\texttt{build.xml}-Datei in der Kommandozeile ein, so erzeugt Ant
+automatisch zwei neue Verzeichnisse: Das Verzeichnis \texttt{build},
+in welchem die \"ubersetzten Dateien abgelegt werden und das
+Verzeichnis \texttt{dist}, in welchem das ausf\"uhrbare Programm in
+Form einer \texttt{.jar}-Datei erzeugt wird.
+Durch einen Aufruf von \texttt{ant clean} werden alle im Zuge der
+\"Ubersetzung erzeugten Dateien und Verzeichnisse wieder entfernt.
+
+\subsection{\"Ubersetzen ohne den Einsatz von Ant}
+
+M\"ochte man das Programm ohne den Einsatz von Ant \"ubersetzen, so
+sollte zun\"achst manuell ein Verzeichnis (z.B. \texttt{build})
+erzeugt werden, in welchem die \"ubersetzten Dateien vom Compiler
+abgelegt werden k\"onnen. Ausgehend vom Hauptverzeichnis kann nun
+durch den Befehl
+\begin{verbatim}
+javac -d build/ -sourcepath src/ src/netzplanerstellung/Main.java
+\end{verbatim}
+das Programm \"ubersetzt werden.
+
+\subsubsection{Erzeugen einer ausf\"uhrbaren .jar-Datei ohne Ant}
+
+Um ohne den Einsatz von Ant eine ausf\"uhrbare .jar-Datei erzeugen zu
+k\"onnen, muss zun\"achst ein Manifest erzeugt werden, welches in
+jeder ausf\"uhrbaren .jar-Datei vorhanden sein muss und zumindest
+Informationen \"uber die Hauptklasse enth\"alt. Es ist hierzu
+ausreichend, die folgenden Informationen in einer Datei
+\texttt{MANIFEST.MF} abzulegen:
+\lstset{
+  numbers=left
+}
+\begin{lstlisting}
+  Main-Class: netzplanerstellung.Main
+  <Leerzeile>
+\end{lstlisting}
+Man beachte, dass die \texttt{MANIFEST.MF} Datei mit einer Leerzeile
+enden muss.
+Soll die .jar-Datei nicht im aktuellen Verzeichnis erzeugt werden, so
+kann zun\"achst ein Ordner \texttt{dist} angelegt werden. Mit dem
+folgenden Befehl kann anschlie{\ss}end in diesem Ordner die
+ausf\"uhrbare .jar-Datei erzeugt werden:
+\begin{verbatim}
+jar cmf MANIFEST.MF dist/netzplanerstellung-1.0.0.jar -C build .
+\end{verbatim}
 

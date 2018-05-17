@@ -1,15 +1,77 @@
 \chapter{Benutzeranleitung}
 \label{Benutzeranleitung}
 
+\section{Lieferumfang}
 
-%%% Local Variables: 
-%%% mode: latex
-%%% TeX-master: "Master"
-%%% End: 
+Im Lieferumfang dieser Software sind folgende Elemente als Inhalt der
+.zip-Datei enthalten:
+\begin{itemize}
+  \item \textbf{Dokumentation:} Enth\"alt die vollst\"andige
+    Beschreibung des Softwaresystems sowie der unterliegenden
+    Verfahren und ist in
+    der Datei \texttt{Dokumentation.pdf} zu finden.
+  \item \textbf{Das ausf\"uhrbare Programm:} Das Programm in Form
+    der ausf\"uhrbaren .jar-Datei
+    \texttt{netzplanerstellung-1.0.0.jar}.
+  \item \textbf{Quelltext des Programms:} Der vollst\"andige Quelltext
+    des Programms findet sich im Ordner \texttt{src}.
+  \item \textbf{Testf\"alle:} Die vollst\"andige Sammlung aller
+    Testf\"alle liegt im Ordner \texttt{testcases}.
+  \item \textbf{Skript zum Ausf\"uhren aller Testf\"alle:} Liegt als
+    Datei \texttt{run\_testcases.ksh} vor.
+  \item \textbf{Ant-Buildfile zum automatisierten \"Ubersetzen des
+    Quellcodes:} \texttt{build.xml}-Datei.
+\end{itemize}
 
+\section{Ausf\"uhren des Programms}
 
+Die Ausf\"uhrung des Programms kann nach dem folgenden Schema eines
+Kommandos erfolgen:
+\begin{verbatim}
+java -jar netzplanerstellung-1.0.0.jar <Eingabedatei> <Ausgabedatei>
+\end{verbatim}
+Hierbei gibt \texttt{<Eingabedatei>} den Pfad zu einer g\"ultigen
+Eingabedatei nach dem in Abschnitt \ref{eingabeformat} beschriebenen
+Format an. Wurde das Format nicht eingehalten, so beendet sich das
+Programm unter Ausgabe einer Fehlermeldung.
+\texttt{<Ausgabedatei>} gibt den Namen der Datei an, in welcher das
+Programm die Ergebnisse abspeichern soll.
 
+\textbf{Achtung:} Diese
+Datei wird nur erzeugt, wenn sich das Programm fehlerfrei beendet. Im
+Falle eines Fehlers wird eine entsprechende Meldung auf der
+Kommandozeile ausgegeben, die n\"ahere Informationen enth\"alt.
 
+\section{Ausf\"uhren aller Testf\"alle}
 
+Um alle Testf\"alle hintereinander ausf\"uhren zu k\"onnen, wurde dem
+Lieferumfang das Skript \texttt{run\_testcases.ksh} beigelegt, welches
+mithilfe eines \textit{Kornshell-Interpreters} ausgef\"uhrt werden
+kann.
+Der Aufruf kann folgenderma{\ss}en erfolgen:
+\begin{verbatim}
+./run_testcases.ksh <Programm> <Eingabeordner> <Ausgabeordner>
+\end{verbatim}
+Hierbei gibt \texttt{<Programm>} den Pfad zur ausf\"uhrbaren .jar-Datei
+an, \texttt{<Eingabeordner>} beschreibt, in welchem Ordner die
+Testf\"alle zu finden sind und \texttt{<Ausgabeordner>} gibt den
+Ordner an, in dem die Ergebnisdateien abgelegt werden. Optional
+k\"onnen die Argumente von rechts nach links weggelassen werden. Die
+Standardwerte sind in diesem Fall:
+\begin{itemize}
+  \item \texttt{<Programm> = netzplanerstellung-1.0.0.jar}
+  \item \texttt{<Eingabeordner> = testcases}
+  \item \texttt{<Ausgabeordner> = testcases}
+\end{itemize}
+Ein Aufruf von \texttt{./run\_testcases.ksh} arbeitet also mithilfe
+dieser Standardwerte.
 
-
+Die Vorgehensweise dieses Skriptes kann wie folgt beschrieben werden:
+Es werden zun\"achst alle Eingabedaten mit der Endung \texttt{.in} aus
+dem Ordner \texttt{<Eingabeordner>} erfasst und nacheinander dem
+Programm zugef\"uhrt. Zugeh\"orig zu jeder Eingabedatei, die das
+Programm fehlerfrei durchlaufen konnte, wird anschlie{\ss}end im
+Ordner \texttt{<Ausgabeordner>} eine Ergebnisdatei mit der Endung
+\texttt{.out} erzeugt. Konnte die Ergebnisdatei nicht erzeugt werden,
+so wird die Fehlermeldung des Programms auf der Kommandozeile
+ausgegeben.

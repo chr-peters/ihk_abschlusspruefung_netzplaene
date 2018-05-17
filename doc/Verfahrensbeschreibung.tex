@@ -75,6 +75,7 @@ entsprechende urspr\"ungliche Vorgangsnummer abbildet.
 \section{Einlesen der Vorg\"ange}
 
 \subsection{Format der Eingabedatei}
+\label{eingabeformat}
 
 Das Format, in dem die Daten dem Programm zugef\"uhrt werden, soll hier
 anhand des folgenden Beispiels erl\"autert werden:
@@ -256,16 +257,18 @@ ebenfalls f\"ur jeden Vorgang ermittelt und gesetzt.
 
 Nachdem der Netzplan nun vollst\"andig erzeugt wurde, stellt sich noch
 die Frage, wie die kritischen Pfade gefunden werden k\"onnen. Hierzu
-wird mittels Tiefensuche (Breitensuche ist ebenfalls m\"oglich, im
+wird mittels einer iterativen Tiefensuche (Breitensuche ist ebenfalls
+m\"oglich, im
 Programmsystem \"andert sich hier nur eine einzige Zeile) ausgehend
 von jedem kritischen Startknoten
 jeder kritische Pfad erzeugt. Sobald ein Endknoten zu einem bis dahin
 kritischen Pfad hinzugef\"ugt wird, ist ein kritischer Pfad
 komplett und kann dem Resultat angef\"ugt werden. Ein \"Uberblick
-dieses Algorithmus findet sich in Form eines Struktogramms in
+dieses Algorithmus inklusive der Unterscheidung von Tiefen- und
+Breitensuche findet sich in Form eines Struktogramms in
 Abbildung \ref{pfadefinden}.
 
-\begin{figure}[h]
+\begin{figure}
   \input{struktogramme/finden}
   \caption{Algorithmus zum Finden aller kritischen Pfade. Man beachte,
   dass der Unterschied zur Breitensuche nur in einer Zeile liegt: Bei
@@ -276,7 +279,7 @@ Abbildung \ref{pfadefinden}.
 
 \section{Ausgabe der Ergebnisse}
 
-Das Format, in dem die Ergebnisse vom Programm ausgegeben werden, soll
+Das Format, in dem die Ergebnisse des Programms ausgegeben werden, soll
 hier anhand des folgenden Beispiels erl\"autert werden, welches
 gleichzeitig die Ausgabe zu der zuvor vorgestellten Eingabedatei bildet:
 
