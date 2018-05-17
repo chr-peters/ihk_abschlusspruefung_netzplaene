@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.26)  17 MAY 2018 10:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.26)  17 MAY 2018 10:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1388,18 +1388,18 @@ LaTeX Font Info:    Font shape `OML/pcr/m/n' in size <12> not available
 
 
 ] [20]
-Overfull \hbox (41.20847pt too wide) in paragraph at lines 55--55
+Overfull \hbox (41.20847pt too wide) in paragraph at lines 76--76
 []\OT1/pcr/m/n/12 javac -d build/ -sourcepath src/ src/netzplanerstellung/Main.
 java[] 
  []
 
-
-Overfull \hbox (34.00847pt too wide) in paragraph at lines 81--81
+[21]
+Overfull \hbox (34.00847pt too wide) in paragraph at lines 102--102
 []\OT1/pcr/m/n/12 jar cmf MANIFEST.MF dist/netzplanerstellung-1.0.0.jar -C buil
 d .[] 
  []
 
-[21]) [22]
+) [22]
 \openout2 = `Testdokumentation.aux'.
 
  (./Testdokumentation.tex
@@ -1450,7 +1450,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 59.
 Here is how much of TeX's memory you used:
  19567 strings out of 494901
  369089 string characters out of 6178616
- 456267 words of memory out of 5000000
+ 456280 words of memory out of 5000000
  22312 multiletter control sequences out of 15000+600000
  46481 words of font info for 105 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -1464,7 +1464,7 @@ ype1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/cour
 ier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on latex_output/Dokumentation.pdf (32 pages, 152506 bytes).
+Output written on latex_output/Dokumentation.pdf (32 pages, 153594 bytes).
 PDF statistics:
  420 PDF objects out of 1000 (max. 8388607)
  373 compressed objects within 4 object streams

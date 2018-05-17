@@ -17,8 +17,8 @@ des \textit{Kornshell-Interpreters} verfasst.
 Die Klassenstruktur der Software wird an dieser Stelle durch das in
 Abbildung \ref{klassendiagramm} gezeigte UML-Klassendiagramm
 beschrieben. N\"ahere Informationen zur Funktionsweise der einzelnen
-Methoden sind bitte dem ausf\"uhrlich kommentierten Quelltext zu
-entnehmen.
+Methoden k\"onnen bei Bedarf dem ausf\"uhrlich kommentierten Quelltext
+entnommen werden.
 
 \begin{figure}
   \resizebox{\textwidth}{!}{
@@ -29,6 +29,27 @@ entnehmen.
 \end{figure}
 
 \subsection{Softwarearchitektur}
+
+Der architektonische Aufbau der Software entspricht in etwa den
+untersten beiden Schichten einer
+\textit{Drei-Schichten-Architektur}. Die
+\textit{Pr\"asentationsschicht} wurde
+hier bewusst nicht ber\"ucksichtigt, da w\"ahrend des eigentlichen
+Programmablaufs keine Benutzerinteraktion stattfindet. Sie kann
+allerdings aufbauend auf den existierenden Schichten
+\textit{Datenhaltung} und \textit{Logik} problemlos aufgesetzt werden.
+Die Klassen des Programms k\"onnen den einzelnen Schichten wie folgt
+zugeordnet werden:
+\begin{itemize}
+  \item \textbf{Datenhaltungsschicht:} VorgangLeser und ProjektReport
+    sind teile der Datenhaltungsschicht, da sie f\"ur die
+    Kommunikation des Programms mit einem persistenten Datentr\"ager
+    verantwortlich sind.
+  \item \textbf{Logikschicht:} Hier sind die Klassen Vorgang und
+    Netzplan anzusiedeln, da die tats\"achlichen Berechnungen
+    innerhalb dieser Klassen (haupts\"achlich in der Klasse Netzplan)
+    vollzogen werden.
+\end{itemize}
 
 \section{\"Ubersetzen der Software}
 
