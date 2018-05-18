@@ -64,10 +64,12 @@ komplett im Konstruktor der Klasse Netzplan zu implementieren, wurden
 diese nun in einzelne private Methoden ausgelagert, die den Quelltext
 \"ubersichtlich halten.
 
-\subsection{Verwendung von Queue statt Liste in den Rechenphasen}
+\subsection{Verwendung von Queue statt Liste in den Rechenphasen und
+  bei Berechnung der kritischen Pfade}
 
-Auch in den Rechenphasen wird nun statt einer Liste eine Queue
-verwendet, um die aktuell zu bearbeitenden Knoten zu speichern. Diese
+Auch hier wird nun statt einer Liste eine Queue
+verwendet, um die aktuell zu bearbeitenden Knoten bzw. Pfade zu
+speichern. Diese
 \"Anderung wurde wieder aus dem Argument heraus durchgef\"uhrt, dass
 sich Queues besser eignen, wenn h\"aufig das erste Element entfernt
 wird.

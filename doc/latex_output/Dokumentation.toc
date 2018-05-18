@@ -46,6 +46,6 @@
 \contentsline {subsection}{\numberline {A.1.3}Einsatz von Exceptions in den Methoden \texttt {istZyklenfrei()} und \texttt {istZusammenhaengend()}}{40}{subsection.A.1.3}
 \contentsline {subsection}{\numberline {A.1.4}Queue aus Pfaden statt Liste aus Knoten in der Methode\\ \texttt {istZyklenfrei()}}{40}{subsection.A.1.4}
 \contentsline {subsection}{\numberline {A.1.5}Auslagerung der Rechenphasen in einzelne Methoden}{40}{subsection.A.1.5}
-\contentsline {subsection}{\numberline {A.1.6}Verwendung von Queue statt Liste in den Rechenphasen}{41}{subsection.A.1.6}
+\contentsline {subsection}{\numberline {A.1.6}Verwendung von Queue statt Liste in den Rechenphasen und bei Berechnung der kritischen Pfade}{41}{subsection.A.1.6}
 \contentsline {section}{\numberline {A.2}\"Anderungen in der Klasse Vorgang}{41}{section.A.2}
 \contentsline {subsection}{\numberline {A.2.1}\"Uberschreiben der Methode \texttt {toString()}}{41}{subsection.A.2.1}

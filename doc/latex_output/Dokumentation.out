@@ -42,6 +42,6 @@
 \BOOKMARK [2][-]{subsection.A.1.3}{Einsatz von Exceptions in den Methoden istZyklenfrei\(\) und istZusammenhaengend\(\)}{section.A.1}% 42
 \BOOKMARK [2][-]{subsection.A.1.4}{Queue aus Pfaden statt Liste aus Knoten in der Methode istZyklenfrei\(\)}{section.A.1}% 43
 \BOOKMARK [2][-]{subsection.A.1.5}{Auslagerung der Rechenphasen in einzelne Methoden}{section.A.1}% 44
-\BOOKMARK [2][-]{subsection.A.1.6}{Verwendung von Queue statt Liste in den Rechenphasen}{section.A.1}% 45
+\BOOKMARK [2][-]{subsection.A.1.6}{Verwendung von Queue statt Liste in den Rechenphasen und bei Berechnung der kritischen Pfade}{section.A.1}% 45
 \BOOKMARK [1][-]{section.A.2}{\304nderungen in der Klasse Vorgang}{appendix.A}% 46
 \BOOKMARK [2][-]{subsection.A.2.1}{\334berschreiben der Methode toString\(\)}{section.A.2}% 47

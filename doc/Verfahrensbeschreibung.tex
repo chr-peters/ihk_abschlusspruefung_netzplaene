@@ -108,13 +108,14 @@ beachtet. Zeile 2 ist die \"Uberschriftzeile.
 Datenzeilen liefern dem Programm die notwendigen Informationen zu den
 einzelnen Vorg\"angen eines Projekts. Jede Datenzeile beschreibt genau
 einen Vorgang und besteht aus f\"unf Elementen, welche jeweils durch
-ein Semikolon getrennt werden: \textit{Vorgangsnummer,
-  Vorgangsbezeichnung, Dauer, Vorg\"anger und
-  Nachfolger}\footnote{Dies ist auch der Grund, weshalb im
+ein Semikolon\footnote{Dies ist auch der Grund, weshalb im
   Definitionsbereich der Vorgangsbezeichnung keine Semikola zugelassen
-  sind.}.
+  sind.} getrennt werden: \textit{Vorgangsnummer,
+  Vorgangsbezeichnung, Dauer, Vorg\"anger und
+  Nachfolger}.
 Die Eingaben zu Vorgangsnummer, Vorgangsbezeichnung und Dauer m\"ussen
-hierbei mit den Definitionsbereichen der in \ref{vorgang} beschriebenen Attribute
+hierbei mit den Definitionsbereichen der in Abschnitt \ref{vorgang}
+beschriebenen Attribute
 eines Vorgangs \"ubereinstimmen. Die Elemente Vorg\"anger und
 Nachfolger werden jeweils durch g\"ultige Vorgangsnummern angegeben,
 welche durch Kommata getrennt aufgez\"ahlt werden. Doppelte
@@ -158,14 +159,14 @@ Relation sichergestellt.
 \subsubsection{Erzeugung der Adjazenzmatrix}
 
 Um die Adjazenzmatrix zu erzeugen, wird jede Vorgangsnummer einer
-Spalte in der Matrix zugeordnet. Hierzu wird die Abbildung \(g\)
+Zeile in der Matrix zugeordnet. Hierzu wird die Abbildung \(g\)
 verwendet, die bereits bei der Beschreibung des Netzplans erl\"autert
 wurde. Man erh\"alt \(g\), indem man ein assoziatives Feld anlegt,
 wobei jeder Vorgangsnummer die zugeh\"orige Position in der Liste aus
 Vorg\"angen zugeordnet wird.
 F\"ur jeden Vorgang wird nun in der zugeh\"origen Zeile der
-Adjazenzmatrix in der Spalte
-jedem seiner Nachfolger eine 1 in der Matrix eingetragen. Hierbei wird
+Adjazenzmatrix in der Spalte von
+jedem seiner Nachfolger eine 1 eingetragen. Hierbei wird
 auch gleich abgepr\"uft, ob die Beziehung eines Vorgangs zu seinen
 Vorg\"angern und Nachfolgern konsistent ist: Ist z.B. ein Vorgang \(a\) als
 Vorg\"anger von Vorgang \(b\) eingetragen, hat diesen aber nicht als
