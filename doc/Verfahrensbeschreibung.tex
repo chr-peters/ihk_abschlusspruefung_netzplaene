@@ -189,8 +189,6 @@ Um aus dem gerichteten Graph einen ungerichteten Graph zu erzeugen,
 kann einfach eine symmetrische Version der Adjazenzmatrix erstellt
 werden. Hierzu wird zu jedem Element \(a_{ij}=1\) das an der
 Diagonalen gespiegelte Element \(a_{ji}\) ebenfalls auf 1 gesetzt.
-Die Traversierung, welche im n\"achsten Schritt erfolgt, wird mittels
-einer Breitensuche durchgef\"uhrt.
 
 \subsubsection{\"Uberpr\"ufen auf Zyklen}
 
@@ -201,8 +199,15 @@ gebildet (d.h. es werden alle m\"oglichen Pfade durch den Graphen erzeugt).
 Sobald ein Pfad im n\"achsten Schritt der Expansion ein Element
 aufnehmen w\"urde, welches bereits in diesem Pfad enthalten ist, wurde
 ein Zyklus entdeckt und das Programm kann mit einem Fehler beendet
-werden. Auch hier wird die zu diesem Zweck ben\"otigte
-Traversierung mit einer Breitensuche durchgef\"uhrt.
+werden. Die Details des
+Algorithmus k\"onnen dem Struktogramm in Abbildung \ref{zyklenfinden}
+entnommen werden.
+
+\begin{figure}
+  \input{struktogramme/zyklen}
+  \caption{Algorithmus, der das Auffinden von Zyklen im Graph erm\"oglicht.}
+  \label{zyklenfinden}
+\end{figure}
 
 \subsection{Vorw\"artsrechnung}
 
@@ -226,9 +231,17 @@ FAZ+Dauer gesetzt. Man beachte hierbei, dass Startknoten von Beginn an
 einen FAZ von 0 haben. Anschlie{\ss}end werden alle Nachfolger
 des Elements betrachtet. Der FAZ eines jeden Nachfolgers wird nun auf
 den FEZ des aktuellen Elements gesetzt, wenn sich der FAZ des
-Nachfolgers hierdurch vergr\"o{\ss}ert. Jeder Nachfolger wird dann hinten
+Nachfolgers hierdurch vergr\"o{\ss}ert. Jeder Nachfolger, der sich in
+diesem Schritt ge\"andert hat, wird dann hinten
 an die Queue der zu bearbeitenden Knoten angef\"ugt und eine neue
-Iteration beginnt.
+Iteration beginnt. Eine graphische Darstellung dieses Algorithmus
+findet sich in Abbildung \ref{struktovorwaerts}.
+
+\begin{figure}
+  \input{struktogramme/vorwaerts}
+  \caption{Algorithmus zur Phase der Vorw\"artsrechnung}
+  \label{struktovorwaerts}
+\end{figure}
 
 \subsection{R\"uckw\"artsrechnung}
 
@@ -242,7 +255,8 @@ zun\"achst der SAZ des aktuellen Elementes auf SEZ-Dauer gesetzt. Im
 Anschluss werden alle Vorg\"anger des Elementes betrachtet. Wurde der
 SEZ des Vorg\"angers noch nicht gesetzt oder w\"urde er sich
 verringern, so wird dieser auf den SAZ des aktuellen Elements
-gesetzt. Anschlie{\ss}end wird wieder jeder Vorg\"anger hinten an die
+gesetzt. Anschlie{\ss}end wird wieder jeder Vorg\"anger, der sich
+ge\"andert hat, hinten an die
 Queue angeh\"angt und die Iteration beginnt von neuem.
 
 \subsection{Berechnung der Zeitreserven}
@@ -281,10 +295,11 @@ Abbildung \ref{pfadefinden}.
 \section{Ausgabe der Ergebnisse}
 
 Das Format, in dem die Ergebnisse des Programms ausgegeben werden, soll
-hier anhand des folgenden Beispiels erl\"autert werden, welches
-gleichzeitig die Ausgabe zu der zuvor vorgestellten Eingabedatei bildet:
+hier anhand des Beispiels in Abbildung \ref{abb:ausgabedatei}
+erl\"autert werden, welches
+gleichzeitig die Ausgabe zu der zuvor vorgestellten Eingabedatei bildet.
 
-\begin{figure}[h!]
+\begin{figure}
   \resizebox{\textwidth}{!}{
     \fbox{
       \setlength{\fboxrule}{1pt}
@@ -292,6 +307,7 @@ gleichzeitig die Ausgabe zu der zuvor vorgestellten Eingabedatei bildet:
     }
   }
   \caption{Die resultierende Ausgabedatei}
+  \label{abb:ausgabedatei}
 \end{figure}
 
 Das Format der Ausgabedatei wird durch die \"Uberschriftzeile

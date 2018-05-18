@@ -1,0 +1,27 @@
+%\sProofOn
+\resizebox{\textwidth}{!}{
+\begin{struktogramm}(150, 124)
+  \while{F\"ur jeden Startknoten \textit{aktStartKnoten}}
+  \assign{Erzeuge leere Queue \textit{Pfade}, die alle abzuarbeitenden Pfade enth\"alt}
+  \assign{F\"uge \textit{aktStartKnoten} der Queue \textit{Pfade} als Startpfad hinzu}
+  \while{Solange \textit{Pfade} noch Elemente enth\"alt}
+  \assign{Entferne erstes Element \textit{aktPfad}}
+  \assign{Betrachte letztes Element \textit{aktKnoten} von \textit{aktPfad}}
+  \ifthenelse{3}{3}{Ist \textit{aktKnoten} ein Endknoten?}{\sTrue}{\sFalse}
+  \exit{\textit{aktPfad} ist zyklenfrei, bearbeite n\"achstes Element von \textit{Pfade}}
+  \change
+  \ifend
+  \while{F\"ur jeden Nachfolger \textit{aktKind} von \textit{aktKnoten}}
+  \ifthenelse{3}{3}{Ist \textit{aktKind} schon in \textit{aktPfad} enthalten?}{\sTrue}{\sFalse}
+  \assign{Es wurde ein Zyklus erkannt!}
+  \change
+  \assign{Erzeuge neuen Pfad \textit{aktPfad} + \textit{aktKind}}
+  \assign{F\"uge den neuen Pfad hinten zu \textit{Pfade} hinzu}
+  \ifend
+  \whileend
+  \whileend
+  \whileend
+  \assign{Kein Zyklus gefunden!}
+\end{struktogramm}
+}
+%\sProofOff

@@ -1,0 +1,18 @@
+%\sProofOn
+\resizebox{\textwidth}{!}{
+\begin{struktogramm}(150, 71)
+  \assign{Erzeuge Queue \textit{abzuarbeiten}, die zu Beginn nur die Startknoten enth\"alt}
+  \while{Solange \textit{abzuarbeiten} nicht leer ist}
+  \assign{Entferne erstes Element \textit{aktKnoten}}
+  \assign{Setze FEZ von \textit{aktKnoten} auf FAZ+Dauer}
+  \while{F\"ur jeden Nachfolger \textit{aktKind} von \textit{aktKnoten}}
+  \ifthenelse{3}{3}{\textit{aktKind}.FAZ \textless \textit{aktKnoten}.FEZ}{\sTrue}{\sFalse}
+  \assign{Setze FAZ von \textit{aktKind} auf FEZ von \textit{aktKnoten}}
+  \assign{F\"uge \textit{aktKind} der Queue \textit{abzuarbeiten} hinten an}
+  \change
+  \ifend
+  \whileend
+  \whileend
+\end{struktogramm}
+}
+%\sProofOff
