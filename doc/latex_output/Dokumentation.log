@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.26)  17 MAY 2018 16:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.10.26)  18 MAY 2018 07:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1117,12 +1117,6 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <24.88> not available
 [1
 
 ]
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 43.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-Underfull \vbox (badness 5260) has occurred while \output is active []
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10.95> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 44.
 
@@ -1132,7 +1126,11 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2])
+[2]
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 46.
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+))
 \tf@toc=\write5
 \openout5 = `Dokumentation.toc'.
 
@@ -1141,7 +1139,8 @@ Package Fancyhdr Warning: \headheight is too small (12.0pt):
 ]
 \openout2 = `Einleitung.aux'.
 
- (./Einleitung.tex
+
+(./Einleitung.tex
 Kapitel 1.
 
 Overfull \hbox (1.7363pt too wide) in paragraph at lines 4--12
@@ -1391,14 +1390,14 @@ LaTeX Font Info:    Font shape `OML/pcr/m/n' in size <12> not available
 ) [19
 
 
-] [20]
-Overfull \hbox (41.20847pt too wide) in paragraph at lines 76--76
+] [20] [21]
+Overfull \hbox (41.20847pt too wide) in paragraph at lines 91--91
 []\OT1/pcr/m/n/12 javac -d build/ -sourcepath src/ src/netzplanerstellung/Main.
 java[] 
  []
 
-[21]
-Overfull \hbox (34.00847pt too wide) in paragraph at lines 102--102
+
+Overfull \hbox (34.00847pt too wide) in paragraph at lines 117--117
 []\OT1/pcr/m/n/12 jar cmf MANIFEST.MF dist/netzplanerstellung-1.0.0.jar -C buil
 d .[] 
  []
@@ -1670,13 +1669,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 474--474
 
  (./Ausblick.tex
 Kapitel 6.
-) [35
+
+Overfull \hbox (6.76442pt too wide) in paragraph at lines 11--21
+\OT1/ptm/m/n/12 freund-li-cher zu ge-stal-ten. Da kei-ne der un-te-ren Schich-t
+en in der Drei-Schichten-Architektur
+ []
 
 
-] [36
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\\' on input line 23.
+
+[35
 
 
-]
+]) [36]
 \openout2 = `Abweichungen.aux'.
 
  (./Abweichungen.tex
@@ -1691,6 +1697,8 @@ Overfull \hbox (1.33113pt too wide) in paragraph at lines 10--10
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [37
+
+
 
 
 ]
@@ -1725,11 +1733,11 @@ Package rerunfilecheck Info: File `Dokumentation.out' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 59.
  ) 
 Here is how much of TeX's memory you used:
- 19610 strings out of 494901
- 369608 string characters out of 6178616
- 456473 words of memory out of 5000000
- 22328 multiletter control sequences out of 15000+600000
- 46996 words of font info for 107 fonts, out of 8000000 for 9000
+ 19618 strings out of 494901
+ 369698 string characters out of 6178616
+ 457420 words of memory out of 5000000
+ 22331 multiletter control sequences out of 15000+600000
+ 48132 words of font info for 108 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  62i,17n,70p,395b,1132s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
@@ -1741,10 +1749,10 @@ ype1/urw/courier/ucrb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/cour
 ier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>
 </usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on latex_output/Dokumentation.pdf (46 pages, 183747 bytes).
+Output written on latex_output/Dokumentation.pdf (46 pages, 188965 bytes).
 PDF statistics:
- 586 PDF objects out of 1000 (max. 8388607)
- 500 compressed objects within 5 object streams
- 134 named destinations out of 1000 (max. 500000)
- 365 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 605 PDF objects out of 1000 (max. 8388607)
+ 518 compressed objects within 6 object streams
+ 138 named destinations out of 1000 (max. 500000)
+ 389 words of extra memory for PDF output out of 10000 (max. 10000000)
 

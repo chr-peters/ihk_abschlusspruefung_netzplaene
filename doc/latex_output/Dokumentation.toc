@@ -29,13 +29,16 @@
 \contentsline {subsection}{\numberline {4.2.1}Klassenstruktur}{19}{subsection.4.2.1}
 \contentsline {subsection}{\numberline {4.2.2}Softwarearchitektur}{21}{subsection.4.2.2}
 \contentsline {section}{\numberline {4.3}\"Ubersetzen der Software}{21}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}\"Ubersetzen ohne den Einsatz von Ant}{21}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.1}\"Ubersetzen ohne den Einsatz von Ant}{22}{subsection.4.3.1}
 \contentsline {subsubsection}{Erzeugen einer ausf\"uhrbaren .jar-Datei ohne Ant}{22}{section*.5}
 \contentsline {chapter}{\numberline {5}Testdokumentation}{23}{chapter.5}
 \contentsline {section}{\numberline {5.1}Normalf\"alle}{24}{section.5.1}
 \contentsline {section}{\numberline {5.2}Sonderf\"alle}{25}{section.5.2}
 \contentsline {section}{\numberline {5.3}Fehlerf\"alle}{26}{section.5.3}
 \contentsline {chapter}{\numberline {6}Ausblick}{35}{chapter.6}
+\contentsline {section}{\numberline {6.1}Implementierung der Pr\"asentationsschicht}{35}{section.6.1}
+\contentsline {section}{\numberline {6.2}Optimierung der Algorithmen zum Vorw\"arts- und\\ R\"uckw\"artsrechnen}{35}{section.6.2}
+\contentsline {section}{\numberline {6.3}Unterst\"utzung weiterer Ein- und Ausgabeformate}{36}{section.6.3}
 \contentsline {chapter}{\numberline {A}Abweichungen und Erg\active@dq \dq@prtct {a}nzungen zum Vorentwurf}{37}{appendix.A}
 \contentsline {section}{\numberline {A.1}\"Anderungen in der Klasse Netzplan}{37}{section.A.1}
 \contentsline {subsection}{\numberline {A.1.1}Abbildung zwischen internen und externen Vorgangsnummern}{37}{subsection.A.1.1}

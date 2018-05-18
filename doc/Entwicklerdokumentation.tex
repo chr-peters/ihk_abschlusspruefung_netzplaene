@@ -16,10 +16,8 @@ des \textit{Kornshell-Interpreters} verfasst.
 
 Die Klassenstruktur der Software wird an dieser Stelle durch das in
 Abbildung \ref{klassendiagramm} gezeigte UML-Klassendiagramm
-beschrieben. N\"ahere Informationen zur Funktionsweise der einzelnen
-Methoden k\"onnen bei Bedarf dem ausf\"uhrlich kommentierten Quelltext
-entnommen werden.
-
+beschrieben. Die Aufgaben der einzelnen Klassen werden an dieser
+Stelle kurz erl\"autert.
 \begin{figure}
   \resizebox{\textwidth}{!}{
     \input{klassendiagramme/komplett}
@@ -27,6 +25,23 @@ entnommen werden.
   \caption{Der grundlegende Aufbau der verwendeten Klassen.}
   \label{klassendiagramm}
 \end{figure}
+
+\begin{itemize}
+  \item \textbf{Vorgang:} Dient der Repr\"asentation eines
+    Vorgangs. Ist in der Lage, sich durch die Methode
+    \texttt{toString()} selbst als String umzuwandeln. Durch
+    \texttt{istKritisch()} kann abgefragt werden, ob der Vorgang
+    kritisch ist.
+  \item \textbf{Netzplan:} Klasse zur Darstellung eines
+    Netzplanes. Enth\"alt Methoden zur Konstruktion und Validierung,
+    sowie zum Erzeugen aller kritischen Pfade.
+  \item \textbf{VorgangLeser:} Diese Klasse dient einzig dem Einlesen
+    von Vorg\"angen aus einer Datei. Die eingelesenen Vorg\"ange
+    werden in Form einer Liste an den Anwender zur\"uckgegeben.
+  \item \textbf{ProjektReport:} Dient der Erzeugung eines persistenten
+    Projektreports, welcher die Ergebnisse nach dem beschriebenen
+    Format wiedergibt.
+\end{itemize}
 
 \subsection{Softwarearchitektur}
 

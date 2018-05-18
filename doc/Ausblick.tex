@@ -1,2 +1,73 @@
 \chapter{Ausblick}
 \label{Ausblick}
+
+An dieser Stelle sei abschlie{\ss}end noch eine Auswahl an Ideen
+vermerkt, mit denen der
+Funktionsumfang dieser Software in Zukunft noch erweitert, verbessert,
+oder erg\"anzt werden k\"onnte.
+
+\section{Implementierung der Pr\"asentationsschicht}
+
+Da in der Planungsphase des Projekts keinerlei Benutzerinteraktion
+angedacht war, wurde die Pr\"asentationsschicht aus der
+Drei-Schichten-Architektur bisher vernachl\"assigt. Es empfiehlt sich
+allerdings, diesen Sachverhalt zu \"andern, um die Software
+benutzungsfreundlicher zu gestalten. Da keine der unteren Schichten in
+der Drei-Schichten-Architektur von der Pr\"asentationsschicht
+abh\"angt, lie{\ss}e sich diese als reine Erweiterung
+auf der bisherigen Implementierung aufbauen. So kann es dem Benutzer
+erleichtert werden, Dateien zur Bearbeitung auszuw\"ahlen und sich die
+berechneten Ergebnisse auch graphisch darstellen zu lassen.
+
+\section{Optimierung der Algorithmen zum Vorw\"arts- und\\
+  R\"uckw\"artsrechnen}
+
+Aktuell muten die Algorithmen zur Vorw\"arts- und
+R\"uckw\"artsrechnung im Hinblick auf das Durchlaufen des Graphen
+einer Breitensuche an. Die Laufzeit hierf\"ur lie{\ss}e sich jedoch
+optimieren, indem w\"ahrend eines Expansionsschrittes (wenn ein Knoten
+seine Nachfolger besucht) nur selektiv die Nachfolger besucht und
+bearbeitet werden, die sich durch einen Besuch \"andern w\"urden.
+Auf diese Weise k\"onnen Teilst\"ucke des Graphen ignoriert werden,
+die schon im Zuge der Traversierung von anderen Startknoten ausgehend
+durchlaufen wurden und sich durch neue Informationen aus anderen
+Knoten nicht \"andern.
+
+\section{Unterst\"utzung weiterer Ein- und Ausgabeformate}
+
+Um die Interoperabilit\"at dieser Software mit anderen Systemen der
+Projektplanung zu erleichtern, sollte das Repertoire an
+unterst\"utzten Formaten erweitert werden. Es existieren aktuell viele
+deklarative Dateiformate, welche sich gro{\ss}er Beliebtheit
+erfreuen. Als Beispiele seien an dieser Stelle Formate wie XML oder
+JSON genannt, die sich hervorragend dazu eignen, logische Strukturen
+wie Vorg\"ange, Projekte und Netzpl\"ane darzustellen. Um diese neuen
+Formate nun ohne gro{\ss}en Aufwand in das bestehende Programm
+einzugliedern, sind ein paar Handgriffe des objektorientierten Design
+erforderlich. Diese sollen hier nun kurz skizziert werden:
+
+Eines der Grundprinzipien des objektorientieren Entwurfs wird wohl
+durch das folgende Sprichwort treffend beschrieben:
+\begin{quotation}
+,,Encapsulate the concept that varies.``
+\end{quotation}
+Dementsprechend sollte man die Teile eines Programmes, welche of
+ausgetauscht oder ver\"andert werden, durch klar definierte
+Schnittstellen kapseln. Somit bietet es sich an, f\"ur die
+Unterst\"utzung der neuen Dateiformate eine neue Klassenhierarchie zu
+bilden, welche die Strategien zum Einlesen und zum Ausgeben der neuen
+Formate enth\"alt. Je nach dem, welches Format zur Laufzeit
+verarbeitet werden soll, lie{\ss}en sich Ein- und Ausgabeeinheit mit
+einer konkreten Strategie konfigurieren, welche die formateigene Logik
+in sich tr\"agt. Die Kommunikation mit der Strategie w\"urde dann
+\"uber die feste Schnittstelle einer abstrakten Klasse ablaufen, damit
+Vorg\"ange und Netzpl\"ane unabh\"angig von der tats\"achlich
+eingesetzten Strategie
+verarbeitet werden k\"onnen. Neue Formate lie{\ss}en sich auf diese
+Weise leicht durch Unterklassenbildung einer weiteren konkreten
+Strategie hinzuf\"ugen, ohne andere Teile des Programms \"andern zu
+m\"ussen.\footnote{Die hier dargelegten Ausf\"uhrungen beziehen sich
+  im Wesentlichen auf das ,,Strategy-Pattern``, welches in
+  \textit{Design Patterns. Elements of Reusable Object-Oriented
+    Software.} detailliert beschrieben wird.}
+
