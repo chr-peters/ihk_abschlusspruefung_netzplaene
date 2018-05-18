@@ -19,19 +19,24 @@ auf der bisherigen Implementierung aufbauen. So kann es dem Benutzer
 erleichtert werden, Dateien zur Bearbeitung auszuw\"ahlen und sich die
 berechneten Ergebnisse auch graphisch darstellen zu lassen.
 
-\section{Optimierung der Algorithmen zum Vorw\"arts- und\\
-  R\"uckw\"artsrechnen}
+\section{Optimierung der Speicherung des Graphen}
 
-Aktuell muten die Algorithmen zur Vorw\"arts- und
-R\"uckw\"artsrechnung im Hinblick auf das Durchlaufen des Graphen
-einer Breitensuche an. Die Laufzeit hierf\"ur lie{\ss}e sich jedoch
-optimieren, indem w\"ahrend eines Expansionsschrittes (wenn ein Knoten
-seine Nachfolger besucht) nur selektiv die Nachfolger besucht und
-bearbeitet werden, die sich durch einen Besuch \"andern w\"urden.
-Auf diese Weise k\"onnen Teilst\"ucke des Graphen ignoriert werden,
-die schon im Zuge der Traversierung von anderen Startknoten ausgehend
-durchlaufen wurden und sich durch neue Informationen aus anderen
-Knoten nicht \"andern.
+Die gew\"ahlte Speicherung des Graphen als Adjazenzmatrix kann noch
+optimiert werden. Der Vorteil einer Adjazenzmatrix ist sicherlich die
+leichte Implementierung und das schnelle \"Uberpr\"ufen einer
+Verbindung in \(\mathcal{O}(1)\). Auch das \"Uberpr\"ufen auf
+Zusammenhang des Graphen lie{\ss} sich mithilfe der Adjazenzmatrix
+leicht durchf\"uhren. Leider w\"achst der Speicherbedarf des Graphen
+jedoch quadratisch mit der Anzahl der Knoten, wenn man eine
+Adjazenzmatrix verwendet. Dies ist zwar in heutiger Zeit selbst bei
+gro{\ss}en Projekten nicht das Problem (selbst bei 10000 Knoten
+w\"urde die Matrix bei 4-Byte Integern nur ca. 400MB verbrauchen),
+kann jedoch verbessert werden. Hierzu k\"onnte die Matrix
+beispielsweise als d\"unn besetzte Matrix abgespeichert
+werden, da die meisten Knoten untereinander nicht verbunden sind und
+so viele Nulleintr\"age entstehen. Mithilfe des sogenannten \textit{Compressed Row
+  Storage (CRS)}-Formats lie{\ss}e sich so der Speicheraufwand signifikant
+reduzieren.
 
 \section{Unterst\"utzung weiterer Ein- und Ausgabeformate}
 

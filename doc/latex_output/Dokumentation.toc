@@ -37,7 +37,7 @@
 \contentsline {section}{\numberline {5.3}Fehlerf\"alle}{26}{section.5.3}
 \contentsline {chapter}{\numberline {6}Ausblick}{35}{chapter.6}
 \contentsline {section}{\numberline {6.1}Implementierung der Pr\"asentationsschicht}{35}{section.6.1}
-\contentsline {section}{\numberline {6.2}Optimierung der Algorithmen zum Vorw\"arts- und\\ R\"uckw\"artsrechnen}{35}{section.6.2}
+\contentsline {section}{\numberline {6.2}Optimierung der Speicherung des Graphen}{35}{section.6.2}
 \contentsline {section}{\numberline {6.3}Unterst\"utzung weiterer Ein- und Ausgabeformate}{36}{section.6.3}
 \contentsline {chapter}{\numberline {A}Abweichungen und Erg\active@dq \dq@prtct {a}nzungen zum Vorentwurf}{37}{appendix.A}
 \contentsline {section}{\numberline {A.1}\"Anderungen in der Klasse Netzplan}{37}{section.A.1}

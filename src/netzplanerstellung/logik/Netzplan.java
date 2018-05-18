@@ -115,10 +115,10 @@ public class Netzplan {
                 // setze FAZ des Kindes, falls es sich hierdurch vergrößert
                 if (kindVorgang.getFAZ() < aktVorgang.getFEZ()) {
                     kindVorgang.setFAZ(aktVorgang.getFEZ());
-                }
 
-                // füge das Kind hinten an die Queue an
-                abzuarbeiten.addLast(intern);
+                    // füge das Kind hinten an die Queue an
+                    abzuarbeiten.addLast(intern);
+                }
             }
         }
     }
@@ -155,10 +155,10 @@ public class Netzplan {
                 // setze SEZ des Vorgängers, wenn es noch nicht gesetzt wurde oder es sich verringert
                 if (aktVorgaengerRef.getSEZ() == 0 || aktVorgaengerRef.getSEZ() > aktVorgang.getSAZ()) {
                     aktVorgaengerRef.setSEZ(aktVorgang.getSAZ());
-                }
 
-                // fuege den Vorgänger hinten an die Queue an
-                abzuarbeiten.addLast(toInternal.get(aktVorgaenger));
+                    // fuege den Vorgänger hinten an die Queue an
+                    abzuarbeiten.addLast(toInternal.get(aktVorgaenger));
+                }
             }
         }
     }
