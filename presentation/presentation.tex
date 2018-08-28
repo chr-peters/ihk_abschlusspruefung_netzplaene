@@ -174,4 +174,52 @@
   \end{figure}
 \end{frame}
 
+\begin{frame}
+  \frametitle{R\"uckw\"artsrechnung}
+  \begin{itemize}
+    \item Berechne SAZ und SEZ aller Vorg\"ange
+    \item Vorgehensweise analog zur Vorw\"artsrechnung
+  \end{itemize}
+  \begin{enumerate}
+    \item Beginne mit einer Queue aus den Endknoten (Knoten ohne
+      Nachfolger)
+      \begin{itemize}
+        \item Setze bei allen Endknoten $SEZ=FEZ$, da diese keinen
+          Puffer haben
+      \end{itemize}
+    \item Arbeite die Queue wie bei der Vorw\"artsrechnung ab
+      \begin{itemize}
+        \item Diesmal setze $SAZ=SEZ-Dauer$
+        \item Aktualisiere diesmal die $SEZ$ der Vorg\"anger
+      \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Berechnung der Zeitreserven}
+  \begin{enumerate}
+    \item Durchlaufe alle Vorg\"ange
+    \item Setze $GP=SAZ-FAZ$ (alternativ $GP=SEZ-FEZ$)
+    \item Setze $FP=\min\limits_{i \in \{Nachfolger\}} FAZ_i - FEZ$
+  \end{enumerate}
+  $\rightarrow$ Verwende diese Werte als Grundlage f\"ur die Suche
+  nach kritischen Pfaden!
+\end{frame}
+
+\begin{frame}
+  \frametitle{Auffinden der kritischen Pfade}
+  \begin{figure}
+    \resizebox{!}{100px}{\input{../doc/struktogramme/finden}}
+  \end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Objektorientierte Realisierung}
+  \begin{figure}
+    \resizebox{!}{200px}{
+      \input{../doc/klassendiagramme/komplett}
+    }
+  \end{figure}
+\end{frame}
+
 \end{document}
