@@ -222,4 +222,33 @@
   \end{figure}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Ausblick}
+  \begin{itemize}
+    \item Implementierung der Pr\"asentationsschicht
+      \begin{itemize}
+        \item Bisher nur Logik und Datenhaltung
+        \item L\"asst sich leicht auf der bestehenden Architektur
+          aufsetzen
+      \end{itemize}
+    \item Optimierung der Speicherung des Graphen
+      \begin{itemize}
+        \item Speicherbedarf der Adjazenzmatrix w\"achst quadratisch
+          mit der Anzahl der Knoten
+        \item Ist aber h\"aufig nur d\"unn besetzt
+        \item Nutzung dieser Begebenheit, z.B. durch den Einsatz des
+          Compressed Row Storage (CRS) Formats
+      \end{itemize}
+    \item Unterst\"utzung weiterer Ein- und Ausgabeformate, z.B. XML
+      oder JSON
+      \begin{itemize}
+        \item Kapselung der speziellen Ein- und Ausgabelogik hinter
+          einer abstrakten Klasse
+        \item Wahl des Formats wird so zur Laufzeit m\"oglich
+          (Konfiguration mit konkreter Strategie)
+        \item Implementierung durch Einsatz des \textit{Strategy Pattern}
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
 \end{document}
