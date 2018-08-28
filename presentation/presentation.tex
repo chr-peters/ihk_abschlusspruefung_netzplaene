@@ -3,6 +3,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[ngerman]{babel}
+\usepackage[ngerman]{struktex}
+\usepackage{pgf-umlcd}
 
 \usetheme{Juelich}
 
@@ -121,6 +123,55 @@
         \item Berechnung von GP und FP
       \end{itemize}
   \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Pr\"ufen auf Zusammenhang}
+  \begin{enumerate}
+    \item Erzeuge Adjazenzmatrix $A$ des Graphen
+      \begin{itemize}
+        \item Gibt an, welche Vorg\"ange wie voneinander abh\"angen
+        \item Element $a_{ij}$ ist 1, falls Vorgang $i$ Vorg\"anger
+          von Vorgang $j$ ist, ansonsten 0
+      \end{itemize}
+    \item Erzeuge symmetrische Version $A'$ von $A$
+      \begin{itemize}
+        \item Richtung der Kanten ist egal f\"ur das Zusammenh\"angen
+          des Graphen
+        \item Setze $a_{ji}=1$, falls $a_{ij}=1$
+      \end{itemize}
+    \item Traversiere nun den Graphen auf Basis von $A'$
+      \begin{itemize}
+        \item Bleiben Knoten \"ubrig, war der Graph nicht zusammenh\"angend!
+      \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Pr\"ufen auf Zyklen}
+  \begin{enumerate}
+    \item Erzeuge beginnend bei jedem Startknoten (Knoten ohne
+      Vorg\"anger) eine Expansion des Graphen
+      \begin{itemize}
+        \item D.h. erzeuge sukzessive alle m\"oglichen Pfade durch den Graph
+      \end{itemize}
+    \item Teste in jedem Schritt der Expansion, ob ein Knoten doppelt
+      in einem Pfad vorkommt
+      \begin{itemize}
+        \item In diesem Fall wurde ein Zyklus erkannt!
+      \end{itemize}
+  \end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Vorw\"artsrechnung}
+  \begin{itemize}
+    \item Berechne FAZ und FEZ aller Vorg\"ange
+    \item Aktualisiere die Werte entlang der Abh\"angigkeiten
+  \end{itemize}
+  \begin{figure}
+    \resizebox{\textwidth}{!}{\input{../doc/struktogramme/vorwaerts}}
+  \end{figure}
 \end{frame}
 
 \end{document}
