@@ -40,4 +40,87 @@
   \end{itemize}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Was ist ein Netzplan?}
+  \begin{itemize}
+    \item Terminplanung gro{\ss}er Projekte sehr komplex
+      \begin{itemize}
+        \item Viele einzelne Vorg\"ange, die untereinander
+          \textit{vernetzt} sind
+        \item Abh\"angigkeiten oft stark verzweigt
+        \item Per Hand kaum aufzul\"osen
+      \end{itemize}
+    \item Wie lange Dauert ein Projekt?
+      \begin{itemize}
+        \item Welche Vorg\"ange d\"urfen sich nicht verz\"ogern?
+        \item Was sind die \textit{kritischen Pfade} durch ein
+          Projekt?
+        \item Wo kann effektiv Zeit gespart werden?
+      \end{itemize}
+    \item Technisches Hilfsmittel: Netzplan
+      \begin{itemize}
+        \item Verkettung aller Vorg\"ange nach ihren Abh\"angigkeiten
+        \item Basis f\"ur automatisierte Berechnungen der relevanten
+          Gr\"o{\ss}en
+      \end{itemize}
+    \item Formal: Gerichteter azyklischer Graph
+      \begin{itemize}
+        \item Vorg\"ange bilden Knoten des Graphen
+        \item Abh\"angigkeiten legen die Kanten fest
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Eigenschaften von Vorg\"angen}
+  \begin{itemize}
+    \item Zu Beginn spezifiziert:
+      \begin{itemize}
+        \item Eindeutige Vorgangsnummer
+        \item Lesbare Vorgangsbezeichnung
+        \item Dauer
+        \item Vorg\"anger und Nachfolger
+      \end{itemize}
+    \item Zu berechnen:
+      \begin{itemize}
+        \item Fr\"uhester und sp\"atester Anfangszeitpunkt (FAZ und SAZ)
+        \item Fr\"uhester und sp\"atester Endzeitpunkt (FEZ und SEZ)
+        \item Gesamtpuffer
+          \begin{itemize}
+            \item Spielraum, der das Projektende nicht gef\"ahrdet
+          \end{itemize}
+        \item Freier Puffer
+          \begin{itemize}
+            \item Spielraum, der die fr\"uheste Abarbeitung der Nachfolger
+              nicht gef\"ahrdet
+          \end{itemize}
+      \end{itemize}
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Algorithmische Konstruktion eines Netzplans}
+  \begin{enumerate}
+    \item Einlesen der Vorg\"ange
+    \item Initialisierung des Netzplans
+      \begin{itemize}
+        \item Sind Vorg\"anger und Nachfolger konsistent?
+        \item H\"angt der Graph zusammen?
+        \item Ist der Graph zyklenfrei?
+      \end{itemize}
+    \item Vorw\"artsrechnung
+      \begin{itemize}
+        \item Berechnung von FAZ und FEZ
+      \end{itemize}
+    \item R\"uckw\"artsrechnung
+      \begin{itemize}
+        \item Berechnung von SAZ und SEZ
+      \end{itemize}
+    \item Zeitreserven bestimmen
+      \begin{itemize}
+        \item Berechnung von GP und FP
+      \end{itemize}
+  \end{enumerate}
+\end{frame}
+
 \end{document}
